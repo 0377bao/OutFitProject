@@ -2,15 +2,17 @@ package com.shopbetho.shop.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Color extends BaseEntity {
 
     private String name;
 
+
+    @ElementCollection
+    @CollectionTable(name = "color_images", joinColumns = @JoinColumn(name = "color_id"))
+    @Column(name = "image_url")
     private List<String> imageUrl;
 
     @ManyToOne
