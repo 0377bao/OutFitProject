@@ -1,164 +1,278 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Thêm sản phẩm mới</title>
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+    />
 
-            <!DOCTYPE html>
-            <html lang="en">
+    <link rel="stylesheet" href="/admin/css/create_product.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+</head>
+<body>
+<jsp:include page="../../header.jsp"/>
 
-            <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css?v=<%= System.currentTimeMillis() %>" />
+<main>
+    <div class="CreateProduct">
+        <div class="container">
+            <div class="CreateProductSubmit">
+                <h2>Thêm sản phẩm mới</h2>
+                <button class="CreateProductSubmit__Btn">Thêm</button>
+            </div>
+        </div>
 
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/bootstraps/css/bootstrap.min.css?v=<%= System.currentTimeMillis() %>" />
+        <div class="container">
+            <div class="CreateProductMain">
+                <div class="CreateProduct__GeneralInfor">
+                    <h3>Thông tin tổng quan</h3>
+                    <p>Tên sản phẩm</p>
+                    <input
+                            class="form-control CreateProduct__GeneralInfor__NameProduct"
+                            type="text"
+                            placeholder="Ví dụ: áo khoác mùa hè cho bé"
+                    />
 
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/admin/css/dashboardProduct.css?v=<%= System.currentTimeMillis() %>" />
-                <title>Admin page</title>
-            </head>
+                    <p>Miêu tả sản phẩm</p>
+                    <textarea
+                            type="text"
+                            class="form-control CreateProduct__GeneralInfor__DescribeProduct"
+                            placeholder="Ví dụ: Áo quần con nít thường được thiết kế với màu sắc tươi sáng, họa tiết ngộ nghĩnh, đáng yêu. Chất liệu vải mềm mại, thoáng mát như cotton, lanh, hoặc nỉ, đảm bảo sự thoải mái cho làn da nhạy cảm của trẻ. Kiểu dáng đa dạng, từ những bộ đồ liền thân ấm áp cho trẻ sơ sinh, đến những chiếc áo thun, quần short năng động cho trẻ lớn hơn. Các chi tiết như nơ, bèo nhún, hình thú cưng, hoặc nhân vật hoạt hình được thêu hoặc in trên áo quần, tạo điểm nhấn thu hút sự chú ý của trẻ."
+                    >
+              </textarea>
 
-            <body>
+                    <div class="CreateProduct__GeneralInfor__StatusId">
+                        <div class="CreateProduct__GeneralInfor__StatusId__Status">
+                            <div class="CreateProduct__GeneralInfor__StatusId__Status__1">
+                                <lable>Còn hàng</lable>
+                                <input
+                                        id="CreateProduct__GeneralInfor__StatusId__Status__1"
+                                        value="CreateProduct__GeneralInfor__StatusId__Status__1"
+                                        name="CreateProduct__GeneralInfor__StatusId__Status"
+                                        type="radio"
+                                />
+                            </div>
 
-                <div class="Header"></div>
-
-                <header class="header">
-                    <div class="container">
-                        <div class="header__1">
-                            <h1>Quản lý sản phẩm</h1>
-                            <button class="header__1__btn">Thêm sản phẩm mới</button>
+                            <div class="CreateProduct__GeneralInfor__StatusId__Status__2">
+                                <lable>Hết hàng</lable>
+                                <input
+                                        id="CreateProduct__GeneralInfor__StatusId__Status__2"
+                                        value="CreateProduct__GeneralInfor__StatusId__Status__2"
+                                        name="CreateProduct__GeneralInfor__StatusId__Status"
+                                        type="radio"
+                                />
+                            </div>
                         </div>
-                        <hr />
-                        <div class="header__2">
-                            <input type="text" class="form-control p-3" placeholder="Nhập sản phẩm bạn muốn tìm">
-                            <button class="header__2__btn">Tìm kiếm</button>
+
+                        <div class="CreateProduct__GeneralInfor__StatusId__Id">
+                            <lable>Mã sản phẩm</lable>
+                            <input
+                                    class="m-3 CreateProduct__GeneralInfor__StatusId__Id__Product"
+                                    type="text"
+                                    placeholder="Nhập mã sản phẩm"
+                            />
                         </div>
                     </div>
-                </header>
 
-                <main class="main">
-                    <div class="container">
-                        <div class="row main__navbar">
-                            <div class="col-sm-1 fw-bold">STT</div>
-                            <div class="col-sm-2 fw-bold">Tên sản phẩm</div>
-                            <div class="col-sm-1 fw-bold">Giá sản phẩm</div>
-                            <div class="col-sm-3 fw-bold">Mô tả sản phẩm</div>
-                            <div class="col-sm-2 fw-bold">Thời gian tạo</div>
-                            <div class="col-sm-1 fw-bold">Mã sản phẩm</div>
-                            <div class="col-sm-2 fw-bold">Hành động</div>
-                        </div>
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-sm-1">0</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-sm-1">1</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-sm-1">2</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-sm-1">3</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-                        <div class="row">
-                            <div class="col-sm-1">4</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-sm-1">5</div>
-                            <div class="col-sm-2">Áo thun mùa hè</div>
-                            <div class="col-sm-1">350. 000 vnđ</div>
-                            <div class="col-sm-3">Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng</div>
-                            <div class="col-sm-2">20h03 27/8/2025</div>
-                            <div class="col-sm-1">7878977</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-warning">Sửa</button>
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </div>
-                        </div>
-
-                        <hr />
-
-
+                    <div class="CreateProductMain__Price">
+                        <p>Giá sản phẩm</p>
+                        <input type="number" class="form-control" />
                     </div>
 
+                    <div class="CreateProduct__GeneralInfor__outstanding">
+                        <p>Sản phẩm này có dùng để hiện thị sản phẩm nỗi bật không ?</p>
+                        <lable class="m-2">Có</lable>
+                        <input
+                                name="CreateProduct__GeneralInfor__outstanding"
+                                value="CreateProduct__GeneralInfor__outstanding__1"
+                                type="radio"
+                        />
 
-                </main>
+                        <label class="m-2">Không</label>
+                        <input
+                                name="CreateProduct__GeneralInfor__outstanding"
+                                value="CreateProduct__GeneralInfor__outstanding__2"
+                                type="radio"
+                        />
+                    </div>
+                </div>
 
-                <footer class="footer"></footer>
+                <div class="CreateProduct__GeneralInfor__UploadImg">
+                    <div class="CreateProduct__GeneralInfor__UploadImg__avt">
+                        <h4 class="fw-bold">Quản lý màu</h4>
+                        <div class="CreateProduct__GeneralInfor__UploadImg__Color">
+                            <button
+                                    class="CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
+                            >
+                                Thêm màu
+                            </button>
 
-                <div class="Footer"></div>
+                            <button
+                                    class="CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
+                            >
+                                Xóa màu
+                            </button>
+                        </div>
 
-                <script src="Resource/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
-                <script src="Resource/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-                <script src="Resource/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+                        <!-- Bắt đầu ô chọn màu -->
 
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js?v=<%= System.currentTimeMillis() %>" />
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js?v=<%= System.currentTimeMillis() %>" />
-                <link rel="stylesheet"
-                    href="${pageContext.request.contextPath}/bootstrap/js/bootstrap.bundle.min.js?v=<%= System.currentTimeMillis() %>" />
-            </body>
+                        <!-- <div class="CreateProduct__GeneralInfor__UploadImg__avt__box">
+                          <input
+                            type="file"
+                            id="CreateProduct__GeneralInfor__UploadImg__avt__input"
+                            accept="image/*"
+                            hidden
+                          />
 
-            </html>
+                          <img
+                            class="addImgAvt"
+                            style="width: 100%"
+                            src="./Resource/img/add img.png"
+                          />
+
+                          <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
+                            <img
+                              class="addImgDetail__1"
+                              style="width: 80%"
+                              src="./Resource/img/add img.png"
+                            />
+                            <img
+                              class="addImgDetail__2"
+                              style="width: 80%"
+                              src="./Resource/img/add img.png"
+                            />
+                            <img
+                              class="addImgDetail__3"
+                              style="width: 80%"
+                              src="./Resource/img/add img.png"
+                            />
+                            <img
+                              class="addImgDetail__4"
+                              style="width: 80%"
+                              src="./Resource/img/add img.png"
+                            />
+                          </div>
+                        </div> -->
+
+                        <!-- Kết thúc ô chọn màu -->
+
+                        <!-- template cho ô chọn màu -->
+
+                        <template
+                                class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
+                        >
+                            <div
+                                    class="CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+                            >
+                                <input
+                                        type="file"
+                                        id="CreateProduct__GeneralInfor__UploadImg__avt__input"
+                                        accept="image/*"
+                                        hidden
+                                />
+                                <!-- thẻ input này dùng checkbox để hỗ trợ xóa -->
+                                <input type="checkbox" class="group-checkbox-color" /> Chọn
+                                nhóm này
+
+                                <img
+                                        class="addImgAvt"
+                                        style="width: 100%"
+                                        src="/images/add img.png"
+                                />
+
+                                <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
+                                    <img
+                                            class="addImgDetail__1"
+                                            style="width: 80%"
+                                            src="/images/add img.png"
+                                    />
+                                    <img
+                                            class="addImgDetail__2"
+                                            style="width: 80%"
+                                            src="/images/add img.png"
+                                    />
+                                    <img
+                                            class="addImgDetail__3"
+                                            style="width: 80%"
+                                            src="/images/add img.png"
+                                    />
+                                    <img
+                                            class="addImgDetail__4"
+                                            style="width: 80%"
+                                            src="/images/add img.png"
+                                    />
+                                </div>
+                            </div>
+                        </template>
+                        <!-- Kết thúc template -->
+                    </div>
+
+                    <div class="CreateProduct__GeneralInfor__UploadImg__Size">
+                        <h4 class="fw-bold">Tạo size</h4>
+                        <input
+                                type="text"
+                                class="form-control CreateProduct__GeneralInfor__UploadImg__Size__Input"
+                        />
+
+                        <div
+                                class="CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
+                        ></div>
+
+                        <div
+                                class="CreateProduct__GeneralInfor__UploadImg__Size__Detail"
+                        >
+                            <button
+                                    class="CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
+                            >
+                                Thêm size
+                            </button>
+                            <button
+                                    class="CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
+                            >
+                                Xóa size
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="CreateProduct__GeneralInfor__UploadImg__Category">
+                        <h4 class="fw-bold">Phân loại</h4>
+                        <p>Phân loại sản phẩm</p>
+
+                        <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
+                            -- Lựa chọn --
+                            <option>Áo ngắn tay</option>
+                            <option>Áo dài tay</option>
+                            <option>Đồ bộ</option>
+                            <option>Đồ mùa hè</option>
+                            <option>Đồ mùa đông</option>
+                        </select>
+
+                        <button
+                                class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                        >
+                            Đồng ý
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<jsp:include page="../../footer.jsp"/>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/create_product.js"></script>
+</body>
+</html>
