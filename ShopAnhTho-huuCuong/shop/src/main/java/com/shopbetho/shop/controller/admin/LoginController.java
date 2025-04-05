@@ -43,6 +43,7 @@ public class LoginController {
             emailService.sendOtpEmail(email, otpGen);
             //Lưu OTP vào Redis với thời gian sống 5 phút
             redisTemplate.opsForValue().set("otp:" + email, otpGen, Duration.ofMinutes(5));
+            model.addAttribute("email", email);
             return "client/login/verify_otp";
         } else {
             // Nếu email không hợp lệ, trả về thông báo lỗi
