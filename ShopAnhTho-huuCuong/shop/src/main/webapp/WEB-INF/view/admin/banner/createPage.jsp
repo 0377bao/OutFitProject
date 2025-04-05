@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Cập nhật bộ sưu tập</title>
+    <title>Create Banner</title>
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.css"
+    />
     <link
             rel="stylesheet"
             href="/bootstrap/css/bootstrap.min.css"
@@ -11,49 +15,38 @@
             rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/admin/css/create_Collection.css" />
-
+    <link rel="stylesheet" href="/admin/css/create_banner.css" />
+    <link rel="stylesheet" href="/admin/css/create_blog.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
+<main>
+    <div class="CreateBanner container">
+        <div class="CreateBanner__title">
+            <h1>Cập nhật banner trang chủ</h1>
+            <button class="CreateBanner__title__btn">Cập nhật</button>
+        </div>
 
-<main class="container create__Collection">
-    <div class="create__Collection__title">
-        <h1>Cập nhật bộ sưu tập trang chủ</h1>
+        <div class="container">
+            <div class="CreateBanner__1">
+                <h5>Banner đầu trang</h5>
+                <div class="CreateBanner__1__add">
+                    <img src="resource/img/add img.png" />
+                </div>
+            </div>
 
-        <button class="create__Collection__btn">Cập nhật</button>
+            <hr />
+
+            <div class="CreateBanner__2">
+                <h5>Banner thân trang</h5>
+                <div class="CreateBanner__2__add">
+                    <img src="resource/img/add img.png" />
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="main__3__collection__img">
-        <h5>Nhấn vào để thêm hình ảnh</h5>
-        <img
-                class="main__3__collection__img__item__1"
-                src="/images/add img.png"
-        />
-        <img
-                class="main__3__collection__img__item__2"
-                src="/images/add img.png"
-        />
-        <img
-                class="main__3__collection__img__item__3"
-                src="/images/add img.png"
-        />
-        <img
-                class="main__3__collection__img__item__4"
-                src="/images/add img.png"
-        />
-        <img
-                class="main__3__collection__img__item__5"
-                src="/images/add img.png"
-        />
-        <img
-                class="main__3__collection__img__item__6"
-                src="/images/add img.png"
-        />
-    </div>
-
     <input type="file" id="imageInput" accept="image/*" hidden />
 </main>
 
@@ -72,12 +65,10 @@
 
     // Bắt sự kiện click vào khu vực chọn ảnh
     document
-        .querySelectorAll(
-            ".main__3__collection__img__item__1, .main__3__collection__img__item__2,.main__3__collection__img__item__3, .main__3__collection__img__item__4, .main__3__collection__img__item__5, .main__3__collection__img__item__6"
-        )
+        .querySelectorAll(".CreateBanner__1__add, .CreateBanner__2__add")
         .forEach((div) => {
             div.addEventListener("click", function () {
-                currentImg = this; // Lưu lại ảnh cần thay đổi
+                currentImg = this.querySelector("img"); // Lưu lại ảnh cần thay đổi
                 imageInput.click();
             });
         });
