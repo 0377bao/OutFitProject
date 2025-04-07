@@ -13,19 +13,13 @@
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="/admin/css/dashboard_product.css" />
-    <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Admin Products</title>
-    <style>
-        .header__banner img{
-            margin-top: 0;
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
-<header class="header">
+<header class="headerProduct">
     <div class="container">
         <div class="header__1">
             <h1>Quản lý sản phẩm</h1>
@@ -42,6 +36,7 @@
         </div>
     </div>
 </header>
+
 
 <main class="main">
     <div class="container main__product__total">

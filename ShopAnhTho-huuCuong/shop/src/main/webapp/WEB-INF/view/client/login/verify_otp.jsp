@@ -86,7 +86,7 @@
 
         .popup__login__input span {
             color: red;
-            display: none;
+            display: block;
         }
 
         /* reponse cho tablet */
@@ -125,6 +125,7 @@
             <form action="/admin/login/verify-otp" method="post">
                 <input
                         id="email"
+                        name="email"
                         type="email"
                         placeholder="Email đã đăng ký"
                         value="${email}"
