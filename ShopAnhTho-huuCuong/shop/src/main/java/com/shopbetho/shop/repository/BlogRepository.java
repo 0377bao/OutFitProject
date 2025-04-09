@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.shopbetho.shop.entity.Blog;
 
+import java.util.List;
+
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Long> {
-
+    List<Blog> findTop3ByOrderByCreatedAtDesc();
 }

@@ -5,6 +5,7 @@ import com.shopbetho.shop.service.BannerService;
 import com.shopbetho.shop.service.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,10 @@ public class BannerController {
     private CloudinaryService cloudinaryService;
     @Autowired
     private BannerService bannerService;
+    @GetMapping("/admin/banner/create")
+    public String getCreatePage() {
+        return "admin/banner/createPage";
+    }
     @PostMapping("admin/banner/create")
     public String createBanner(@RequestParam("image1") MultipartFile image1,
                                @RequestParam("image2") MultipartFile image2) throws IOException {
