@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.shopbetho.shop.entity.Blog;
 import com.shopbetho.shop.repository.BlogRepository;
 
+import java.util.List;
+
 @Service
 public class BlogService {
 
@@ -36,7 +38,10 @@ public class BlogService {
         return this.blogRepository.findAll(pageable);
     }
 
-    void deleteProduct(Long id) {
+    void deleteBlog(Long id) {
         this.blogRepository.deleteById(id);
+    }
+    public List<Blog> findTop3ByOrderByCreatedAtDesc() {
+        return this.blogRepository.findTop3ByOrderByCreatedAtDesc();
     }
 }

@@ -41,5 +41,4 @@ public class BlogController {
         model.addAttribute("blog", blog);
         return "client/blog/detailPage";
     }
-
 }
