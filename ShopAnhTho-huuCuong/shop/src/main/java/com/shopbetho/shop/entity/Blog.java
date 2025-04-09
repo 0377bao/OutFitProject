@@ -1,23 +1,19 @@
 package com.shopbetho.shop.entity;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Blog extends BaseEntity {
 
     private String title;
 
+    private String imageUrl;
+
+    private String content;
+
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
-
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Paragraph> paragraphs;
 
     public String getTitle() {
         return title;
@@ -35,11 +31,20 @@ public class Blog extends BaseEntity {
         this.description = description;
     }
 
-    public List<Paragraph> getParagraphs() {
-        return paragraphs;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setParagraphs(List<Paragraph> paragraphs) {
-        this.paragraphs = paragraphs;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 }
