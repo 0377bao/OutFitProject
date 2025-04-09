@@ -18,4 +18,13 @@ public class EmailService {
         message.setText("Your OTP code is: " + otp);
         mailSender.send(message);
     }
+
+    public void sendOrder(String toEmail, String order) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("hbao27122@gmail.com");
+        message.setTo(toEmail);
+        message.setSubject("Customer Order");
+        message.setText(order);
+        mailSender.send(message);
+    }
 }

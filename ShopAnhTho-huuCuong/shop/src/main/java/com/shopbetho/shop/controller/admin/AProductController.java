@@ -4,6 +4,7 @@ import com.shopbetho.shop.contant.catalogueEnum;
 import com.shopbetho.shop.entity.Color;
 import com.shopbetho.shop.entity.Product;
 import com.shopbetho.shop.service.CloudinaryService;
+import com.shopbetho.shop.service.EmailService;
 import com.shopbetho.shop.service.ProductService;
 import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class AProductController {
     private CloudinaryService cloudinaryService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private EmailService emailService;
     @GetMapping("/admin/product")
     public String getDashboardPage() {
         return "admin/product/showPage";
@@ -100,5 +103,39 @@ public class AProductController {
         productService.createProduct(product);
         return "admin/product/createPage";
     }
-
+    @PostMapping("/admin/product/order")
+    public String orderProduct(
+            @RequestParam("productId") Long productId,
+            @RequestParam("productName") String productName,
+            @RequestParam("total") int total,
+            @RequestParam("price") double price,
+            @RequestParam("color") String color,
+            @RequestParam("size") String size,
+            @RequestParam("nameCustomer") String nameCustomer,
+            @RequestParam("sdt") String sdt,
+            @RequestParam("address") String address,
+            @RequestParam("emailAdmin") String emailAdmin,
+            Model model
+    ) {
+        // Validate input data
+        if (productId == null || productName.isEmpty() || total <= 0 || price <= 0 || color.isEmpty() || size.isEmpty() || nameCustomer.isEmpty() || sdt.isEmpty() || address.isEmpty() || emailAdmin.isEmpty()) {
+            model.addAttribute("error", "Please fill in all required fields.");
+            return "redirect:/";
+        }
+        String messageSendEmail =
+                "Product ID: " + productId + "\n" +
+                "Product Name: " + productName + "\n" +
+                "Total: " + total + "\n" +
+                "Price: " + price + "\n" +
+                "Color: " + color + "\n" +
+                "Size: " + size + "\n" +
+                "Customer Name: " + nameCustomer + "\n" +
+                "Phone Number: " + sdt + "\n" +
+                "Address: " + address;
+        // Send email to admin
+        emailService.sendOrder(emailAdmin, messageSendEmail);
+        model.addAttribute("success", "Order placed successfully. We will contact you soon.");
+        // Redirect to a success page or show a success message
+        return "redirect:/index";
+    }
 }
