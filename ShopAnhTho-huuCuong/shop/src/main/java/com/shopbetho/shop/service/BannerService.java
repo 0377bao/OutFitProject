@@ -20,4 +20,8 @@ public class BannerService {
     public List<Banner> findAll() {
         return bannerRepository.findAll();
     }
+
+    public Banner findTopByOrderByCreatedAtDesc() {
+        return bannerRepository.findTopByOrderByCreatedAtDesc();
+    }
 }

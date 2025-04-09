@@ -1,7 +1,9 @@
 package com.shopbetho.shop.controller.admin;
 
+import com.shopbetho.shop.entity.AccountAdmin;
 import com.shopbetho.shop.service.AccountAdminService;
 import com.shopbetho.shop.service.EmailService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -51,11 +53,20 @@ public class LoginController {
             return "client/login/popup_login";
         }
     };
+    @GetMapping("/admin/dashboard/dashboardProduct")
+    public String dashboardPage(HttpSession session, Model model) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        model.addAttribute("admin", admin);
+        model.addAttribute("success", session.getAttribute("success"));
+        return "admin/dashboard/dashboardProduct";
+    }
+
     @PostMapping("/admin/login/verify-otp")
     public String verifyOtp(
             @RequestParam("email") String email,
             @RequestParam("otp") String inputOtp,
-            Model model
+            Model model,
+            HttpSession session
     ) {
         String redisKey = "otp:" + email;
         String savedOtp = redisTemplate.opsForValue().get(redisKey);
@@ -75,7 +86,10 @@ public class LoginController {
         // Xác thực thành công, xóa OTP
         redisTemplate.delete(redisKey);
         // Chuyển hướng đến trang dashboard
-        model.addAttribute("success", "Login successful!");
-        return "admin/dashboard/dashboardProduct";
+        // Ghi nhận admin vào session
+        AccountAdmin admin = accountAdminService.findByEmail(email);
+        session.setAttribute("loggedInAdmin", admin);
+        session.setAttribute("success", "Login successful!");
+        return "redirect:/admin/dashboard/dashboardProduct";
     }
 }
