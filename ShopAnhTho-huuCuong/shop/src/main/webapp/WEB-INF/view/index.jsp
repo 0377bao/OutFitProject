@@ -165,9 +165,9 @@
 <%--            <img--%>
 <%--                    src="https://file.hstatic.net/200000692427/file/bst_moi_20250204_cover_web_77546265156f44499593de006a49864b.jpg"--%>
 <%--            />--%>
-            <c:if test="${banners != null && banners.size() > 0}">
+            <c:if test="${banners != null}">
                 <img
-                        src="${banners[0].secondBanner}"
+                        src="${banners.secondBanner}"
                 />
             </c:if>
         </div>

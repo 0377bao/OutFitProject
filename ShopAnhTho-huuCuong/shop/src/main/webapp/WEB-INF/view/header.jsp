@@ -149,10 +149,10 @@
     </div>
     <!-- Kết thúc Menu sidebar right mobile -->
     <div class="header__banner">
-        <c:if test="${banners != null && banners.size() > 0}">
+        <c:if test="${banners != null}">
             <img
 <%--                    src="https://file.hstatic.net/200000692427/file/lookbook_1440x450.jpg"--%>
-                    src="${banners[0].firstBanner}"
+                    src="${banners.firstBanner}"
             />
         </c:if>
 
