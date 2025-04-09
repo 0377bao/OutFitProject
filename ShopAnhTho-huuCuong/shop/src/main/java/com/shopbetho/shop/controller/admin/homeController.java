@@ -20,8 +20,8 @@ public class homeController {
 
     @GetMapping("/index")
     public String indexPage(Model model) {
-        List<Banner> banners = bannerService.findAll();
-        model.addAttribute("banners", banners);
+        Banner banner = bannerService.findTopByOrderByCreatedAtDesc();
+        model.addAttribute("banners", banner);
         return "index";
     }
 
