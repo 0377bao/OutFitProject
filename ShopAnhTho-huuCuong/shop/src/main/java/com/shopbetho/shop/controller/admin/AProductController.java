@@ -40,6 +40,11 @@ public class AProductController {
         return "admin/product/createPage";
     }
 
+    @GetMapping("/admin/product/update")
+    public String getUpdatePage() {
+        return "admin/product/updatePage";
+    }
+
     @PostMapping("/admin/product/create")
     public String createProduct(
             @RequestParam("name") String name,
@@ -101,7 +106,73 @@ public class AProductController {
         product.setColors(colorEntities);
 
         productService.createProduct(product);
-        return "admin/product/createPage";
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/admin/product/update")
+    public String updateProduct(
+            @RequestParam("id") Long id,
+            @RequestParam("name") String name,
+            @RequestParam("code") String code,
+            @RequestParam("description") String description,
+            @RequestParam("catalogue") String catalogue,
+            @RequestParam(defaultValue = "true", name = "isHighlight") boolean isHighlight,
+            @RequestParam(defaultValue = "true", name = "isNew") boolean isNew,
+            @RequestParam(defaultValue = "true", name = "isActive") boolean isActive,
+            @RequestParam("price") double price,
+            @RequestParam("sizes") List<String> sizes,
+            @RequestParam("numberColor") int numberColor,
+            @RequestParam("avatarColors") List<MultipartFile> avatarColors,
+            @RequestParam("colorNames") List<String> colorNames,
+            @RequestParam Map<String, MultipartFile> fileMap,
+            Model model
+    ) throws IOException {
+        if( id == null || name.isEmpty() || code.isEmpty() || description.isEmpty() || catalogue.isEmpty() || sizes.isEmpty() || numberColor <= 0) {
+            model.addAttribute("error", "Please fill in all required fields.");
+            return "redirect:/admin/product/updatePage";
+        }
+        if (avatarColors.size() != numberColor || colorNames.size() != numberColor) {
+            model.addAttribute("error", "Number of colors and their details do not match.");
+            return "redirect:/admin/product/updatePage";
+        }
+        if(price <= 0) {
+            model.addAttribute("error", "Price must be greater than 0.");
+            return "redirect:/admin/product/updatePage";
+        }
+        Product product = new Product();
+        product.setId(id);
+        product.setName(name);
+        product.setCode(code);
+        product.setDescription(description);
+        product.setCatalogue(catalogueEnum.valueOf(catalogue));
+        product.setHighlight(isHighlight);
+        product.setNew(isNew);
+        product.setActive(isActive);
+        product.setPrice(price);
+        product.setSizes(sizes);
+        List<Color> colorEntities = new ArrayList<>();
+        for (int i = 0; i < numberColor; i++) {
+            Color color = new Color();
+            color.setName(colorNames.get(i));
+            String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
+            color.setAvtColor(urlAvt);
+
+            List<String> imageUrls = new ArrayList<>();
+            for (int j = 0; j < 5; j++) {
+                String key = "colorImages[" + i + "][" + j + "]";
+                MultipartFile image = fileMap.get(key);
+
+                if (image != null && !image.isEmpty()) {
+                    imageUrls.add(cloudinaryService.upLoadImage(image));
+                }
+            }
+            color.setImageUrl(imageUrls);
+            colorEntities.add(color);
+        }
+        product.setColors(colorEntities);
+
+        productService.updateProduct(product);
+        return "redirect:/admin";
     }
     @PostMapping("/admin/product/order")
     public String orderProduct(

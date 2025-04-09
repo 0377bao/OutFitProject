@@ -1,11 +1,14 @@
 package com.shopbetho.shop.service;
 
+import com.shopbetho.shop.contant.catalogueEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shopbetho.shop.entity.Product;
 import com.shopbetho.shop.repository.ProductRepository;
+
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -22,9 +25,16 @@ public class ProductService {
 
     public Product updateProduct(Product product) {
         Product updateProduct = this.productRepository.findById(product.getId()).get();
+        updateProduct.setCode(product.getCode());
         updateProduct.setName(product.getName());
-        updateProduct.setCatalogue(product.getCatalogue());
         updateProduct.setDescription(product.getDescription());
+        updateProduct.setCatalogue(product.getCatalogue());
+        updateProduct.setHighlight(product.isHighlight());
+        updateProduct.setNew(product.isNew());
+        updateProduct.setActive(product.isActive());
+        updateProduct.setPrice(product.getPrice());
+        updateProduct.setSizes(product.getSizes());
+        product.setColors(product.getColors());
 
         return this.productRepository.save(updateProduct);
     }
@@ -39,5 +49,11 @@ public class ProductService {
 
     void deleteProduct(Long id) {
         this.productRepository.deleteById(id);
+    }
+    public List<Product> findByIsHighlightTrue() {
+        return this.productRepository.findByIsHighlightTrue();
+    }
+    public List<Product> findByIsNewTrue() {
+        return this.productRepository.findByIsNewTrue();
     }
 }
