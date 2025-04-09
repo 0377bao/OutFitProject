@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <img
-                            src="https://file.hstatic.net/200000692427/file/790x532_61ca7a43928f4f6f8158e06b19cfc605.png"
+                          src="https://file.hstatic.net/200000692427/file/790x532_61ca7a43928f4f6f8158e06b19cfc605.png"
                     />
                 </div>
 
@@ -161,9 +162,14 @@
         </div>
 
         <div class="main__3__banner">
-            <img
-                    src="https://file.hstatic.net/200000692427/file/bst_moi_20250204_cover_web_77546265156f44499593de006a49864b.jpg"
-            />
+<%--            <img--%>
+<%--                    src="https://file.hstatic.net/200000692427/file/bst_moi_20250204_cover_web_77546265156f44499593de006a49864b.jpg"--%>
+<%--            />--%>
+            <c:if test="${banners != null && banners.size() > 0}">
+                <img
+                        src="${banners[0].secondBanner}"
+                />
+            </c:if>
         </div>
     </div>
 
