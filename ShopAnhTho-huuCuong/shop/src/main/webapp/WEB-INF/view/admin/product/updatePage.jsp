@@ -23,7 +23,16 @@
     <div class="create__Collection__title">
         <h1>Cập nhật bộ sưu tập trang chủ</h1>
 
-        <button class="create__Collection__btn">Cập nhật</button>
+        <form id="formData" action="/admin/collection/create" method="post" enctype="multipart/form-data">
+            <input type="file" id="inputImage1" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage2" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage3" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage4" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage5" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage6" name="image" accept="image/*" hidden="hidden"/>
+
+            <button class="create__Collection__btn">Cập nhật</button>
+        </form>
     </div>
 
     <div class="main__3__collection__img">
@@ -68,22 +77,34 @@
 
     // Js để xử lý sự kiện chọn ảnh tạm thời
     let currentImg = null;
-    const imageInput = document.getElementById("imageInput");
+    // const imageInput = document.getElementById("imageInput");
+    const inputImage1 = document.getElementById("inputImage1")
+    const inputImage2 = document.getElementById("inputImage2")
+    const inputImage3 = document.getElementById("inputImage3")
+    const inputImage4 = document.getElementById("inputImage4")
+    const inputImage5 = document.getElementById("inputImage5")
+    const inputImage6 = document.getElementById("inputImage6")
+
 
     // Bắt sự kiện click vào khu vực chọn ảnh
     document
         .querySelectorAll(
             ".main__3__collection__img__item__1, .main__3__collection__img__item__2,.main__3__collection__img__item__3, .main__3__collection__img__item__4, .main__3__collection__img__item__5, .main__3__collection__img__item__6"
         )
-        .forEach((div) => {
+        .forEach((div, index) => {
             div.addEventListener("click", function () {
                 currentImg = this; // Lưu lại ảnh cần thay đổi
-                imageInput.click();
+                if(index === 0) inputImage1.click();
+                if(index === 1) inputImage2.click();
+                if(index === 2) inputImage3.click();
+                if(index === 3) inputImage4.click();
+                if(index === 4) inputImage5.click();
+                if(index === 5) inputImage6.click();
             });
         });
 
     // Khi người dùng chọn ảnh, thay đổi src của ảnh được chọn
-    imageInput.addEventListener("change", function (event) {
+    inputImage1.addEventListener("change", function (event) {
         if (currentImg && event.target.files.length > 0) {
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -94,6 +115,73 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     });
+    inputImage2.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage3.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage4.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage5.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage6.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    const formData = document.querySelector("#formData")
+    formData.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(!inputImage1.value || !inputImage2.value || !inputImage3.value || !inputImage4.value
+        || !inputImage5.value || !inputImage6.value) {
+            alert("Vui lòng chọn đủ 6 tấm ảnh cho bộ sưu tập")
+        }else {
+            formData.submit();
+        }
+    })
+
 </script>
 </body>
 </html>

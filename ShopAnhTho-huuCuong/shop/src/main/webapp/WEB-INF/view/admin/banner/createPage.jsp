@@ -116,8 +116,14 @@
     const formData = document.querySelector("#formData");
     formData.addEventListener("submit", (e) => {
         e.preventDefault();
-        if(!imageInput_1.value) alert("Vui lòng chọn banner đầu trang")
-        if(!imageInput_2.value) alert("Vui lòng chọn banner cuối trang")
+        if(!imageInput_1.value) {
+            alert("Vui lòng chọn banner đầu trang")
+            return;
+        }
+        if(!imageInput_2.value) {
+            alert("Vui lòng chọn banner cuối trang")
+            return;
+        }
         formData.submit();
     });
 </script>

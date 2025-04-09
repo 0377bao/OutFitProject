@@ -130,30 +130,42 @@
 
                         <div class="row">
                             <div class="main__3__collection__img">
-                                <img
-                                        class="main__3__collection__img__item__1"
-                                        src="https://file.hstatic.net/200000692427/file/1.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__2"
-                                        src="https://file.hstatic.net/200000692427/file/1_0a9f2d4992fd467890bbf9b07258faee.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__3"
-                                        src="https://file.hstatic.net/200000692427/file/3.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__4"
-                                        src="https://file.hstatic.net/200000692427/file/2_b488f8d7b0b4460396ad165832970f6f.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__5"
-                                        src="https://file.hstatic.net/200000692427/file/2_3f667b571a7a40279b27ebad8e30c576.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__6"
-                                        src="https://file.hstatic.net/200000692427/file/3_52b3a174a62c4d1e8b2cd40450fc3146.jpg"
-                                />
+                                <c:choose>
+                                    <c:when test="${collections != null && collections.imageUrls.size() > 0}">
+                                        <c:forEach var="picture" items="${collections.imageUrls}" varStatus="loop">
+                                            <img
+                                                    class=`main__3__collection__img__item__${loop.index + 1}`
+                                                    src="${picture}"
+                                            />
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img
+                                                class="main__3__collection__img__item__1"
+                                                src="https://file.hstatic.net/200000692427/file/1.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__2"
+                                                src="https://file.hstatic.net/200000692427/file/1_0a9f2d4992fd467890bbf9b07258faee.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__3"
+                                                src="https://file.hstatic.net/200000692427/file/3.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__4"
+                                                src="https://file.hstatic.net/200000692427/file/2_b488f8d7b0b4460396ad165832970f6f.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__5"
+                                                src="https://file.hstatic.net/200000692427/file/2_3f667b571a7a40279b27ebad8e30c576.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__6"
+                                                src="https://file.hstatic.net/200000692427/file/3_52b3a174a62c4d1e8b2cd40450fc3146.jpg"
+                                        />
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
