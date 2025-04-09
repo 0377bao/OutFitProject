@@ -272,7 +272,6 @@
                             />
 
                             <a href="#">Bộ mặc nhà cho con bú màu tím</a>
-
                             <h5>445.000đ</h5>
                         </div>
                     </div>
@@ -288,7 +287,7 @@
                     <div class="main__5__news__slogan">
                         <h2>Tin tức</h2>
 
-                        <a href="#"
+                        <a href="/blogs"
                         >Xem thêm
                             <i class="bx bx-right-arrow-alt"></i>
                         </a>
@@ -298,59 +297,84 @@
 
             <div class="row">
                 <div class="col-sm-12 main__5__news__product">
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                    <c:choose>
+                        <c:when test="${blogs != null && blogs.size() > 0}">
+                            <c:forEach var="blogItem" items="${blogs}">
+                                <div class="card">
+                                    <img
+                                            src="${blogItem.imageUrl}"
+                                    />
+                                    <h5 class="card-title">${blogItem.title}</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                    <p class="card-text">
+                                        ${blogItem.content}
+                                    </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                    <a href="#"
+                                    >Xem thêm
+                                        <i class="bx bx-right-arrow-alt"></i>
+                                    </a>
+                                </div>
+                            </c:forEach>
 
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
 
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
+
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
         </div>

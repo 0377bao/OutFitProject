@@ -12,7 +12,7 @@ public class HelloWorld {
     public String helloWorld(Model model) {
         Blog blog = new Blog();
         model.addAttribute("blog", blog);
-        return "admin/banner/createPage";
+        return "index";
     }
 
 }
