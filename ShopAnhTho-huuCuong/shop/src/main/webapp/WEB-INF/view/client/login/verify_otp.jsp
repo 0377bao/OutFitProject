@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
     <title>Đăng nhập</title>
@@ -85,7 +86,7 @@
 
         .popup__login__input span {
             color: red;
-            display: none;
+            display: block;
         }
 
         /* reponse cho tablet */
@@ -121,17 +122,22 @@
         <div class="popup__login__input">
             <h1>Đăng nhập</h1>
 
-            <input
-                    id="numberPhone"
-                    type="number"
-                    placeholder="Số điện thoại đăng ký"
-            />
-            <span id="numberPhoneErorr"> Số điện thoại chưa đúng ! </span>
+            <form action="/admin/login/verify-otp" method="post">
+                <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Email đã đăng ký"
+                        value="${email}"
+                />
+                <input id="passOtp" name="otp" type="password" placeholder="Mã OTP đã nhận " />
 
-            <input id="passOtp" type="password" placeholder="Mã OTP đã nhận " />
-            <span id="passOtpErorr"> Mã OTP không hợp lệ ! </span>
+                <c:if test="${error != null}">
+                    <span id="passOtpErorr"> Mã OTP không hợp lệ ! </span>
+                </c:if>
 
-            <button class="popup__login__input__btn">Đăng nhập</button>
+                <button type="submit" class="popup__login__input__btn">Đăng nhập</button>
+            </form>
 
             <a href="http://zalo.me/0386522594">
                 Liên hệ kỹ thuật viên nếu bạn không nhận được mã OTP !
@@ -140,25 +146,5 @@
     </div>
 </div>
 
-<script>
-    // Tạm thời coi nó là một module khi đang phát triển thuần FE
-    // Tạm thời, validate chưa chi tiết
-
-    const numberPhone = document.getElementById("numberPhone");
-    const passOtp = document.getElementById("passOtp");
-    const numberPhoneErorr = document.getElementById("numberPhoneErorr");
-    const passOtpErorr = document.getElementById("passOtpErorr");
-    const popupBtn = document.querySelector(".popup__login__input__btn");
-
-    popupBtn.addEventListener("click", () => {
-        if (numberPhone.value < 9) {
-            numberPhoneErorr.style.display = "block";
-        } else if (passOtp.value < 4 || passOtp > 4) {
-            passOtpErorr.style.display = "block";
-        } else {
-            alert("Đăng nhập thành công");
-        }
-    });
-</script>
 </body>
 </html>
