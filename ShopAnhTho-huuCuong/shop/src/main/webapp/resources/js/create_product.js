@@ -8,24 +8,12 @@
   6. Xử lý dữ liệu gửi về backend qua fetch  --> xong
   7. Xử lý các phần chọn 
 */
-/***********************************************************/
-// Xử lý phần chọn còn hàng hay hết hàng
 
-const selectStatusProduct = document.querySelector(
-  'input[name="CreateProduct__GeneralInfor__StatusId__Status"]:checked'
-);
-
-/************************************************************/
-// Xử lý phần sản phẩm hiển thị nổi bật
-
-const selectStatusProductOutstanding = document.querySelector(
-  'input[name="CreateProduct__GeneralInfor__outstanding"]:checked'
-);
 
 /**************************************************************/
 // Xử lý phân loại sản phẩm
 const productType = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type"
+    ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type"
 );
 
 let productTypeData = productType.value;
@@ -187,28 +175,55 @@ rmColor.addEventListener("click", () => {
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
 
 submitBtn.addEventListener("click", () => {
+  console.log("Hello")
   let allGroups = document.querySelectorAll(
     ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
   );
   let formData = new FormData();
 
-  allGroups.forEach((group, index) => {
-    let avatar = group.querySelector(".addImgAvt");
-    let details = group.querySelectorAll(
-      ".CreateProduct__GeneralInfor__UploadImg__Detail img"
-    );
+  if(allGroups.length > 0) {
+    allGroups.forEach((group, index) => {
+      let avatar = group.querySelector(".addImgAvt");
+      let details = group.querySelectorAll(
+        ".CreateProduct__GeneralInfor__UploadImg__Detail img"
+      );
 
-    if (avatar.dataset.file) {
-      formData.append(`group_${index}_avatar`, avatar.dataset.file);
-    }
-
-    details.forEach((img, i) => {
-      if (img.dataset.file) {
-        formData.append(`group_${index}_detail_${i}`, img.dataset.file);
+      if (avatar.dataset.file) {
+        formData.append(`group_${index}_avatar`, avatar.dataset.file);
       }
+
+      details.forEach((img, i) => {
+        if (img.dataset.file) {
+          formData.append(`group_${index}_detail_${i}`, img.dataset.file);
+        }
+      });
     });
+  }else {
+    alert("Vui lòng chọn màu cho sản phẩm");
+    return;
+  }
 
     /*****/
+    const arrSize = [];
+    // xử lý lấy size
+    const listSize = document.querySelectorAll(".size__box")
+    if(listSize.length > 0) {
+      listSize.forEach((item) => arrSize.push(item.innerText))
+    }else {
+      alert("Vui lòng chọn size cho sản phẩm")
+    }
+
+    // Xử lý phần sản phẩm hiển thị nổi bật
+    const selectStatusProductOutstanding = document.querySelector(
+        'input[name="CreateProduct__GeneralInfor__outstanding"]:checked'
+    );
+// Xử lý phần chọn còn hàng hay hết hàng
+    const selectStatusProduct = document.querySelector(
+        'input[name="CreateProduct__GeneralInfor__StatusId__Status"]:checked'
+    );
+
+    // giá sản phẩm
+    const productPrice = document.querySelector(".CreateProductMain__Price input")
 
     // tên sản phẩm
     const nameProduct = document.querySelector(
@@ -229,22 +244,27 @@ submitBtn.addEventListener("click", () => {
       nameProduct: nameProduct, // tên sản phẩm
       describeProduct: describeProduct, // miêu tả sản phẩm
       productIdUser: productIdUser, // mã sản phẩm do người dùng thêm
-      selectStatusProduct: selectStatusProduct, // này là tình trạng còn hay hết hàng
-      selectStatusProductOutstanding: selectStatusProductOutstanding, // sản phẩm có nổ bật hay không
+      selectStatusProduct: selectStatusProduct.value, // này là tình trạng còn hay hết hàng
+      selectStatusProductOutstanding: selectStatusProductOutstanding.value, // sản phẩm có nổ bật hay không
       productTypeData: productTypeData, // phân loại sản phẩm
+      productPrice: Number(productPrice.value), // giá sản phẩm,
+      sizes: arrSize // tât cả size của sản phẩm
     };
+    console.log(inforDataProduct)
 
     // lưu vào formdata nhưng converrt sang json
     formData.append("inforDataProduct", JSON.stringify(inforDataProduct));
+    console.log(formData);
+  console.log("nút thêm đã được nhấn");
   });
 
-  console.log("nút thêm đã được nhấn");
-  console.log(formData);
+
+
 
   /*
 hãy đưa đoạn code của fetch gửi vào đây nha Cường
 */
-});
+// });
 
 /*******************************************/
 /*

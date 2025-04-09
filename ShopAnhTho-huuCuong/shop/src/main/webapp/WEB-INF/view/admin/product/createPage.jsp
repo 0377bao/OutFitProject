@@ -56,7 +56,7 @@
                                 <lable>Còn hàng</lable>
                                 <input
                                         id="CreateProduct__GeneralInfor__StatusId__Status__1"
-                                        value="CreateProduct__GeneralInfor__StatusId__Status__1"
+                                        value="available"
                                         name="CreateProduct__GeneralInfor__StatusId__Status"
                                         type="radio"
                                 />
@@ -66,7 +66,7 @@
                                 <lable>Hết hàng</lable>
                                 <input
                                         id="CreateProduct__GeneralInfor__StatusId__Status__2"
-                                        value="CreateProduct__GeneralInfor__StatusId__Status__2"
+                                        value="sold_out"
                                         name="CreateProduct__GeneralInfor__StatusId__Status"
                                         type="radio"
                                 />
@@ -93,14 +93,14 @@
                         <lable class="m-2">Có</lable>
                         <input
                                 name="CreateProduct__GeneralInfor__outstanding"
-                                value="CreateProduct__GeneralInfor__outstanding__1"
+                                value="high_light"
                                 type="radio"
                         />
 
                         <label class="m-2">Không</label>
                         <input
                                 name="CreateProduct__GeneralInfor__outstanding"
-                                value="CreateProduct__GeneralInfor__outstanding__2"
+                                value="no_high_light"
                                 type="radio"
                         />
                     </div>
