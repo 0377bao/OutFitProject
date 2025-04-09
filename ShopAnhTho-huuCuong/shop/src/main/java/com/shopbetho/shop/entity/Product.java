@@ -11,7 +11,49 @@ public class Product extends BaseEntity {
     private String description;
     private String catalogue;
     private boolean isHighlight;
+    private boolean isNew;
     private boolean isActive;
+
+    public boolean isHighlight() {
+        return isHighlight;
+    }
+
+    public void setHighlight(boolean highlight) {
+        isHighlight = highlight;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public List<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<Color> colors) {
+        this.colors = colors;
+    }
+
+    public List<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(List<Size> sizes) {
+        this.sizes = sizes;
+    }
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Color> colors;
 
