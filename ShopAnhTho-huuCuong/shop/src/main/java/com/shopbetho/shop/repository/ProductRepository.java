@@ -7,7 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.shopbetho.shop.entity.Product;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAll(Pageable pageable);
+    List<Product> findByIsHighlightTrue();
+    List<Product> findByIsNewTrue();
+    List<Product> findByIsActiveTrue();
 }

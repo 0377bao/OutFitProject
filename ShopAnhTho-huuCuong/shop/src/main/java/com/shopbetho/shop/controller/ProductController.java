@@ -39,5 +39,4 @@ public class ProductController {
         model.addAttribute("product", product);
         return "client/product/detailPage";
     }
-
 }

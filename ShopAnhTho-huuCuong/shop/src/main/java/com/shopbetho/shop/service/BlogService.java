@@ -25,6 +25,7 @@ public class BlogService {
     public Blog updateBlog(Blog blog) {
         Blog updateBlog = this.blogRepository.findById(blog.getId()).get();
         updateBlog.setTitle(blog.getTitle());
+        updateBlog.setImageUrl(blog.getImageUrl());
         updateBlog.setDescription(blog.getDescription());
 
         return this.blogRepository.save(updateBlog);
