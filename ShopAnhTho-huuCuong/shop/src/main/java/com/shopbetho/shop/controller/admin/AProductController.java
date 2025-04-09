@@ -56,15 +56,15 @@ public class AProductController {
             ) throws IOException {
         if(name.isEmpty() || code.isEmpty() || description.isEmpty() || catalogue.isEmpty() || sizes.isEmpty() || numberColor <= 0) {
             model.addAttribute("error", "Please fill in all required fields.");
-            return "redirect:/admin/product/createPage";
+            return "admin/product/createPage";
         }
         if (avatarColors.size() != numberColor || colorNames.size() != numberColor) {
             model.addAttribute("error", "Number of colors and their details do not match.");
-            return "redirect:/admin/product/createPage";
+            return "admin/product/createPage";
         }
         if(price <= 0) {
             model.addAttribute("error", "Price must be greater than 0.");
-            return "redirect:/admin/product/createPage";
+            return "admin/product/createPage";
         }
         Product product = new Product();
         product.setName(name);

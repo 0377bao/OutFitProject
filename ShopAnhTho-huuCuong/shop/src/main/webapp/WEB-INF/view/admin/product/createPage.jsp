@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
     <title>Thêm sản phẩm mới</title>
@@ -20,13 +21,15 @@
     <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-<jsp:include page="../../header.jsp"/>
+<%--<jsp:include page="../../header.jsp"/>--%>
 
 <main>
+    <form id="formData" action="/admin/product/create" method="post" enctype="multipart/form-data">
     <div class="CreateProduct">
         <div class="container">
             <div class="CreateProductSubmit">
                 <h2>Thêm sản phẩm mới</h2>
+
                 <button class="CreateProductSubmit__Btn">Thêm</button>
             </div>
         </div>
@@ -39,12 +42,14 @@
                     <input
                             class="form-control CreateProduct__GeneralInfor__NameProduct"
                             type="text"
+                            name="name"
                             placeholder="Ví dụ: áo khoác mùa hè cho bé"
                     />
 
                     <p>Miêu tả sản phẩm</p>
                     <textarea
                             type="text"
+                            name="description"
                             class="form-control CreateProduct__GeneralInfor__DescribeProduct"
                             placeholder="Ví dụ: Áo quần con nít thường được thiết kế với màu sắc tươi sáng, họa tiết ngộ nghĩnh, đáng yêu. Chất liệu vải mềm mại, thoáng mát như cotton, lanh, hoặc nỉ, đảm bảo sự thoải mái cho làn da nhạy cảm của trẻ. Kiểu dáng đa dạng, từ những bộ đồ liền thân ấm áp cho trẻ sơ sinh, đến những chiếc áo thun, quần short năng động cho trẻ lớn hơn. Các chi tiết như nơ, bèo nhún, hình thú cưng, hoặc nhân vật hoạt hình được thêu hoặc in trên áo quần, tạo điểm nhấn thu hút sự chú ý của trẻ."
                     >
@@ -56,8 +61,8 @@
                                 <lable>Còn hàng</lable>
                                 <input
                                         id="CreateProduct__GeneralInfor__StatusId__Status__1"
-                                        value="available"
-                                        name="CreateProduct__GeneralInfor__StatusId__Status"
+                                        value="true"
+                                        name="isActive"
                                         type="radio"
                                 />
                             </div>
@@ -66,8 +71,8 @@
                                 <lable>Hết hàng</lable>
                                 <input
                                         id="CreateProduct__GeneralInfor__StatusId__Status__2"
-                                        value="sold_out"
-                                        name="CreateProduct__GeneralInfor__StatusId__Status"
+                                        value="false"
+                                        name="isActive"
                                         type="radio"
                                 />
                             </div>
@@ -78,6 +83,7 @@
                             <input
                                     class="m-3 CreateProduct__GeneralInfor__StatusId__Id__Product"
                                     type="text"
+                                    name="code"
                                     placeholder="Nhập mã sản phẩm"
                             />
                         </div>
@@ -85,22 +91,43 @@
 
                     <div class="CreateProductMain__Price">
                         <p>Giá sản phẩm</p>
-                        <input type="number" class="form-control" />
+                        <input type="number" name="price" class="form-control" />
                     </div>
 
                     <div class="CreateProduct__GeneralInfor__outstanding">
                         <p>Sản phẩm này có dùng để hiện thị sản phẩm nỗi bật không ?</p>
                         <lable class="m-2">Có</lable>
                         <input
-                                name="CreateProduct__GeneralInfor__outstanding"
-                                value="high_light"
+                                id="CreateProduct__GeneralInfor__outstanding_1"
+                                value="true"
+                                name="isHighlight"
                                 type="radio"
                         />
 
                         <label class="m-2">Không</label>
                         <input
-                                name="CreateProduct__GeneralInfor__outstanding"
-                                value="no_high_light"
+                                id="CreateProduct__GeneralInfor__outstanding"
+                                name="isHighlight"
+                                value="false"
+                                type="radio"
+                        />
+                    </div>
+
+                    <div class="CreateProduct__GeneralInfor__newProduct">
+                        <p>Sản phẩm này có phải sản phẩm mới không ?</p>
+                        <lable class="m-2">Có</lable>
+                        <input
+                                id="CreateProduct__GeneralInfor__newProduct_1"
+                                name="isNew"
+                                value="true"
+                                type="radio"
+                        />
+
+                        <label class="m-2">Không</label>
+                        <input
+                                id="CreateProduct__GeneralInfor__newProduct"
+                                name="isNew"
+                                value="false"
                                 type="radio"
                         />
                     </div>
@@ -179,14 +206,21 @@
                                         accept="image/*"
                                         hidden
                                 />
-                                <!-- thẻ input này dùng checkbox để hỗ trợ xóa -->
-                                <input type="checkbox" class="group-checkbox-color" /> Chọn
-                                nhóm này
+
+
+                                    <!-- thẻ input này dùng checkbox để hỗ trợ xóa -->
+                                    <input type="checkbox" class="group-checkbox-color" /> Chọn
+                                    nhóm này
+                                <br/>
+                                <input type="text" placeholder="Nhập màu..." class="colorNames" name="colorNames" style="display: block; margin-top: 5px; margin-bottom: 7px; padding-left:8px"/>
+
+
 
                                 <img
                                         class="addImgAvt"
                                         style="width: 100%"
                                         src="/images/add img.png"
+                                        name="avatarColors"
                                 />
 
                                 <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
@@ -249,15 +283,16 @@
 
                         <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
                             -- Lựa chọn --
-                            <option>Áo ngắn tay</option>
-                            <option>Áo dài tay</option>
-                            <option>Đồ bộ</option>
-                            <option>Đồ mùa hè</option>
-                            <option>Đồ mùa đông</option>
+                            <option value="AONGANTAY">Áo ngắn tay</option>
+                            <option value="AODAITAY">Áo dài tay</option>
+                            <option value="DOBO">Đồ bộ</option>
+                            <option value="DOMUAHE">Đồ mùa hè</option>
+                            <option value="DOMUADONG">Đồ mùa đông</option>
                         </select>
 
                         <button
                                 class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                                type="button"
                         >
                             Đồng ý
                         </button>
@@ -266,6 +301,10 @@
             </div>
         </div>
     </div>
+    </form>
+    <c:if test="${error != null}">
+        <p>${error}</p>
+    </c:if>
 </main>
 
 <jsp:include page="../../footer.jsp"/>
