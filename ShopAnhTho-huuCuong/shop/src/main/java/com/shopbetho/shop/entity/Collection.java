@@ -11,4 +11,15 @@ public class Collection extends  BaseEntity {
     @CollectionTable(name = "collection_images", joinColumns = @JoinColumn(name = "collection_id"))
     @Column(name = "image_url")
     private List<String> imageUrls;
+
+    public Collection() {
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
 }
