@@ -8,7 +8,23 @@ import jakarta.persistence.*;
 public class Color extends BaseEntity {
 
     private String name;
+    private String avtColor;
 
+    public String getAvtColor() {
+        return avtColor;
+    }
+
+    public void setAvtColor(String avtColor) {
+        this.avtColor = avtColor;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @ElementCollection
     @CollectionTable(name = "color_images", joinColumns = @JoinColumn(name = "color_id"))

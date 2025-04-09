@@ -90,6 +90,6 @@ public class LoginController {
         AccountAdmin admin = accountAdminService.findByEmail(email);
         session.setAttribute("loggedInAdmin", admin);
         session.setAttribute("success", "Login successful!");
-        return "redirect:/admin/dashboard/dashboardProduct";
+        return "redirect:/admin";
     }
 }

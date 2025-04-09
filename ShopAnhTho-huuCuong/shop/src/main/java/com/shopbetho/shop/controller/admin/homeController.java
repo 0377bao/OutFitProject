@@ -36,5 +36,4 @@ public class homeController {
         model.addAttribute("blogs", topThreeLogNew);
         return "index";
     }
-
 }
