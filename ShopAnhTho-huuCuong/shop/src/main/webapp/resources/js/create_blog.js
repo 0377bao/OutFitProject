@@ -72,34 +72,50 @@ btnActionContent.addEventListener("click", () => {
 // Dữ liệu bao gồm: ảnh thumbnail và dữ liệu phần nhập liệu blog, tiêu đề Blog
 
 // Sự kiện nhấn nút và gửi về BackEnd cho Cường, nếu Cường thích chuyển thành form thì tùy Cường
-const CreateProductSubmitBtn = document.querySelector(
-  ".CreateProductSubmit__Btn"
-);
+// const CreateProductSubmitBtn = document.querySelector(
+//   ".CreateProductSubmit__Btn"
+// );
 
-CreateProductSubmitBtn.addEventListener("click", () => {
-
-  // Lấy dữ liệu từ ô soạn thảo blog
-  dataContent = quill.root.innerHTML;
-
-
-  // Tạo form data để gửi dữ liệu vì dữ liệu có hình ảnh dạng base 64, không gửi theo kiểu JSON được
-  const dataTotaltoBE = new FormData();
-  dataTotaltoBE.append("TitleBlog", TitleBlog.value);
-  dataTotaltoBE.append("imgThumbnail", file);
-  dataTotaltoBE.append("blogData", dataContent);
-
-
-  // test coi đã có dữ liệu trước khi gửi về chưa
-  console.log(dataTotaltoBE);
-
-  fetch("Route do dev BE định nghĩa", {
-    method: "POST",
-    body: dataTotaltoBE, // chỗ này đếch cần header browser tự thêm được, cũng k cần conver json 
-  })
-
-  .then(res => res.json())
-  .then(data => console.log("Đã gửi thành công: " , data))
-  .catch(erorr => console.log("Gửi thất bại: " , erorr))
+// submit form
+const formData = document.querySelector("#formData");
+formData.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const titleBlog = document.getElementById("titleBlog");
+  const contentBlog = document.getElementById("contentBlog");
+  if(!TitleBlog.value || !dataContent) {
+    alert("Vui lòng nhập đầy đủ thông tin!")
+  }else if(!upLoadImg.value) {
+    alert("Vui lòng chọn avatar cho bài viết!")
+  } else{
+    titleBlog.value = TitleBlog.value;
+    contentBlog.value = dataContent;
+    formData.submit();
+  }
 })
+
+// CreateProductSubmitBtn.addEventListener("click", () => {
+//
+//   // Lấy dữ liệu từ ô soạn thảo blog
+//   dataContent = quill.root.innerHTML;
+//
+//
+//   // Tạo form data để gửi dữ liệu vì dữ liệu có hình ảnh dạng base 64, không gửi theo kiểu JSON được
+//   const dataTotaltoBE = new FormData();
+//   dataTotaltoBE.append("TitleBlog", TitleBlog.value);
+//   dataTotaltoBE.append("imgThumbnail", file);
+//   dataTotaltoBE.append("blogData", dataContent);
+//
+//   // test coi đã có dữ liệu trước khi gửi về chưa
+//   console.log(dataTotaltoBE);
+//
+//   // fetch("Route do dev BE định nghĩa", {
+//   //   method: "POST",
+//   //   body: dataTotaltoBE, // chỗ này đếch cần header browser tự thêm được, cũng k cần conver json
+//   // })
+//   //
+//   // .then(res => res.json())
+//   // .then(data => console.log("Đã gửi thành công: " , data))
+//   // .catch(erorr => console.log("Gửi thất bại: " , erorr))
+// })
 
 // xong, hoàn thành logic

@@ -1,39 +1,138 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-            <!DOCTYPE html>
-            <html lang="en">
 
-            <head>
-                <meta charset="utf-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Dashboard - SB Admin</title>
-                <link rel="stylesheet" href="/admin/css/style.css">
-                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Thêm sản phẩm mới</title>
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+    />
 
-            </head>
+    <!--Thêm thư viện bằng CDN tạm thời-->
+    <link
+            href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-            <body>
-                <h3>Create Blog</h3>
+    <link rel="stylesheet" href="admin/css/create_blog.css" />
+</head>
+<body>
+<main>
+    <jsp:include page="../../header.jsp"/>
+    <div class="CreateProduct">
+        <div class="container">
+            <div class="CreateProductSubmit">
+                <h2>Thêm sản bài viết mới</h2>
+                <form id="formData" action="/admin/blog/create" method="post" enctype="multipart/form-data">
+                    <input type="text" id="titleBlog" name="title" hidden="hidden"/>
+                    <input type="text" id="contentBlog" name="content" hidden="hidden"/>
+                    <input type="text" id="descriptionBlog" name="description" hidden="hidden" value=" "/>
+                    <input
+                            type="file"
+                            name="image"
+                            id="CreateProduct__GeneralInfor__UploadImg__Input"
+                            accept="image/*"
+                            hidden
+                    />
+                    <button class="CreateProductSubmit__Btn">Thêm</button>
+                </form>
+            </div>
+        </div>
 
-                <form:form method="post" action="/admin/blog/create" modelAttribute="blog">
+        <div class="container">
+            <div class="CreateProductMain">
+                <div class="CreateProduct__GeneralInfor">
+                    <h3>Thông tin tổng quan</h3>
+                    <p>Tiêu đề bài viết</p>
+                    <input
+                            class="form-control CreateProduct__GeneralInfor__Title__Blog"
+                            type="text"
+                            placeholder="Ví dụ: áo khoác mùa hè cho bé"
+                    />
 
-                    <label class="form-label">Title:</label>
-                    <form:input type="text" path="title" />
+                    <p class="CreateProduct__GeneralInfor__passage">Đoạn văn</p>
 
-                    <label class="form-label">Description:</label>
-                    <form:input type="text" path="description" />
+                    <!-- Thanh công cụ và ô nhập dữ liệu -->
+                    <div id="toolbar">
+                        <select class="ql-font"></select>
+                        <select class="ql-size"></select>
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                        <button class="ql-strike"></button>
+                        <button class="ql-blockquote"></button>
+                        <button class="ql-code-block"></button>
+                        <button class="ql-list" value="ordered"></button>
+                        <button class="ql-list" value="bullet"></button>
+                        <button class="ql-align" value=""></button>
+                        <button class="ql-align" value="center"></button>
+                        <button class="ql-align" value="right"></button>
+                        <button class="ql-align" value="justify"></button>
+                        <button class="ql-image"></button>
+                        <button class="ql-link"></button>
+                        <button class="ql-color"></button>
+                        <button class="ql-background"></button>
+                    </div>
 
-                    <!-- <label class="form-label">Image:</label>
-                    <form:input type="text" path="imageUrl" /> -->
+                    <div id="CreateProduct__GeneralInfor__Editor">
+                        Nhập nội dung tại đây...
+                    </div>
 
-                    <label class="form-label">Content:</label>
-                    <form:input type="text" path="content" />
+                    <!-- Kết thúc thanh công cụ và ô nhập dữ liệu -->
 
-                    <button type="submit">Create</button>
-                </form:form>
-            </body>
+                    <!-- Xem trước bản blog -->
 
-            </html>
+                    <div class="PreviewContent__Box">
+                        <span>Nội dung xem trước</span>
+                        <hr/>
+                        <div class="PreviewContent">
+                            <p style="color: red;">
+                                Bạn chưa có nội dung xem trước, vui lòng thêm nội dung vào
+                                phần ở phía trên !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="CreateProduct__GeneralInfor__UploadImg">
+                    <div class="CreateProduct__GeneralInfor__UploadImg__avt">
+                        <img
+                                id="CreateProduct__GeneralInfor__UploadImg__avt__Preview"
+                                style="width: 100%"
+                                src="/images/add img.png"
+                        />
+                        <span>Thêm hình ảnh</span>
+
+                    </div>
+
+                    <div class="CreateProduct__GeneralInfor__UploadImg__Category">
+                        <h4 class="fw-bold">Xem trước trang blog của bạn !</h4>
+
+                        <button
+                                class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                        >
+                            Đồng ý
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<jsp:include page="../../footer.jsp"/>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/create_blog.js"></script>
+</body>
+</html>

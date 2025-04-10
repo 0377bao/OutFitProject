@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
     <title>Header</title>
@@ -148,9 +149,13 @@
     </div>
     <!-- Kết thúc Menu sidebar right mobile -->
     <div class="header__banner">
-        <img
-                src="https://file.hstatic.net/200000692427/file/lookbook_1440x450.jpg"
-        />
+        <c:if test="${banners != null}">
+            <img
+<%--                    src="https://file.hstatic.net/200000692427/file/lookbook_1440x450.jpg"--%>
+                    src="${banners.firstBanner}"
+            />
+        </c:if>
+
     </div>
 
     <div class="header__banner__mobile">

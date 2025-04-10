@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <img
-                            src="https://file.hstatic.net/200000692427/file/790x532_61ca7a43928f4f6f8158e06b19cfc605.png"
+                          src="https://file.hstatic.net/200000692427/file/790x532_61ca7a43928f4f6f8158e06b19cfc605.png"
                     />
                 </div>
 
@@ -102,30 +103,42 @@
 
                         <div class="row">
                             <div class="main__3__collection__img">
-                                <img
-                                        class="main__3__collection__img__item__1"
-                                        src="https://file.hstatic.net/200000692427/file/1.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__2"
-                                        src="https://file.hstatic.net/200000692427/file/1_0a9f2d4992fd467890bbf9b07258faee.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__3"
-                                        src="https://file.hstatic.net/200000692427/file/3.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__4"
-                                        src="https://file.hstatic.net/200000692427/file/2_b488f8d7b0b4460396ad165832970f6f.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__5"
-                                        src="https://file.hstatic.net/200000692427/file/2_3f667b571a7a40279b27ebad8e30c576.jpg"
-                                />
-                                <img
-                                        class="main__3__collection__img__item__6"
-                                        src="https://file.hstatic.net/200000692427/file/3_52b3a174a62c4d1e8b2cd40450fc3146.jpg"
-                                />
+                                <c:choose>
+                                    <c:when test="${collections != null && collections.imageUrls.size() > 0}">
+                                        <c:forEach var="picture" items="${collections.imageUrls}" varStatus="loop">
+                                            <img
+                                                    class=`main__3__collection__img__item__${loop.index + 1}`
+                                                    src="${picture}"
+                                            />
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img
+                                                class="main__3__collection__img__item__1"
+                                                src="https://file.hstatic.net/200000692427/file/1.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__2"
+                                                src="https://file.hstatic.net/200000692427/file/1_0a9f2d4992fd467890bbf9b07258faee.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__3"
+                                                src="https://file.hstatic.net/200000692427/file/3.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__4"
+                                                src="https://file.hstatic.net/200000692427/file/2_b488f8d7b0b4460396ad165832970f6f.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__5"
+                                                src="https://file.hstatic.net/200000692427/file/2_3f667b571a7a40279b27ebad8e30c576.jpg"
+                                        />
+                                        <img
+                                                class="main__3__collection__img__item__6"
+                                                src="https://file.hstatic.net/200000692427/file/3_52b3a174a62c4d1e8b2cd40450fc3146.jpg"
+                                        />
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
@@ -134,9 +147,14 @@
         </div>
 
         <div class="main__3__banner">
-            <img
-                    src="https://file.hstatic.net/200000692427/file/bst_moi_20250204_cover_web_77546265156f44499593de006a49864b.jpg"
-            />
+<%--            <img--%>
+<%--                    src="https://file.hstatic.net/200000692427/file/bst_moi_20250204_cover_web_77546265156f44499593de006a49864b.jpg"--%>
+<%--            />--%>
+            <c:if test="${banners != null}">
+                <img
+                        src="${banners.secondBanner}"
+                />
+            </c:if>
         </div>
     </div>
 
@@ -227,7 +245,6 @@
                             />
 
                             <a href="#">Bộ mặc nhà cho con bú màu tím</a>
-
                             <h5>445.000đ</h5>
                         </div>
                     </div>
@@ -243,7 +260,7 @@
                     <div class="main__5__news__slogan">
                         <h2>Tin tức</h2>
 
-                        <a href="#"
+                        <a href="/blogs"
                         >Xem thêm
                             <i class="bx bx-right-arrow-alt"></i>
                         </a>
@@ -253,59 +270,84 @@
 
             <div class="row">
                 <div class="col-sm-12 main__5__news__product">
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                    <c:choose>
+                        <c:when test="${blogs != null && blogs.size() > 0}">
+                            <c:forEach var="blogItem" items="${blogs}">
+                                <div class="card">
+                                    <img
+                                            src="${blogItem.imageUrl}"
+                                    />
+                                    <h5 class="card-title">${blogItem.title}</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                    <p class="card-text">
+                                        ${blogItem.content}
+                                    </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                    <a href="#"
+                                    >Xem thêm
+                                        <i class="bx bx-right-arrow-alt"></i>
+                                    </a>
+                                </div>
+                            </c:forEach>
 
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
 
-                    <div class="card">
-                        <img
-                                src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                        />
-                        <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
 
-                        <p class="card-text">
-                            Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                            cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                            thiết kế êm ái trong BST “Nuel Gift Haus”
-                        </p>
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
 
-                        <a href="#"
-                        >Xem thêm
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </a>
-                    </div>
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+
+                            <div class="card">
+                                <img
+                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
+                                />
+                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
+
+                                <p class="card-text">
+                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
+                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
+                                    thiết kế êm ái trong BST “Nuel Gift Haus”
+                                </p>
+
+                                <a href="#"
+                                >Xem thêm
+                                    <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
         </div>

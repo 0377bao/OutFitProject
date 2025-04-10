@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,163 +24,194 @@
 <main class="main">
     <div class="container">
         <div class="row">
+
+        <c:choose>
+            <c:when test="${blogs != null}">
+                <c:forEach var="blogItem" items="${blogs.content}">
             <div class="col-lg-4">
-                <div class="card">
-                    <img
-                            class="card-img-top"
-                            src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                    />
+                    <div class="card">
+                        <img
+                                src="${blogItem.imageUrl}"
+                        />
+                        <h5 class="card-title">${blogItem.title}</h5>
 
-                    <h4 class="card-title">
-                        Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                    </h4>
+                        <p class="card-text">
+                                ${blogItem.content}
+                        </p>
 
-                    <p>
-                        Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                        nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                        da nhạy cảm non nớt
-                    </p>
+                        <a href="#"
+                        >Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+            </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                    <a href="#">
-                        Xem thêm
-                        <i class="bx bx-right-arrow-alt"></i>
-                    </a>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
+
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
+
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-            <div class="col-lg-4">
-                <div class="card">
-                    <img
-                            class="card-img-top"
-                            src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                    />
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                    <h4 class="card-title">
-                        Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                    </h4>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                    <p>
-                        Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                        nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                        da nhạy cảm non nớt
-                    </p>
-
-                    <a href="#">
-                        Xem thêm
-                        <i class="bx bx-right-arrow-alt"></i>
-                    </a>
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>  <div class="col-lg-4">
-            <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                />
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                <h4 class="card-title">
-                    Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                </h4>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                <p>
-                    Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                    nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                    da nhạy cảm non nớt
-                </p>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                <a href="#">
-                    Xem thêm
-                    <i class="bx bx-right-arrow-alt"></i>
-                </a>
-            </div>
-        </div>  <div class="col-lg-4">
-            <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                />
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                <h4 class="card-title">
-                    Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                </h4>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                <p>
-                    Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                    nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                    da nhạy cảm non nớt
-                </p>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                <a href="#">
-                    Xem thêm
-                    <i class="bx bx-right-arrow-alt"></i>
-                </a>
-            </div>
-        </div>  <div class="col-lg-4">
-            <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                />
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                <h4 class="card-title">
-                    Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                </h4>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                <p>
-                    Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                    nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                    da nhạy cảm non nớt
-                </p>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                <a href="#">
-                    Xem thêm
-                    <i class="bx bx-right-arrow-alt"></i>
-                </a>
-            </div>
-        </div>  <div class="col-lg-4">
-            <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                />
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                <h4 class="card-title">
-                    Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                </h4>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                <p>
-                    Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                    nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                    da nhạy cảm non nớt
-                </p>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                <a href="#">
-                    Xem thêm
-                    <i class="bx bx-right-arrow-alt"></i>
-                </a>
-            </div>
-        </div>  <div class="col-lg-4">
-            <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
-                />
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img
+                                class="card-img-top"
+                                src="https://file.hstatic.net/200000692427/article/1_trieu_nb_800x534_5a3760033e0c4694af53e4ec7d8a21c5_1024x1024.jpg"
+                        />
 
-                <h4 class="card-title">
-                    Sắm đồ đi sinh, shop bé thơ tặng bé quà
-                </h4>
+                        <h4 class="card-title">
+                            Sắm đồ đi sinh, shop bé thơ tặng bé quà
+                        </h4>
 
-                <p>
-                    Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
-                    nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
-                    da nhạy cảm non nớt
-                </p>
+                        <p>
+                            Yêu bé từ thuở lọt lòng, shop Bé Thơ cùng mẹ nâng niu thiên thần
+                            nhỏ trong chất liệu mềm mại, êm ái và an toàn tuyệt vời với làn
+                            da nhạy cảm non nớt
+                        </p>
 
-                <a href="#">
-                    Xem thêm
-                    <i class="bx bx-right-arrow-alt"></i>
-                </a>
-            </div>
-        </div>
+                        <a href="#">
+                            Xem thêm
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+
         </div>
     </div>
 </main>

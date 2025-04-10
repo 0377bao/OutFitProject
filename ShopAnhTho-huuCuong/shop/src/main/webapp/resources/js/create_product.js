@@ -8,24 +8,12 @@
   6. Xử lý dữ liệu gửi về backend qua fetch  --> xong
   7. Xử lý các phần chọn 
 */
-/***********************************************************/
-// Xử lý phần chọn còn hàng hay hết hàng
-
-const selectStatusProduct = document.querySelector(
-  'input[name="CreateProduct__GeneralInfor__StatusId__Status"]:checked'
-);
-
-/************************************************************/
-// Xử lý phần sản phẩm hiển thị nổi bật
-
-const selectStatusProductOutstanding = document.querySelector(
-  'input[name="CreateProduct__GeneralInfor__outstanding"]:checked'
-);
+let count = 0;
 
 /**************************************************************/
 // Xử lý phân loại sản phẩm
 const productType = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type"
+    ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type"
 );
 
 let productTypeData = productType.value;
@@ -113,6 +101,7 @@ const container = document.querySelector(
 );
 
 addColor.addEventListener("click", () => {
+  const current = count++;
   let template = document.querySelector(
     ".CreateProduct__GeneralInfor__UploadImg__avt__box__template"
   );
@@ -124,6 +113,7 @@ addColor.addEventListener("click", () => {
   // Gán sự kiện chọn ảnh đại diện
   const avatarInput = document.createElement("input");
   avatarInput.type = "file";
+  avatarInput.name ="avatarColors"
   avatarInput.accept = "image/*";
   avatarInput.style.display = "none";
 
@@ -144,6 +134,7 @@ addColor.addEventListener("click", () => {
   detailImgs.forEach((img, index) => {
     const detailInput = document.createElement("input");
     detailInput.type = "file";
+    detailInput.name= `fileMap[colorImages[${current}][${index}]]`
     detailInput.accept = "image/*";
     detailInput.style.display = "none";
 
@@ -169,6 +160,7 @@ const rmColor = document.querySelector(
 );
 
 rmColor.addEventListener("click", () => {
+  count--;
   let selectColorGroup = document.querySelectorAll(
     ".group-checkbox-color:checked"
   );
@@ -182,69 +174,173 @@ rmColor.addEventListener("click", () => {
 });
 
 /*****************************************************/
+// submit dữ liệu bằng form
+const formData = document.querySelector("#formData")
+formData.addEventListener("submit", (e) => {
+   e.preventDefault();
+});
 
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
-
-submitBtn.addEventListener("click", () => {
-  let allGroups = document.querySelectorAll(
-    ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault()
+  // Xử lý phần sản phẩm hiển thị nổi bật
+  const selectStatusProductOutstanding = document.querySelector(
+      'input[name="isHighlight"]:checked'
   );
-  let formData = new FormData();
+// Xử lý phần chọn còn hàng hay hết hàng
+  const selectStatusProduct = document.querySelector(
+      'input[name="isActive"]:checked'
+  );
 
-  allGroups.forEach((group, index) => {
-    let avatar = group.querySelector(".addImgAvt");
-    let details = group.querySelectorAll(
-      ".CreateProduct__GeneralInfor__UploadImg__Detail img"
-    );
+  // xử lý sản phẩm mới
+  const selectedNewProduct = document.querySelector(
+      'input[name="isNew"]:checked'
+  )
 
-    if (avatar.dataset.file) {
-      formData.append(`group_${index}_avatar`, avatar.dataset.file);
-    }
+  // giá sản phẩm
+  const productPrice = document.querySelector(".CreateProductMain__Price input");
 
-    details.forEach((img, i) => {
-      if (img.dataset.file) {
-        formData.append(`group_${index}_detail_${i}`, img.dataset.file);
-      }
-    });
-
-    /*****/
-
-    // tên sản phẩm
-    const nameProduct = document.querySelector(
+  // tên sản phẩm
+  const nameProduct = document.querySelector(
       ".CreateProduct__GeneralInfor__NameProduct"
-    ).value;
+  );
 
-    // Miêu tả sản phẩm
-    const describeProduct = document.querySelector(
+  // Miêu tả sản phẩm
+  const describeProduct = document.querySelector(
       ".CreateProduct__GeneralInfor__DescribeProduct"
-    ).value;
+  );
 
-    // Mã sản phẩm do người dùng thêm
-    const productIdUser = document.querySelector(
+  // Mã sản phẩm do người dùng thêm
+  const productIdUser = document.querySelector(
       ".CreateProduct__GeneralInfor__StatusId__Id__Product"
-    ).value;
+  );
 
-    const inforDataProduct = {
-      nameProduct: nameProduct, // tên sản phẩm
-      describeProduct: describeProduct, // miêu tả sản phẩm
-      productIdUser: productIdUser, // mã sản phẩm do người dùng thêm
-      selectStatusProduct: selectStatusProduct, // này là tình trạng còn hay hết hàng
-      selectStatusProductOutstanding: selectStatusProductOutstanding, // sản phẩm có nổ bật hay không
-      productTypeData: productTypeData, // phân loại sản phẩm
-    };
+  let allGroups = document.querySelectorAll(
+      ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+  );
 
-    // lưu vào formdata nhưng converrt sang json
-    formData.append("inforDataProduct", JSON.stringify(inforDataProduct));
-  });
 
-  console.log("nút thêm đã được nhấn");
-  console.log(formData);
+
+
+  if(!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
+  !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
+    alert("Vui lòng nhập đầy đủ thông tin")
+    return;
+  }
+
+  if(allGroups.length <= 0) {
+    alert("Vui lòng chọn ảnh")
+    return;
+  }
+
+  const colorNumbers = document.querySelectorAll(".colorNames");
+  console.log(colorNumbers);
+  colorNumbers.forEach(inputColor => {
+    if(inputColor.value === "") {
+      alert("Vui lòng nhập màu cho sản phẩm");
+      return;
+    }
+  })
+
+
+  const inputCatalogue = document.createElement("input");
+  inputCatalogue.name = "catalogue"
+  inputCatalogue.type="text"
+  inputCatalogue.value = productTypeData;
+  const inputNumberColor = document.createElement("input");
+  inputNumberColor.name = "numberColor"
+  inputNumberColor.type="number"
+  inputNumberColor.value = Number.parseInt(allGroups.length);
+
+  formData.appendChild(inputNumberColor);
+  formData.appendChild(inputCatalogue);
+
+
+
+  const listSize = document.querySelectorAll(".size__box")
+  if(listSize.length > 0) {
+    listSize.forEach((item) => {
+      const inputSize = document.createElement("input");
+      inputSize.name="sizes";
+      inputSize.type = "text";
+      inputSize.value = item.innerText;
+      formData.appendChild(inputSize)
+    })
+  }else {
+    alert("Vui lòng chọn size cho sản phẩm")
+    return;
+  }
+  formData.submit();
+})
+
+// submitBtn.addEventListener("click", () => {
+//   console.log("Hello")
+//   let allGroups = document.querySelectorAll(
+//     ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+//   );
+//   let formData = new FormData();
+//
+//   if(allGroups.length > 0) {
+//     allGroups.forEach((group, index) => {
+//       let avatar = group.querySelector(".addImgAvt");
+//       let details = group.querySelectorAll(
+//         ".CreateProduct__GeneralInfor__UploadImg__Detail img"
+//       );
+//
+//       if (avatar.dataset.file) {
+//         formData.append(`group_${index}_avatar`, avatar.dataset.file);
+//       }
+//
+//       details.forEach((img, i) => {
+//         if (img.dataset.file) {
+//           formData.append(`group_${index}_detail_${i}`, img.dataset.file);
+//         }
+//       });
+//     });
+//   }else {
+//     alert("Vui lòng chọn màu cho sản phẩm");
+//     return;
+//   }
+//
+//     /*****/
+//     const arrSize = [];
+//     // xử lý lấy size
+//     const listSize = document.querySelectorAll(".size__box")
+//     if(listSize.length > 0) {
+//       listSize.forEach((item) => arrSize.push(item.innerText))
+//     }else {
+//       alert("Vui lòng chọn size cho sản phẩm")
+//     }
+//
+//
+//
+//     const inforDataProduct = {
+//       nameProduct: nameProduct, // tên sản phẩm
+//       describeProduct: describeProduct, // miêu tả sản phẩm
+//       productIdUser: productIdUser, // mã sản phẩm do người dùng thêm
+//       selectStatusProduct: selectStatusProduct.value, // này là tình trạng còn hay hết hàng
+//       selectStatusProductOutstanding: selectStatusProductOutstanding.value, // sản phẩm có nổ bật hay không
+//       productTypeData: productTypeData, // phân loại sản phẩm
+//       productPrice: Number(productPrice.value), // giá sản phẩm,
+//       sizes: arrSize, // tât cả size của sản phẩm
+//       productNew: selectedNewProduct.value
+//     };
+//     console.log(inforDataProduct)
+//
+//     // lưu vào formdata nhưng converrt sang json
+//     formData.append("inforDataProduct", JSON.stringify(inforDataProduct));
+//     console.log(formData);
+//   console.log("nút thêm đã được nhấn");
+//   });
+
+
+
 
   /*
 hãy đưa đoạn code của fetch gửi vào đây nha Cường
 */
-});
+// });
 
 /*******************************************/
 /*
@@ -264,16 +360,16 @@ hãy đưa đoạn code của fetch gửi vào đây nha Cường
 
 // Gửi về BE, đoạn này tạm thời để ngoài này, nào có BE mới cho vô
 // chung sự kiện nhấn nút phía trên
-fetch("/route BE của Cường", {
-  method: "POST",
-  body: formData,
-})
-  .then((res) => res.json())
-  .then((result) => console.log(result))
-  .catch((error) => {
-    alert("Thêm thất bại");
-    console.log("Gửi thất bại, chi tiết lỗi: " + error);
-  })
-  .finally(() => console.log("Quá trình gửi kết thúc"));
+// fetch("/route BE của Cường", {
+//   method: "POST",
+//   body: formData,
+// })
+//   .then((res) => res.json())
+//   .then((result) => console.log(result))
+//   .catch((error) => {
+//     alert("Thêm thất bại");
+//     console.log("Gửi thất bại, chi tiết lỗi: " + error);
+//   })
+//   .finally(() => console.log("Quá trình gửi kết thúc"));
 
 // xong

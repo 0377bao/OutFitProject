@@ -26,14 +26,18 @@
     <div class="CreateBanner container">
         <div class="CreateBanner__title">
             <h1>Cập nhật banner trang chủ</h1>
-            <button class="CreateBanner__title__btn">Cập nhật</button>
+            <form id="formData" action="/admin/banner/create" method="post" enctype="multipart/form-data">
+                <input type="file" id="imageInput1" name="image1" accept="image/*" hidden="hidden"/>
+                <input type="file" id="imageInput2" name="image2" accept="image/*" hidden="hidden"/>
+                <button class="CreateBanner__title__btn" >Cập nhật</button>
+            </form>
         </div>
 
         <div class="container">
             <div class="CreateBanner__1">
                 <h5>Banner đầu trang</h5>
                 <div class="CreateBanner__1__add">
-                    <img src="resource/img/add img.png" />
+                    <img src="/images/add img.png" />
                 </div>
             </div>
 
@@ -42,7 +46,7 @@
             <div class="CreateBanner__2">
                 <h5>Banner thân trang</h5>
                 <div class="CreateBanner__2__add">
-                    <img src="resource/img/add img.png" />
+                    <img src="/images/add img.png" />
                 </div>
             </div>
         </div>
@@ -59,31 +63,68 @@
     // Đang phát triển UI trên môi trường dev, không có BE nền phần này là tạm thời
     // Tải header từ file header.html
 
+
     // Js để xử lý sự kiện chọn ảnh tạm thời
-    let currentImg = null;
-    const imageInput = document.getElementById("imageInput");
+    let currentImg1 = null;
+    let currentImg2 = null;
+    const imageInput_1 = document.getElementById("imageInput1")
+    const imageInput_2 = document.getElementById("imageInput2")
 
     // Bắt sự kiện click vào khu vực chọn ảnh
     document
-        .querySelectorAll(".CreateBanner__1__add, .CreateBanner__2__add")
+        .querySelectorAll(".CreateBanner__1__add")
         .forEach((div) => {
             div.addEventListener("click", function () {
-                currentImg = this.querySelector("img"); // Lưu lại ảnh cần thay đổi
-                imageInput.click();
+                currentImg1 = this.querySelector("img"); // Lưu lại ảnh cần thay đổi
+                 imageInput_1.click();
+            });
+        });
+    document
+        .querySelectorAll(".CreateBanner__2__add")
+        .forEach((div, index) => {
+            div.addEventListener("click", function () {
+                currentImg2 = this.querySelector("img"); // Lưu lại ảnh cần thay đổi
+               imageInput_2.click();
             });
         });
 
     // Khi người dùng chọn ảnh, thay đổi src của ảnh được chọn
-    imageInput.addEventListener("change", function (event) {
-        if (currentImg && event.target.files.length > 0) {
+    imageInput_1.addEventListener("change", function (event) {
+        if (currentImg1 && event.target.files.length > 0) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                currentImg.src = e.target.result;
-                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
-                currentImg.style.height = "auto"; //
+                currentImg1.src = e.target.result;
+                currentImg1.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg1.style.height = "auto"; //
             };
             reader.readAsDataURL(event.target.files[0]);
         }
+    });
+    imageInput_2.addEventListener("change", function (event) {
+        if (currentImg2 && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg2.src = e.target.result;
+                currentImg2.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg2.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    // submit form
+    const formData = document.querySelector("#formData");
+    formData.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(!imageInput_1.value) {
+            alert("Vui lòng chọn banner đầu trang")
+            return;
+        }
+        if(!imageInput_2.value) {
+            alert("Vui lòng chọn banner cuối trang")
+            return;
+        }
+        formData.submit();
     });
 </script>
 </body>
