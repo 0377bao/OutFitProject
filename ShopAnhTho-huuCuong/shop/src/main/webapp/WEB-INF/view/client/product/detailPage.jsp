@@ -5,7 +5,10 @@
   Time: 9:59 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="com.shopbetho.shop.entity.FormatUtil" %>
+<%@ page import="java.lang.String" %>
 <html>
 <head>
     <title>Chi tiết sản phẩm</title>
@@ -32,63 +35,92 @@
     <div class="container main__product__details">
         <div class="row">
             <div class="col-lg-6">
-                <img
-                        src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d_master.jpg"
-                />
+                <div
+                        class="show-image-product"
+                        style="background-image: url(${product.colors[0].avtColor});
+                            background-size: cover;
+                                background-position: center;
+                            background-repeat: no-repeat;
+                            width: 100%;
+                            padding-top: 90%"
+                ></div>
 
                 <div class="main__product__details__img__slide">
-                    <img
-                            src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d_master.jpg"
-                    /><img
-                        src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d_master.jpg"
-                /><img
-                        src="https://product.hstatic.net/200000692427/product/upload_4dabe921edb74b0bb185892bb7ec96c2_large.jpg"
-                /><img
-                        src="https://product.hstatic.net/200000692427/product/upload_f98c320906ad497bb2bead0f0c647043_large.jpg"
-                />
+                    <c:choose>
+                        <c:when test="${product != null && product.colors.size() > 0}">
+                            <c:forEach var="color" items="${product.colors[0].imageUrl}" varStatus="loop">
+                                <div
+                                        onclick="handleItemOnclick('${color}')"
+                                        class="show-image-product-color-${loop.index}"
+                                        style="
+                                    background-image: url(${color});
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                        background-position: center;
+                                    width: 100%;
+                                    padding-top: 100%"
+                                ></div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <h1>Sản phẩm chỉ có một màu</h1>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <h1>Bộ áo cộc quần cộc trắng phối hồng nhạt in hình pupy</h1>
+                <h1>${product.name}</h1>
 
                 <p>
                     Tình trạng:
-
-                    <span id="main__product__details__status">Còn hàng</span>
+                    <c:choose>
+                        <c:when test="${isActive != null && isActive == 'true'}">
+                            <span id="main__product__details__status">Còn hàng</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span id="main__product__details__status">Hết hàng</span>
+                        </c:otherwise>
+                    </c:choose>
                 </p>
 
                 <p>
                     Mã sản phẩm:
-                    <span id="main__product__details__id"> 629078gvsdoiu </span>
+                    <span id="main__product__details__id"> ${product.code} </span>
                 </p>
 
                 <p>
                     Giá:
-                    <span id="main__product__details__price"> 215,000 vnđ </span>
+                    <span id="main__product__details__price"> ${price} vnđ </span>
                 </p>
 
                 <p>Màu sắc</p>
 
                 <div class="main__product__details__color">
-                    <img
-                            src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d.jpg"
-                    />
-                    <img
-                            src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d.jpg"
-                    />
-                    <img
-                            src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d.jpg"
-                    />
+                    <c:forEach var="color" items="${product.colors}" varStatus="loop">
+                        <div
+                                onclick="handleColorOnClick({
+                                        currentColor: '${color.avtColor}',
+                                        index: ${loop.index},
+                                    size: ${product.colors.size()},
+                                        imageColors: '${urlColor[loop.index]}',
+                                })"
+                                style="
+                                background-image: url(${color.avtColor});
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                width: 100%;
+                                padding-top: 100%"
+                        ></div>
+                    </c:forEach>
                 </div>
 
                 <div class="main__product__details__size">
                     <p>Kích thước:</p>
-
-                    <button>2Y</button>
-                    <button>3Y</button>
-                    <button>4Y</button>
-                    <button>5Y</button>
+                    <c:forEach var="size" items="${product.sizes}">
+                        <button>${size}</button>
+                    </c:forEach>
                 </div>
 
                 <div class="main__product__details__quantity">
@@ -129,26 +161,14 @@
         <h2>Mô tả</h2>
         <hr />
         <p>
-        <p>
-            Thiết kế hiện đại, khỏe khoắn phù hợp cho bé đi học và đi chơi.
-        </p>​
-        <p>
-            Phối
-            vải và chuyển màu nhịp nhàng trên các chi tiết trang phục​ Quần cạp
-            mềm, bản lớn chắc chắn, không gây hằn bụng, có túi nhỏ cho bé cất đồ,
-            dây nơ tạo điểm nhấn thời trang Cổ áo bo tròn mềm mại và vừa vặn, khuy
-            bấm cài vai giúp mở rộng chu vi vòng cổ Hình in ngộ nghĩnh, dễ thương
-        </p>
-        <p>
-            Đặc điểm thiết kế Thiết kế dễ dàng ​vận động, kiểu dáng phù hợp ​mùa
-            hè cho em bé ​2-6 tuổi đi học và đi chơi
-        </p>
-        <p>
-            Thiết kế ralgan tạo sự tương
-            phản, nổi bật cho phần tay áo với thân Chất liệu cải tiến mềm mại, bền
-            chắc, nâng cao thời gian sử dụng sản phẩm.​ Thông tin chất liệu Chất
-            liệu modal cotton mềm mại thoáng mát
-        </p>
+            <c:choose>
+                <c:when test="${product != null}">
+                    ${product.description}
+                </c:when>
+                <c:otherwise>
+                    <h1>Không có mô tả</h1>
+                </c:otherwise>
+            </c:choose>
         </p>
     </div>
 
@@ -200,56 +220,21 @@
                 </h1>
 
                 <div class="main__evaluate__similar__roduct">
-                    <div class="card">
-                        <img class='card-img' src="https://product.hstatic.net/200000692427/product/bo_coc_tay_ao_trang_phoi_quan_ke_caro_be_70f20b5189c94459832442bee6bf9637_large.jpg"/>
 
-                        <h5 class="card-title" href="#">
-                            Bộ cộc tay áo trắng phối quần kẻ caro be
-                        </h5>
-
-                        <h4>
-                            295,000 vnđ
-                        </h4>
-                    </div>
-
-
-                    <div class="card">
-                        <img class='card-img' src="https://product.hstatic.net/200000692427/product/_-_nb3s25-sc2-m02-ow_-_bo_coc_tay_ao_trang_hoa_tiet_phoi_quan_xanh__2__0952008feb874fa1bd7ae4385e724be5_grande.jpg"/>
-
-                        <h5 class="card-title" href="#">
-                            Bộ cộc tay áo trắng phối quần kẻ caro be
-                        </h5>
-
-                        <h4>
-                            295,000 vnđ
-                        </h4>
-                    </div>
-
-
-                    <div class="card">
-                        <img class='card-img' src="https://product.hstatic.net/200000692427/product/bo_coc_tay_quan_gia_vay_mau_nau_phoi_trang_dinh_no_de118791d52c43c9ba37679ddcce8db7_large.jpg"/>
-
-                        <h5 class="card-title" href="#">
-                            Bộ cộc tay áo trắng phối quần kẻ caro be
-                        </h5>
-
-                        <h4>
-                            295,000 vnđ
-                        </h4>
-                    </div>
-
-
-                    <div class="card">
-                        <img class='card-img' src="https://product.hstatic.net/200000692427/product/upload_6612c2fdc4be48348788a00cd996e704_grande.jpg"/>
-
-                        <h5 class="card-title" href="#">
-                            Bộ cộc tay áo trắng phối quần kẻ caro be
-                        </h5>
-
-                        <h4>
-                            295,000 vnđ
-                        </h4>
-                    </div>
+                    <c:forEach var="product" items="${productLike}">
+                        <div class="card">
+                            <div class="card-img" style="background-image: url(${product.colors[0].avtColor});
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                    width: 100%;
+                                    padding-top: 100%"
+                            ></div>
+                            <a style="font-weight: bold;" href="/products/${product.id}" class="card-title"
+                            >${product.name}</a>
+                            <h5>${FormatUtil.formatCurrency(product.getPrice())}đ</h5>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -264,5 +249,54 @@
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    function handleColorOnClick(colors) {
+        const showAvtProduct = document.querySelector(
+            '.show-image-product'
+        );
+        const showImageProductSlide = document.querySelector(
+            '.main__product__details__img__slide'
+        );
+        const imageUrl = colors.imageColors.split("&&&");
+        const index = colors.index;
+        showAvtProduct.style.backgroundImage = 'url(' + colors.currentColor + ')';
+        const html = imageUrl.map((item, index) => {
+            return `
+                <div
+                    class="show-image-product-color-` + index + `"
+                    onclick="handleItemOnclick('` + item +`')"
+                    style="
+                           background-image: url(` + item + `);
+                           background-size: cover;
+                           background-repeat: no-repeat;
+                           background-position: center;
+                           width: 100%;
+                           padding-top: 90%"
+                ></div>
+            `
+        })
+        console.log(colors.currentColor)
+        showImageProductSlide.innerHTML = html.join("");
+
+    }
+
+    function handleItemOnclick(imgUrl) {
+        const showAvtProduct = document.querySelector(
+            '.show-image-product'
+        );
+        showAvtProduct.style.backgroundImage = 'url(' + imgUrl + ')';
+    }
+    function formatCurrencyVN(amount) {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        })
+            .format(amount)
+            .replace('₫', '')  // Bỏ ký hiệu đ
+            .trim();           // Xóa khoảng trắng cuối
+    }
+</script>
 </body>
 </html>

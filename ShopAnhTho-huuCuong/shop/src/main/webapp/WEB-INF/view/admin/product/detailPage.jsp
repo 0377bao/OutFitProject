@@ -27,9 +27,9 @@
     <div class="container main__product__details">
         <div class="row">
             <div class="col-lg-6">
-                <img
-                        src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d_master.jpg"
-                />
+<%--                <img--%>
+<%--                        src="${product.colors[0].avtColor}"--%>
+<%--                />--%>
 
                 <div class="main__product__details__img__slide">
                     <img
@@ -304,6 +304,8 @@
             });
         }
     });
+
+    console.log(1)
 </script>
 
 
