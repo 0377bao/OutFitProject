@@ -35,7 +35,7 @@ public class AProductController {
         return "admin/product/showPage";
     }
 
-    @GetMapping("/admin/product/create")
+    @GetMapping("/admin/product/dashboardProduct")
     public String getCreatePage(Model model, @RequestParam(defaultValue = "1", name = "page") int page) {
 
         Pageable pageable = PageRequest.of(page - 1, 2);
@@ -43,7 +43,7 @@ public class AProductController {
         Page<Product> products = this.productService.fetchAll(pageable);
 
         model.addAttribute("products", products);
-        return "admin/product/createPage";
+        return "admin/dashboard/dashboardProduct";
     }
 
     @GetMapping("/admin/product/update/{id}")
@@ -51,7 +51,6 @@ public class AProductController {
             @PathVariable("id") Long id,
             Model model
     ) {
-        System.out.println(productService.fetchById(id).getColors());
         model.addAttribute("product", productService.fetchById(id));
         return "admin/product/updatePage";
     }

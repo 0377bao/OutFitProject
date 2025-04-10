@@ -32,7 +32,8 @@
         <div class="container">
             <div class="CreateProductSubmit">
                 <h2>Thêm sản bài viết mới</h2>
-                <form id="formData" action="/admin/blog/create" method="post" enctype="multipart/form-data">
+                <form id="formData" action="/admin/blog/update" method="post" enctype="multipart/form-data">
+                    <input type="number" id="id" name="id" hidden="hidden" value="${blog.id}"/>
                     <input type="text" id="titleBlog" name="title" hidden="hidden"/>
                     <input type="text" id="contentBlog" name="content" hidden="hidden"/>
                     <input type="text" id="descriptionBlog" name="description" hidden="hidden" value=" "/>
@@ -42,6 +43,7 @@
                             id="CreateProduct__GeneralInfor__UploadImg__Input"
                             accept="image/*"
                             hidden
+                            value="${blog.imageUrl}"
                     />
                     <button class="CreateProductSubmit__Btn">Thêm</button>
                 </form>

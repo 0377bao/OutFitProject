@@ -200,7 +200,7 @@
                               </div>
                             </div> -->
                             <c:forEach var="colorName" items="${product.getColors()}">
-                                <template
+                                <div
                                         class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
                                 >
                                     <div
@@ -261,7 +261,7 @@
 <%--                                            />--%>
                                         </div>
                                     </div>
-                                </template>
+                                </div>
                             </c:forEach>
                             <!-- Kết thúc ô chọn màu -->
 
