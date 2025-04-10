@@ -253,10 +253,10 @@
             </div>
             <div class="modal-body">
                 <p><strong  class="form-label">ID Sản Phẩm:</strong>
-                    <input type="text" id="productId" name="productId" class="form-control" readonly/>
+                    <input type="text" id="productId" name="productId" class="form-control" value="${product.id}" readonly/>
                 </p>
                 <p><strong  class="form-label">Tên sản phẩm:</strong>
-                <input type="text" id="productName" name="productName" class="form-control"  readonly/>
+                <input type="text" id="productName" name="productName" class="form-control" value="${product.name}"  readonly/>
                 </p>
                 <p><strong class="form-label">Số lượng:</strong>
                 <input type="number" id="total" name="total" class="form-control" readonly/>
@@ -266,17 +266,17 @@
                 </p>
                 <p><strong  class="form-label">Chọn màu:</strong>
                     <select name="color" class="form-control" required>
-                        <option>đỏ</option>
-                        <option>đỏ</option>
-                        <option>đỏ</option>
+                       <c:forEach var="colorItem" items="${product.colors}">
+                           <option value="${colorItem.name}">${colorItem.name}</option>
+                       </c:forEach>
 
                     </select>
                 </p>
                 <p><strong  class="form-label">Chọn kích thước:</strong>
                     <select name="size" class="form-control">
-                        <option>đỏ</option>
-                        <option>đỏ</option>
-                        <option>đỏ</option>
+                       <c:forEach var="sizeItem" items="${product.sizes}">
+                           <option value="${sizeItem}">${sizeItem}</option>
+                       </c:forEach>
 
                     </select>
                 </p>
@@ -312,29 +312,23 @@
 
     window.addEventListener("DOMContentLoaded", () => {
         // lay ma san pham, ten san pham gan len modal
-        const productName = document.querySelector('#product_name');
-        const productNameModal = document.querySelector('#productName');
-        const productID = document.querySelector('#main__product__details__id')
-        const productIDModal = document.querySelector("#productId")
-
-        productNameModal.value = productName.textContent;
-        productIDModal.value = productID.textContent;
 
         const inputTotal = document.querySelector("#quantity");
         const priceProduct = document.querySelector("#main__product__details__price");
         const total = document.querySelector("#total");
         const price = document.querySelector("#price");
-        const priceFormat = (priceProduct.textContent).split(" ")[1].replaceAll(",", "");
-        const totalPrice = inputTotal.value * Number(priceFormat);
-        price.value = totalPrice;
+
+        const priceFormat = (priceProduct.textContent).replace(" vnđ", "")
+        const totalPrice = inputTotal.value * priceFormat;
+
+        price.value = Number.parseFloat(totalPrice + "000");
         total.value = inputTotal.value;
         inputTotal.addEventListener("change", () => {
-            const newTotalPrice = inputTotal.value * Number(priceFormat);
-            price.value = newTotalPrice;
+            const newTotalPrice = inputTotal.value * priceFormat;
+            price.value = Number.parseFloat(newTotalPrice + "000");
             total.value = inputTotal.value;
         })
-        console.log(total)
-        console.log(price)
+
     })
 
     function handleColorOnClick(colors) {

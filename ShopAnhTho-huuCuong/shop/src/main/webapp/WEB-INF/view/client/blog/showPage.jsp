@@ -39,7 +39,7 @@
                                 ${blogItem.content}
                         </p>
 
-                        <a href="#"
+                        <a href="/blogs/${blogItem.id}"
                         >Xem thêm
                             <i class="bx bx-right-arrow-alt"></i>
                         </a>

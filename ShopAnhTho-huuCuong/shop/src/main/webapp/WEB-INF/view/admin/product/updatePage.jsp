@@ -37,6 +37,7 @@
             <div class="container">
                 <div class="CreateProductMain">
                     <div class="CreateProduct__GeneralInfor">
+                        <input type="number" name="id" value="${product.id}" hidden="hidden">
                         <h3>Thông tin tổng quan</h3>
                         <p>Tên sản phẩm</p>
                         <input
@@ -200,15 +201,14 @@
                               </div>
                             </div> -->
                             <c:forEach var="colorName" items="${product.getColors()}">
-                                <div
-                                        class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
-                                >
+
                                     <div
                                             class="CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
                                     >
                                         <input
                                                 type="file"
-                                                name="CreateProduct__GeneralInfor__UploadImg__avt__input"
+                                                id="CreateProduct_Avatar"
+                                                name="avatarColors"
                                                 accept="image/*"
                                                 hidden
                                         />
@@ -228,7 +228,7 @@
                                         <img
                                                 class="addImgAvt"
                                                 style="width: 100%"
-                                                src="${colorName.avatar}"
+                                                src="${colorName.avtColor}"
                                                 name="avatarColors"
                                         />
                                         <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
@@ -261,7 +261,7 @@
 <%--                                            />--%>
                                         </div>
                                     </div>
-                                </div>
+
                             </c:forEach>
                             <!-- Kết thúc ô chọn màu -->
 
@@ -296,6 +296,7 @@
                                                 style="width: 100%"
                                                 src="/images/add img.png"
                                                 name="avatarColors"
+
                                         />
                                         <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
                                             <img
@@ -395,6 +396,22 @@
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/create_product.js"></script>
+
+<script>
+    const imageAvatar = document.querySelector(".addImgAvt")
+    imageAvatar.addEventListener("click", () => {
+        const inputChooseAvatar = document.querySelector("#CreateProduct_Avatar");
+        inputChooseAvatar.click();
+        inputChooseAvatar.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                imageAvatar.src = URL.createObjectURL(file);
+                imageAvatar.dataset.file = file.name;
+            }
+        });
+
+    });
+</script>
 
 </body>
 </html>

@@ -239,7 +239,7 @@
                                         ${blogItem.content}
                                     </p>
 
-                                    <a href="#"
+                                    <a href="/blogs/${blogItem.id}"
                                     >Xem thêm
                                         <i class="bx bx-right-arrow-alt"></i>
                                     </a>
@@ -248,59 +248,7 @@
 
                         </c:when>
                         <c:otherwise>
-                            <div class="card">
-                                <img
-                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                                />
-                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
-
-                                <p class="card-text">
-                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                                    thiết kế êm ái trong BST “Nuel Gift Haus”
-                                </p>
-
-                                <a href="#"
-                                >Xem thêm
-                                    <i class="bx bx-right-arrow-alt"></i>
-                                </a>
-                            </div>
-
-                            <div class="card">
-                                <img
-                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                                />
-                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
-
-                                <p class="card-text">
-                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                                    thiết kế êm ái trong BST “Nuel Gift Haus”
-                                </p>
-
-                                <a href="#"
-                                >Xem thêm
-                                    <i class="bx bx-right-arrow-alt"></i>
-                                </a>
-                            </div>
-
-                            <div class="card">
-                                <img
-                                        src="https://file.hstatic.net/200000692427/article/dia_chi_nuel_web_8ba81ed905a44bdeafe88c3c45bf2708_1024x1024.jpg"
-                                />
-                                <h5 class="card-title">Danh sách đại lý Shop Bé Thơ</h5>
-
-                                <p class="card-text">
-                                    Gửi ba mẹ thân thương của Nous! Giáng sinh ấm áp lại về, hãy
-                                    cùng Nous tận hưởng trọn vẹn tươi vui của mùa lễ hội với những
-                                    thiết kế êm ái trong BST “Nuel Gift Haus”
-                                </p>
-
-                                <a href="#"
-                                >Xem thêm
-                                    <i class="bx bx-right-arrow-alt"></i>
-                                </a>
-                            </div>
+                            <span>Không có tin tức nỗi bật</span>
                         </c:otherwise>
                     </c:choose>
 
