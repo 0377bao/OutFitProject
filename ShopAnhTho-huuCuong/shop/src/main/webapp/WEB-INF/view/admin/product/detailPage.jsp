@@ -28,9 +28,9 @@
     <div class="container main__product__details">
         <div class="row">
             <div class="col-lg-6">
-                <img
-                        src="https://product.hstatic.net/200000692427/product/upload_9ed38da3b49a47c9924fb56d2f2dd72d_master.jpg"
-                />
+<%--                <img--%>
+<%--                        src="${product.colors[0].avtColor}"--%>
+<%--                />--%>
 
                 <div class="main__product__details__img__slide">
                     <img
@@ -289,10 +289,25 @@
 <!-- Js load file layout header và footer tạm thời khi chưa có BE -->
 
 <!-- js của bootrap -->
+
     <script src="/bootstrap/js/bootstrap.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/detail_product.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".main__product__details__btn");
+        if (btn) {
+            btn.addEventListener("click", () => {
+                console.log("Hello");
+            });
+        }
+    });
+
+    console.log(1)
+</script>
 
 
 

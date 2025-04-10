@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="com.shopbetho.shop.entity.FormatUtil" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,11 +78,16 @@
                             <c:when test="${productsHighLight != null && productsHighLight.size() > 0}">
                                 <c:forEach var="product" items="${productsHighLight}">
                                     <div class="card col-sm-3">
-                                        <img src="${product.colors[0].avtColor}"
-                                        />
+                                        <div style="background-image: url(${product.colors[0].avtColor});
+                                                background-size: cover;
+                                                background-repeat: no-repeat;
+                                                background-position: center;
+                                                width: 100%;
+                                                padding-top: 100%"
+                                        ></div>
                                         <a style="font-weight: bold;" href="/products/${product.id}" class="card-title"
                                         >${product.name}</a>
-                                        <h5>${product.price}đ</h5>
+                                        <h5>${FormatUtil.formatCurrency(product.getPrice())}đ</h5>
                                     </div>
                                 </c:forEach>
                             </c:when>
@@ -176,15 +182,20 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="main__4__product">
-                        <<c:choose>
+                        <c:choose>
                             <c:when test="${productsNew != null && productsNew.size() > 0}">
                                 <c:forEach var="product" items="${productsNew}">
                                     <div class="card col-sm-3">
-                                        <img src="${product.colors[0].avtColor}"
-                                        />
+                                        <div style="background-image: url(${product.colors[0].avtColor});
+                                                background-size: cover;
+                                                background-repeat: no-repeat;
+                                                background-position: center;
+                                                width: 100%;
+                                                padding-top: 100%"
+                                        ></div>
                                         <a style="font-weight: bold;" href="/products/${product.id}" class="card-title"
                                         >${product.name}</a>
-                                        <h5>${product.price}đ</h5>
+                                        <h5>${FormatUtil.formatCurrency(product.getPrice())}đ</h5>
                                     </div>
                                 </c:forEach>
                             </c:when>
