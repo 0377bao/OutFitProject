@@ -42,6 +42,7 @@ public class AProductController {
             @PathVariable("id") Long id,
             Model model
     ) {
+        System.out.println(productService.fetchById(id).getColors());
         model.addAttribute("product", productService.fetchById(id));
         return "admin/product/updatePage";
     }
@@ -94,7 +95,7 @@ public class AProductController {
             color.setProduct(product);
 
             List<String> imageUrls = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 
@@ -160,7 +161,7 @@ public class AProductController {
             color.setAvtColor(urlAvt);
 
             List<String> imageUrls = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 

@@ -63,8 +63,12 @@
             <div class="col-sm-2">20h03 27/8/2025</div>
             <div class="col-sm-1">7878977</div>
             <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
+                <form action="/admin/product/update/1" style="display: inline-block">
+                    <button class="btn btn-warning">Sửa</button>
+                </form>
+                <form style="display: inline-block">
+                    <button class="btn btn-danger m-3">Xóa</button>
+                </form>
             </div>
         </div>
 

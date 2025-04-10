@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-<%--<jsp:include page="../../header.jsp"/>--%>
+<jsp:include page="../../header.jsp"/>
 
 <main>
     <form id="formData" action="/admin/product/create" method="post" enctype="multipart/form-data">

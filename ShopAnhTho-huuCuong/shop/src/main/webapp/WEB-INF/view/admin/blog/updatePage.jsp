@@ -23,7 +23,7 @@
     />
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <link rel="stylesheet" href="admin/css/create_blog.css" />
+    <link rel="stylesheet" href="/admin/css/create_blog.css" />
 </head>
 <body>
 <main>
@@ -57,6 +57,7 @@
                             class="form-control CreateProduct__GeneralInfor__Title__Blog"
                             type="text"
                             placeholder="Ví dụ: áo khoác mùa hè cho bé"
+                            value="${blog.title}"
                     />
 
                     <p class="CreateProduct__GeneralInfor__passage">Đoạn văn</p>
@@ -84,7 +85,7 @@
                     </div>
 
                     <div id="CreateProduct__GeneralInfor__Editor">
-                        Nhập nội dung tại đây...
+                        ${blog.content}
                     </div>
 
                     <!-- Kết thúc thanh công cụ và ô nhập dữ liệu -->
@@ -108,7 +109,7 @@
                         <img
                                 id="CreateProduct__GeneralInfor__UploadImg__avt__Preview"
                                 style="width: 100%"
-                                src="/images/add img.png"
+                                src="${blog.imageUrl}"
                         />
                         <span>Thêm hình ảnh</span>
 

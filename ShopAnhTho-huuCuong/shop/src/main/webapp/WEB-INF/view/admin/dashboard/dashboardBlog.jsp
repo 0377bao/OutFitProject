@@ -13,13 +13,13 @@
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="/admin/css/dashboard_product.css" />
+    <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <title>Admin Products</title>
     <style>
-        .header__banner img{
-            margin-top: 0 !important;
+        .header {
+            margin-top: 10%;
         }
     </style>
 </head>
@@ -29,7 +29,10 @@
     <div class="container">
         <div class="header__1">
             <h1>Quản lý bài viết (Blog)</h1>
-            <button class="header__1__btn">Thêm bài viết mới</button>
+
+            <form action="/admin/blog/create" style="width: 200px; justify-self: flex-end;">
+                <button class="header__1__btn" style="height: 100%">Thêm bài viết mới</button>
+            </form>
         </div>
         <hr />
         <div class="header__2">
@@ -69,8 +72,12 @@
             <div class="col-sm-2">20h03 27/8/2025</div>
             <div class="col-sm-1">7878977</div>
             <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
+                <form action="/admin/blog/update/1" style="display: inline-block">
+                    <button class="btn btn-warning">Sửa</button>
+                </form>
+                <form style="display: inline-block">
+                    <button class="btn btn-danger m-3">Xóa</button>
+                </form>
             </div>
         </div>
 

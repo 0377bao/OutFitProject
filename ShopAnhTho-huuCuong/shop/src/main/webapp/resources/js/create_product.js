@@ -22,6 +22,19 @@ productType.addEventListener("change", function () {
   productTypeData = this.value;
 });
 
+/***********/
+// xử lý khi load dữ liệu update
+window.addEventListener("DOMContentLoaded", () => {
+  const sizeBoxItems = document.querySelectorAll(".size__box");
+  sizeBoxItems.forEach((sizeItem) => {
+    sizeItem.addEventListener("click", function () {
+      console.log(this);
+      sizeItem.classList.toggle("selectSize");
+    });
+    dataSize.push(sizeItem)
+  })
+})
+
 /****************************************************************/
 // Xử lý phần thêm size
 
@@ -134,7 +147,7 @@ addColor.addEventListener("click", () => {
   detailImgs.forEach((img, index) => {
     const detailInput = document.createElement("input");
     detailInput.type = "file";
-    detailInput.name= `fileMap[colorImages[${current}][${index}]]`
+    detailInput.name= `colorImages[${current}][${index}]`
     detailInput.accept = "image/*";
     detailInput.style.display = "none";
 
