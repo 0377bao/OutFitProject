@@ -23,7 +23,9 @@
     <div class="container">
         <div class="header__1">
             <h1>Quản lý sản phẩm</h1>
-            <button class="header__1__btn">Thêm sản phẩm mới</button>
+
+                <button class="header__1__btn"><a class="text__btn__header_1" href="/admin/product/create">Thêm sản phẩm mới</a></button>
+
         </div>
         <hr />
         <div class="header__2">
