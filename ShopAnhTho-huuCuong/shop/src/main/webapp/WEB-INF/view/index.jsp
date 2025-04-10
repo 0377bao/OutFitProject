@@ -73,15 +73,24 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="main__2__product d-flex flex-nowrap">
-                        <div class="card">
-                            <img
-                                    src="https://product.hstatic.net/200000692427/product/bo_mac_nha_cho_con_bu_mau_tim_983e450e72cd481590680c2caed160ba_large.jpg"
-                            />
-                            <a href="#" class="card-title"
-                            >Bộ mặc nhà cho con bú màu tím</a
-                            >
-                            <h5>445.000đ</h5>
-                        </div>
+                        <c:choose>
+                            <c:when test="${productsHighLight != null && productsHighLight.size() > 0}">
+                                <c:forEach var="product" items="${productsHighLight}">
+                                    <div class="card">
+                                        <img src="${product.colors[0].avtColor}"
+                                        />
+                                        <h1>${product.colors.size()}</h1>
+                                        <a href="#" class="card-title"
+                                        >${product.name}</a
+                                        >
+                                        <h5>${product.price}đ</h5>
+                                    </div>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <h1>Không có sản phẩm nổi bật nào.</h1>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
