@@ -39,20 +39,27 @@
                         </p>
 
                         <div class="welcome__admin__btn">
-                            <button class="welcome__admin__btn__product">
-                                Quản lý sản phẩm
-                            </button>
-                            <button class="welcome__admin__btn__blog">
-                                Quản lý bài viết
-                            </button>
-
-                            <button class="welcome__admin__btn__blog">
+                            <form action="/admin/dashboard/dashboardProduct" class="welcome__admin__btn__product">
+                                <button class="text_button">
+                                    Quản lý sản phẩm
+                                </button>
+                            </form>
+                            <form action="/admin/blog/create" class="welcome__admin__btn__product">
+                                <button class="text_button">
+                                    Quản lý bài viết
+                                </button>
+                            </form>
+                            <form action="/admin/banner/create" class="welcome__admin__btn__blog">
+                            <button class="text_button">
                                 Quản lý Banner trang chủ
                             </button>
 
-                            <button class="welcome__admin__btn__blog">
-                                Quản lý bộ sưu tập trang chủ
-                            </button>
+                            </form>
+                            <form action="admin/collection/create" class="welcome__admin__btn__blog">
+                                <button class="text_button">
+                                    Quản lý bộ sưu tập trang chủ
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -64,7 +71,11 @@
                         src="https://png.pngtree.com/png-vector/20230830/ourmid/pngtree-3d-character-modeling-digital-marketing-online-shop-admin-illustration-png-image_9190030.png"
                 />
                 <div class="welcome__admin__btn__exit">
-                    <button class="btn btn-danger">Exit</button>
+                    <form action="/admin/login">
+                        <button class="btn btn-danger">
+                            Exit
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

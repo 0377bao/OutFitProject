@@ -9,7 +9,7 @@ body {
 }
 
 .headerProduct {
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .header__1 {
@@ -50,6 +50,11 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     color: white;
+}
+
+.text__btn__header_1 {
+    color: white;
+    text-decoration: none;
 }
 /* -------------------------------------- */
 

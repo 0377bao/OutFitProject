@@ -36,12 +36,14 @@ body {
 }
 
 .welcome__admin__btn{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .welcome__admin__btn__product, .welcome__admin__btn__blog {
     width: 100%;
-    padding: 15px; 
+    padding: 15px;
     font-size: 20px;
     margin-top: 25px;
     margin-left: 20px;
@@ -51,6 +53,15 @@ body {
     border: none;
     border-radius: 30px;
     text-transform: uppercase;
+}
+
+.text_button {
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    background-color: #d0b49e;
 }
 
 .welcome__admin__banner {

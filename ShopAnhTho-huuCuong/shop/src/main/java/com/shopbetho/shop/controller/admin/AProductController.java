@@ -8,6 +8,9 @@ import com.shopbetho.shop.service.EmailService;
 import com.shopbetho.shop.service.ProductService;
 import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +36,13 @@ public class AProductController {
     }
 
     @GetMapping("/admin/product/create")
-    public String getCreatePage() {
+    public String getCreatePage(Model model, @RequestParam(defaultValue = "1", name = "page") int page) {
+
+        Pageable pageable = PageRequest.of(page - 1, 2);
+
+        Page<Product> products = this.productService.fetchAll(pageable);
+
+        model.addAttribute("products", products);
         return "admin/product/createPage";
     }
 
@@ -91,6 +100,7 @@ public class AProductController {
             color.setName(colorNames.get(i));
             String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
             color.setAvtColor(urlAvt);
+            color.setProduct(product);
 
             List<String> imageUrls = new ArrayList<>();
             for (int j = 0; j < 5; j++) {

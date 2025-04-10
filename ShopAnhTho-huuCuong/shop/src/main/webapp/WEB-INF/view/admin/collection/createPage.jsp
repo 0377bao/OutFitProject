@@ -1,12 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
-    <title>Thêm sản phẩm mới</title>
-    <link
-            rel="stylesheet"
-            href="/bootstrap/css/bootstrap.css"
-    />
+    <title>Cập nhật bộ sưu tập</title>
     <link
             rel="stylesheet"
             href="/bootstrap/css/bootstrap.min.css"
@@ -16,295 +11,59 @@
             rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/admin/css/create_product.css" />
+    <link rel="stylesheet" href="/admin/css/create_Collection.css" />
+
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-<%--<jsp:include page="../../header.jsp"/>--%>
+<jsp:include page="../../header.jsp"/>
 
-<main>
-    <form id="formData" action="/admin/product/create" method="post" enctype="multipart/form-data">
-    <div class="CreateProduct">
-        <div class="container">
-            <div class="CreateProductSubmit">
-                <h2>Thêm sản phẩm mới</h2>
+<main class="container create__Collection">
+    <div class="create__Collection__title">
+        <h1>Cập nhật bộ sưu tập trang chủ</h1>
 
-                <button class="CreateProductSubmit__Btn">Thêm</button>
-            </div>
-        </div>
+        <form id="formData" action="/admin/collection/create" method="post" enctype="multipart/form-data">
+            <input type="file" id="inputImage1" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage2" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage3" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage4" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage5" name="image" accept="image/*" hidden="hidden"/>
+            <input type="file" id="inputImage6" name="image" accept="image/*" hidden="hidden"/>
 
-        <div class="container">
-            <div class="CreateProductMain">
-                <div class="CreateProduct__GeneralInfor">
-                    <h3>Thông tin tổng quan</h3>
-                    <p>Tên sản phẩm</p>
-                    <input
-                            class="form-control CreateProduct__GeneralInfor__NameProduct"
-                            type="text"
-                            name="name"
-                            placeholder="Ví dụ: áo khoác mùa hè cho bé"
-                    />
-
-                    <p>Miêu tả sản phẩm</p>
-                    <textarea
-                            type="text"
-                            name="description"
-                            class="form-control CreateProduct__GeneralInfor__DescribeProduct"
-                            placeholder="Ví dụ: Áo quần con nít thường được thiết kế với màu sắc tươi sáng, họa tiết ngộ nghĩnh, đáng yêu. Chất liệu vải mềm mại, thoáng mát như cotton, lanh, hoặc nỉ, đảm bảo sự thoải mái cho làn da nhạy cảm của trẻ. Kiểu dáng đa dạng, từ những bộ đồ liền thân ấm áp cho trẻ sơ sinh, đến những chiếc áo thun, quần short năng động cho trẻ lớn hơn. Các chi tiết như nơ, bèo nhún, hình thú cưng, hoặc nhân vật hoạt hình được thêu hoặc in trên áo quần, tạo điểm nhấn thu hút sự chú ý của trẻ."
-                    >
-              </textarea>
-
-                    <div class="CreateProduct__GeneralInfor__StatusId">
-                        <div class="CreateProduct__GeneralInfor__StatusId__Status">
-                            <div class="CreateProduct__GeneralInfor__StatusId__Status__1">
-                                <lable>Còn hàng</lable>
-                                <input
-                                        id="CreateProduct__GeneralInfor__StatusId__Status__1"
-                                        value="true"
-                                        name="isActive"
-                                        type="radio"
-                                />
-                            </div>
-
-                            <div class="CreateProduct__GeneralInfor__StatusId__Status__2">
-                                <lable>Hết hàng</lable>
-                                <input
-                                        id="CreateProduct__GeneralInfor__StatusId__Status__2"
-                                        value="false"
-                                        name="isActive"
-                                        type="radio"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="CreateProduct__GeneralInfor__StatusId__Id">
-                            <lable>Mã sản phẩm</lable>
-                            <input
-                                    class="m-3 CreateProduct__GeneralInfor__StatusId__Id__Product"
-                                    type="text"
-                                    name="code"
-                                    placeholder="Nhập mã sản phẩm"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="CreateProductMain__Price">
-                        <p>Giá sản phẩm</p>
-                        <input type="number" name="price" class="form-control" />
-                    </div>
-
-                    <div class="CreateProduct__GeneralInfor__outstanding">
-                        <p>Sản phẩm này có dùng để hiện thị sản phẩm nỗi bật không ?</p>
-                        <lable class="m-2">Có</lable>
-                        <input
-                                id="CreateProduct__GeneralInfor__outstanding_1"
-                                value="true"
-                                name="isHighlight"
-                                type="radio"
-                        />
-
-                        <label class="m-2">Không</label>
-                        <input
-                                id="CreateProduct__GeneralInfor__outstanding"
-                                name="isHighlight"
-                                value="false"
-                                type="radio"
-                        />
-                    </div>
-
-                    <div class="CreateProduct__GeneralInfor__newProduct">
-                        <p>Sản phẩm này có phải sản phẩm mới không ?</p>
-                        <lable class="m-2">Có</lable>
-                        <input
-                                id="CreateProduct__GeneralInfor__newProduct_1"
-                                name="isNew"
-                                value="true"
-                                type="radio"
-                        />
-
-                        <label class="m-2">Không</label>
-                        <input
-                                id="CreateProduct__GeneralInfor__newProduct"
-                                name="isNew"
-                                value="false"
-                                type="radio"
-                        />
-                    </div>
-                </div>
-
-                <div class="CreateProduct__GeneralInfor__UploadImg">
-                    <div class="CreateProduct__GeneralInfor__UploadImg__avt">
-                        <h4 class="fw-bold">Quản lý màu</h4>
-                        <div class="CreateProduct__GeneralInfor__UploadImg__Color">
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
-                            >
-                                Thêm màu
-                            </button>
-
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
-                            >
-                                Xóa màu
-                            </button>
-                        </div>
-
-                        <!-- Bắt đầu ô chọn màu -->
-
-                        <!-- <div class="CreateProduct__GeneralInfor__UploadImg__avt__box">
-                          <input
-                            type="file"
-                            id="CreateProduct__GeneralInfor__UploadImg__avt__input"
-                            accept="image/*"
-                            hidden
-                          />
-
-                          <img
-                            class="addImgAvt"
-                            style="width: 100%"
-                            src="./Resource/img/add img.png"
-                          />
-
-                          <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
-                            <img
-                              class="addImgDetail__1"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__2"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__3"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__4"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                          </div>
-                        </div> -->
-
-                        <!-- Kết thúc ô chọn màu -->
-
-                        <!-- template cho ô chọn màu -->
-
-                        <template
-                                class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
-                        >
-                            <div
-                                    class="CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
-                            >
-                                <input
-                                        type="file"
-                                        id="CreateProduct__GeneralInfor__UploadImg__avt__input"
-                                        accept="image/*"
-                                        hidden
-                                />
-
-
-                                    <!-- thẻ input này dùng checkbox để hỗ trợ xóa -->
-                                    <input type="checkbox" class="group-checkbox-color" /> Chọn
-                                    nhóm này
-                                <br/>
-                                <input type="text" placeholder="Nhập màu..." class="colorNames" name="colorNames" style="display: block; margin-top: 5px; margin-bottom: 7px; padding-left:8px"/>
-
-
-
-                                <img
-                                        class="addImgAvt"
-                                        style="width: 100%"
-                                        src="/images/add img.png"
-                                        name="avatarColors"
-                                />
-
-                                <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
-                                    <img
-                                            class="addImgDetail__1"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__2"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__3"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__4"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                </div>
-                            </div>
-                        </template>
-                        <!-- Kết thúc template -->
-                    </div>
-
-                    <div class="CreateProduct__GeneralInfor__UploadImg__Size">
-                        <h4 class="fw-bold">Tạo size</h4>
-                        <input
-                                type="text"
-                                class="form-control CreateProduct__GeneralInfor__UploadImg__Size__Input"
-                        />
-
-                        <div
-                                class="CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
-                        ></div>
-
-                        <div
-                                class="CreateProduct__GeneralInfor__UploadImg__Size__Detail"
-                        >
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
-                            >
-                                Thêm size
-                            </button>
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
-                            >
-                                Xóa size
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="CreateProduct__GeneralInfor__UploadImg__Category">
-                        <h4 class="fw-bold">Phân loại</h4>
-                        <p>Phân loại sản phẩm</p>
-
-                        <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
-                            -- Lựa chọn --
-                            <option value="AONGANTAY">Áo ngắn tay</option>
-                            <option value="AODAITAY">Áo dài tay</option>
-                            <option value="DOBO">Đồ bộ</option>
-                            <option value="DOMUAHE">Đồ mùa hè</option>
-                            <option value="DOMUADONG">Đồ mùa đông</option>
-                        </select>
-
-                        <button
-                                class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
-                                type="button"
-                        >
-                            Đồng ý
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <button class="create__Collection__btn">Cập nhật</button>
+        </form>
     </div>
-    </form>
-    <c:if test="${error != null}">
-        <p>${error}</p>
-    </c:if>
+
+    <div class="main__3__collection__img">
+        <h5>Nhấn vào để thêm hình ảnh</h5>
+        <img
+                class="main__3__collection__img__item__1"
+                src="/images/add img.png"
+        />
+        <img
+                class="main__3__collection__img__item__2"
+                src="/images/add img.png"
+        />
+        <img
+                class="main__3__collection__img__item__3"
+                src="/images/add img.png"
+        />
+        <img
+                class="main__3__collection__img__item__4"
+                src="/images/add img.png"
+        />
+        <img
+                class="main__3__collection__img__item__5"
+                src="/images/add img.png"
+        />
+        <img
+                class="main__3__collection__img__item__6"
+                src="/images/add img.png"
+        />
+    </div>
+
+    <input type="file" id="imageInput" accept="image/*" hidden />
 </main>
 
 <jsp:include page="../../footer.jsp"/>
@@ -312,6 +71,117 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="/js/create_product.js"></script>
+<script>
+    // Đang phát triển UI trên môi trường dev, không có BE nền phần này là tạm thời
+    // Tải header từ file header.html
+
+    // Js để xử lý sự kiện chọn ảnh tạm thời
+    let currentImg = null;
+    // const imageInput = document.getElementById("imageInput");
+    const inputImage1 = document.getElementById("inputImage1")
+    const inputImage2 = document.getElementById("inputImage2")
+    const inputImage3 = document.getElementById("inputImage3")
+    const inputImage4 = document.getElementById("inputImage4")
+    const inputImage5 = document.getElementById("inputImage5")
+    const inputImage6 = document.getElementById("inputImage6")
+
+
+    // Bắt sự kiện click vào khu vực chọn ảnh
+    document
+        .querySelectorAll(
+            ".main__3__collection__img__item__1, .main__3__collection__img__item__2,.main__3__collection__img__item__3, .main__3__collection__img__item__4, .main__3__collection__img__item__5, .main__3__collection__img__item__6"
+        )
+        .forEach((div, index) => {
+            div.addEventListener("click", function () {
+                currentImg = this; // Lưu lại ảnh cần thay đổi
+                if(index === 0) inputImage1.click();
+                if(index === 1) inputImage2.click();
+                if(index === 2) inputImage3.click();
+                if(index === 3) inputImage4.click();
+                if(index === 4) inputImage5.click();
+                if(index === 5) inputImage6.click();
+            });
+        });
+
+    // Khi người dùng chọn ảnh, thay đổi src của ảnh được chọn
+    inputImage1.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage2.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage3.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage4.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage5.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    inputImage6.addEventListener("change", function (event) {
+        if (currentImg && event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImg.src = e.target.result;
+                currentImg.style.width = "100%"; // Đảm bảo ảnh mới chiếm toàn bộ chiều rộng
+                currentImg.style.height = "auto"; //
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    const formData = document.querySelector("#formData")
+    formData.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(!inputImage1.value || !inputImage2.value || !inputImage3.value || !inputImage4.value
+            || !inputImage5.value || !inputImage6.value) {
+            alert("Vui lòng chọn đủ 6 tấm ảnh cho bộ sưu tập")
+        }else {
+            formData.submit();
+        }
+    })
+
+</script>
 </body>
 </html>
