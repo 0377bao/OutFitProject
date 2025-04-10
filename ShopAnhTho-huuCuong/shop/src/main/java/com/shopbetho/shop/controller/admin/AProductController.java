@@ -91,6 +91,7 @@ public class AProductController {
             color.setName(colorNames.get(i));
             String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
             color.setAvtColor(urlAvt);
+            color.setProduct(product);
 
             List<String> imageUrls = new ArrayList<>();
             for (int j = 0; j < 5; j++) {
