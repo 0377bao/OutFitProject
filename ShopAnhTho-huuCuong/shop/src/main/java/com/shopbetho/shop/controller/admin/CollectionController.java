@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,10 @@ public class CollectionController {
     private CollectionService collectionService;
     @Autowired
     private CloudinaryService cloudinaryService;
+    @GetMapping("/admin/collection/create")
+    public String getCreateCollectionPage() {
+        return "admin/collection/createPage";
+    }
     @PostMapping("admin/collection/create")
     public String createCollection(@RequestParam("image") List<MultipartFile> image, Model model,
                                    HttpServletRequest request) throws IOException {

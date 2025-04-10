@@ -10,10 +10,7 @@ import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.catalog.Catalog;
@@ -40,8 +37,12 @@ public class AProductController {
         return "admin/product/createPage";
     }
 
-    @GetMapping("/admin/product/update")
-    public String getUpdatePage() {
+    @GetMapping("/admin/product/update/{id}")
+    public String getUpdatePage(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("product", productService.fetchById(id));
         return "admin/product/updatePage";
     }
 
