@@ -13,6 +13,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAll(Pageable pageable);
     List<Product> findTop4ByIsHighlightTrueOrderByCreatedAtDesc();
-    List<Product> findTop4ByIsNewTrueOrderByCreatedAtDesc();
+    List<Product> findTop8ByIsNewTrueOrderByCreatedAtDesc();
     List<Product> findByIsActiveTrue();
 }
