@@ -51,9 +51,9 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
     public List<Product> findByIsHighlightTrue() {
-        return this.productRepository.findByIsHighlightTrue();
+        return this.productRepository.findTop4ByIsHighlightTrueOrderByCreatedAtDesc();
     }
     public List<Product> findByIsNewTrue() {
-        return this.productRepository.findByIsNewTrue();
+        return this.productRepository.findTop4ByIsNewTrueOrderByCreatedAtDesc();
     }
 }

@@ -81,33 +81,6 @@
                             >
                             <h5>445.000đ</h5>
                         </div>
-                        <div class="card">
-                            <img
-                                    src="https://product.hstatic.net/200000692427/product/bo_mac_nha_cho_con_bu_mau_tim_983e450e72cd481590680c2caed160ba_large.jpg"
-                            />
-                            <a href="#" class="card-title"
-                            >Bộ mặc nhà cho con bú màu tím</a
-                            >
-                            <h5>445.000đ</h5>
-                        </div>
-                        <div class="card">
-                            <img
-                                    src="https://product.hstatic.net/200000692427/product/bo_mac_nha_cho_con_bu_mau_tim_983e450e72cd481590680c2caed160ba_large.jpg"
-                            />
-                            <a href="#" class="card-title"
-                            >Bộ mặc nhà cho con bú màu tím</a
-                            >
-                            <h5>445.000đ</h5>
-                        </div>
-                        <div class="card">
-                            <img
-                                    src="https://product.hstatic.net/200000692427/product/bo_mac_nha_cho_con_bu_mau_tim_983e450e72cd481590680c2caed160ba_large.jpg"
-                            />
-                            <a href="#" class="card-title"
-                            >Bộ mặc nhà cho con bú màu tím</a
-                            >
-                            <h5>445.000đ</h5>
-                        </div>
                     </div>
                 </div>
             </div>
