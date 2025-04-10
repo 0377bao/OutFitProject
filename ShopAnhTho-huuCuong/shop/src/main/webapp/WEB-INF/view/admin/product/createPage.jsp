@@ -25,282 +25,282 @@
 
 <main>
     <form id="formData" action="/admin/product/create" method="post" enctype="multipart/form-data">
-    <div class="CreateProduct">
-        <div class="container">
-            <div class="CreateProductSubmit">
-                <h2>Thêm sản phẩm mới</h2>
+        <div class="CreateProduct">
+            <div class="container">
+                <div class="CreateProductSubmit">
+                    <h2>Thêm sản phẩm mới</h2>
 
-                <button class="CreateProductSubmit__Btn">Thêm</button>
+                    <button class="CreateProductSubmit__Btn">Thêm</button>
+                </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="CreateProductMain">
-                <div class="CreateProduct__GeneralInfor">
-                    <h3>Thông tin tổng quan</h3>
-                    <p>Tên sản phẩm</p>
-                    <input
-                            class="form-control CreateProduct__GeneralInfor__NameProduct"
-                            type="text"
-                            name="name"
-                            placeholder="Ví dụ: áo khoác mùa hè cho bé"
-                    />
+            <div class="container">
+                <div class="CreateProductMain">
+                    <div class="CreateProduct__GeneralInfor">
+                        <h3>Thông tin tổng quan</h3>
+                        <p>Tên sản phẩm</p>
+                        <input
+                                class="form-control CreateProduct__GeneralInfor__NameProduct"
+                                type="text"
+                                name="name"
+                                placeholder="Ví dụ: áo khoác mùa hè cho bé"
+                        />
 
-                    <p>Miêu tả sản phẩm</p>
-                    <textarea
-                            type="text"
-                            name="description"
-                            class="form-control CreateProduct__GeneralInfor__DescribeProduct"
-                            placeholder="Ví dụ: Áo quần con nít thường được thiết kế với màu sắc tươi sáng, họa tiết ngộ nghĩnh, đáng yêu. Chất liệu vải mềm mại, thoáng mát như cotton, lanh, hoặc nỉ, đảm bảo sự thoải mái cho làn da nhạy cảm của trẻ. Kiểu dáng đa dạng, từ những bộ đồ liền thân ấm áp cho trẻ sơ sinh, đến những chiếc áo thun, quần short năng động cho trẻ lớn hơn. Các chi tiết như nơ, bèo nhún, hình thú cưng, hoặc nhân vật hoạt hình được thêu hoặc in trên áo quần, tạo điểm nhấn thu hút sự chú ý của trẻ."
-                    >
+                        <p>Miêu tả sản phẩm</p>
+                        <textarea
+                                type="text"
+                                name="description"
+                                class="form-control CreateProduct__GeneralInfor__DescribeProduct"
+                                placeholder="Ví dụ: Áo quần con nít thường được thiết kế với màu sắc tươi sáng, họa tiết ngộ nghĩnh, đáng yêu. Chất liệu vải mềm mại, thoáng mát như cotton, lanh, hoặc nỉ, đảm bảo sự thoải mái cho làn da nhạy cảm của trẻ. Kiểu dáng đa dạng, từ những bộ đồ liền thân ấm áp cho trẻ sơ sinh, đến những chiếc áo thun, quần short năng động cho trẻ lớn hơn. Các chi tiết như nơ, bèo nhún, hình thú cưng, hoặc nhân vật hoạt hình được thêu hoặc in trên áo quần, tạo điểm nhấn thu hút sự chú ý của trẻ."
+                        >
               </textarea>
 
-                    <div class="CreateProduct__GeneralInfor__StatusId">
-                        <div class="CreateProduct__GeneralInfor__StatusId__Status">
-                            <div class="CreateProduct__GeneralInfor__StatusId__Status__1">
-                                <lable>Còn hàng</lable>
-                                <input
-                                        id="CreateProduct__GeneralInfor__StatusId__Status__1"
-                                        value="true"
-                                        name="isActive"
-                                        type="radio"
-                                />
+                        <div class="CreateProduct__GeneralInfor__StatusId">
+                            <div class="CreateProduct__GeneralInfor__StatusId__Status">
+                                <div class="CreateProduct__GeneralInfor__StatusId__Status__1">
+                                    <lable>Còn hàng</lable>
+                                    <input
+                                            id="CreateProduct__GeneralInfor__StatusId__Status__1"
+                                            value="true"
+                                            name="isActive"
+                                            type="radio"
+                                    />
+                                </div>
+
+                                <div class="CreateProduct__GeneralInfor__StatusId__Status__2">
+                                    <lable>Hết hàng</lable>
+                                    <input
+                                            id="CreateProduct__GeneralInfor__StatusId__Status__2"
+                                            value="false"
+                                            name="isActive"
+                                            type="radio"
+                                    />
+                                </div>
                             </div>
 
-                            <div class="CreateProduct__GeneralInfor__StatusId__Status__2">
-                                <lable>Hết hàng</lable>
+                            <div class="CreateProduct__GeneralInfor__StatusId__Id">
+                                <lable>Mã sản phẩm</lable>
                                 <input
-                                        id="CreateProduct__GeneralInfor__StatusId__Status__2"
-                                        value="false"
-                                        name="isActive"
-                                        type="radio"
+                                        class="m-3 CreateProduct__GeneralInfor__StatusId__Id__Product"
+                                        type="text"
+                                        name="code"
+                                        placeholder="Nhập mã sản phẩm"
                                 />
                             </div>
                         </div>
 
-                        <div class="CreateProduct__GeneralInfor__StatusId__Id">
-                            <lable>Mã sản phẩm</lable>
+                        <div class="CreateProductMain__Price">
+                            <p>Giá sản phẩm</p>
+                            <input type="number" name="price" class="form-control" />
+                        </div>
+
+                        <div class="CreateProduct__GeneralInfor__outstanding">
+                            <p>Sản phẩm này có dùng để hiện thị sản phẩm nỗi bật không ?</p>
+                            <lable class="m-2">Có</lable>
                             <input
-                                    class="m-3 CreateProduct__GeneralInfor__StatusId__Id__Product"
-                                    type="text"
-                                    name="code"
-                                    placeholder="Nhập mã sản phẩm"
+                                    id="CreateProduct__GeneralInfor__outstanding_1"
+                                    value="true"
+                                    name="isHighlight"
+                                    type="radio"
+                            />
+
+                            <label class="m-2">Không</label>
+                            <input
+                                    id="CreateProduct__GeneralInfor__outstanding"
+                                    name="isHighlight"
+                                    value="false"
+                                    type="radio"
+                            />
+                        </div>
+
+                        <div class="CreateProduct__GeneralInfor__newProduct">
+                            <p>Sản phẩm này có phải sản phẩm mới không ?</p>
+                            <lable class="m-2">Có</lable>
+                            <input
+                                    id="CreateProduct__GeneralInfor__newProduct_1"
+                                    name="isNew"
+                                    value="true"
+                                    type="radio"
+                            />
+
+                            <label class="m-2">Không</label>
+                            <input
+                                    id="CreateProduct__GeneralInfor__newProduct"
+                                    name="isNew"
+                                    value="false"
+                                    type="radio"
                             />
                         </div>
                     </div>
 
-                    <div class="CreateProductMain__Price">
-                        <p>Giá sản phẩm</p>
-                        <input type="number" name="price" class="form-control" />
-                    </div>
+                    <div class="CreateProduct__GeneralInfor__UploadImg">
+                        <div class="CreateProduct__GeneralInfor__UploadImg__avt">
+                            <h4 class="fw-bold">Quản lý màu</h4>
+                            <div class="CreateProduct__GeneralInfor__UploadImg__Color">
+                                <button
+                                        class="CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
+                                >
+                                    Thêm màu
+                                </button>
 
-                    <div class="CreateProduct__GeneralInfor__outstanding">
-                        <p>Sản phẩm này có dùng để hiện thị sản phẩm nỗi bật không ?</p>
-                        <lable class="m-2">Có</lable>
-                        <input
-                                id="CreateProduct__GeneralInfor__outstanding_1"
-                                value="true"
-                                name="isHighlight"
-                                type="radio"
-                        />
+                                <button
+                                        class="CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
+                                >
+                                    Xóa màu
+                                </button>
+                            </div>
 
-                        <label class="m-2">Không</label>
-                        <input
-                                id="CreateProduct__GeneralInfor__outstanding"
-                                name="isHighlight"
-                                value="false"
-                                type="radio"
-                        />
-                    </div>
+                            <!-- Bắt đầu ô chọn màu -->
 
-                    <div class="CreateProduct__GeneralInfor__newProduct">
-                        <p>Sản phẩm này có phải sản phẩm mới không ?</p>
-                        <lable class="m-2">Có</lable>
-                        <input
-                                id="CreateProduct__GeneralInfor__newProduct_1"
-                                name="isNew"
-                                value="true"
-                                type="radio"
-                        />
+                            <!-- <div class="CreateProduct__GeneralInfor__UploadImg__avt__box">
+                              <input
+                                type="file"
+                                id="CreateProduct__GeneralInfor__UploadImg__avt__input"
+                                accept="image/*"
+                                hidden
+                              />
 
-                        <label class="m-2">Không</label>
-                        <input
-                                id="CreateProduct__GeneralInfor__newProduct"
-                                name="isNew"
-                                value="false"
-                                type="radio"
-                        />
-                    </div>
-                </div>
+                              <img
+                                class="addImgAvt"
+                                style="width: 100%"
+                                src="./Resource/img/add img.png"
+                              />
 
-                <div class="CreateProduct__GeneralInfor__UploadImg">
-                    <div class="CreateProduct__GeneralInfor__UploadImg__avt">
-                        <h4 class="fw-bold">Quản lý màu</h4>
-                        <div class="CreateProduct__GeneralInfor__UploadImg__Color">
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
-                            >
-                                Thêm màu
-                            </button>
-
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
-                            >
-                                Xóa màu
-                            </button>
-                        </div>
-
-                        <!-- Bắt đầu ô chọn màu -->
-
-                        <!-- <div class="CreateProduct__GeneralInfor__UploadImg__avt__box">
-                          <input
-                            type="file"
-                            id="CreateProduct__GeneralInfor__UploadImg__avt__input"
-                            accept="image/*"
-                            hidden
-                          />
-
-                          <img
-                            class="addImgAvt"
-                            style="width: 100%"
-                            src="./Resource/img/add img.png"
-                          />
-
-                          <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
-                            <img
-                              class="addImgDetail__1"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__2"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__3"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                            <img
-                              class="addImgDetail__4"
-                              style="width: 80%"
-                              src="./Resource/img/add img.png"
-                            />
-                          </div>
-                        </div> -->
-
-                        <!-- Kết thúc ô chọn màu -->
-
-                        <!-- template cho ô chọn màu -->
-
-                        <template
-                                class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
-                        >
-                            <div
-                                    class="CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
-                            >
-                                <input
-                                        type="file"
-                                        id="CreateProduct__GeneralInfor__UploadImg__avt__input"
-                                        accept="image/*"
-                                        hidden
+                              <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
+                                <img
+                                  class="addImgDetail__1"
+                                  style="width: 80%"
+                                  src="./Resource/img/add img.png"
                                 />
+                                <img
+                                  class="addImgDetail__2"
+                                  style="width: 80%"
+                                  src="./Resource/img/add img.png"
+                                />
+                                <img
+                                  class="addImgDetail__3"
+                                  style="width: 80%"
+                                  src="./Resource/img/add img.png"
+                                />
+                                <img
+                                  class="addImgDetail__4"
+                                  style="width: 80%"
+                                  src="./Resource/img/add img.png"
+                                />
+                              </div>
+                            </div> -->
+
+                            <!-- Kết thúc ô chọn màu -->
+
+                            <!-- template cho ô chọn màu -->
+
+                            <template
+                                    class="CreateProduct__GeneralInfor__UploadImg__avt__box__template"
+                            >
+                                <div
+                                        class="CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+                                >
+                                    <input
+                                            type="file"
+                                            id="CreateProduct__GeneralInfor__UploadImg__avt__input"
+                                            accept="image/*"
+                                            hidden
+                                    />
 
 
                                     <!-- thẻ input này dùng checkbox để hỗ trợ xóa -->
                                     <input type="checkbox" class="group-checkbox-color" /> Chọn
                                     nhóm này
-                                <br/>
-                                <input type="text" placeholder="Nhập màu..." class="colorNames" name="colorNames" style="display: block; margin-top: 5px; margin-bottom: 7px; padding-left:8px"/>
+                                    <br/>
+                                    <input type="text" placeholder="Nhập màu..." class="colorNames" name="colorNames" style="display: block; margin-top: 5px; margin-bottom: 7px; padding-left:8px"/>
 
 
 
-                                <img
-                                        class="addImgAvt"
-                                        style="width: 100%"
-                                        src="/images/add img.png"
-                                        name="avatarColors"
-                                />
+                                    <img
+                                            class="addImgAvt"
+                                            style="width: 100%"
+                                            src="/images/add img.png"
+                                            name="avatarColors"
+                                    />
 
-                                <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
-                                    <img
-                                            class="addImgDetail__1"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__2"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__3"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
-                                    <img
-                                            class="addImgDetail__4"
-                                            style="width: 80%"
-                                            src="/images/add img.png"
-                                    />
+                                    <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
+                                        <img
+                                                class="addImgDetail__1"
+                                                style="width: 80%"
+                                                src="/images/add img.png"
+                                        />
+                                        <img
+                                                class="addImgDetail__2"
+                                                style="width: 80%"
+                                                src="/images/add img.png"
+                                        />
+                                        <img
+                                                class="addImgDetail__3"
+                                                style="width: 80%"
+                                                src="/images/add img.png"
+                                        />
+                                        <img
+                                                class="addImgDetail__4"
+                                                style="width: 80%"
+                                                src="/images/add img.png"
+                                        />
+                                    </div>
                                 </div>
+                            </template>
+                            <!-- Kết thúc template -->
+                        </div>
+
+                        <div class="CreateProduct__GeneralInfor__UploadImg__Size">
+                            <h4 class="fw-bold">Tạo size</h4>
+                            <input
+                                    type="text"
+                                    class="form-control CreateProduct__GeneralInfor__UploadImg__Size__Input"
+                            />
+
+                            <div
+                                    class="CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
+                            ></div>
+
+                            <div
+                                    class="CreateProduct__GeneralInfor__UploadImg__Size__Detail"
+                            >
+                                <button
+                                        class="CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
+                                >
+                                    Thêm size
+                                </button>
+                                <button
+                                        class="CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
+                                >
+                                    Xóa size
+                                </button>
                             </div>
-                        </template>
-                        <!-- Kết thúc template -->
-                    </div>
+                        </div>
 
-                    <div class="CreateProduct__GeneralInfor__UploadImg__Size">
-                        <h4 class="fw-bold">Tạo size</h4>
-                        <input
-                                type="text"
-                                class="form-control CreateProduct__GeneralInfor__UploadImg__Size__Input"
-                        />
+                        <div class="CreateProduct__GeneralInfor__UploadImg__Category">
+                            <h4 class="fw-bold">Phân loại</h4>
+                            <p>Phân loại sản phẩm</p>
 
-                        <div
-                                class="CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
-                        ></div>
+                            <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
+                                -- Lựa chọn --
+                                <option value="AONGANTAY">Áo ngắn tay</option>
+                                <option value="AODAITAY">Áo dài tay</option>
+                                <option value="DOBO">Đồ bộ</option>
+                                <option value="DOMUAHE">Đồ mùa hè</option>
+                                <option value="DOMUADONG">Đồ mùa đông</option>
+                            </select>
 
-                        <div
-                                class="CreateProduct__GeneralInfor__UploadImg__Size__Detail"
-                        >
                             <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
+                                    class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                                    type="button"
                             >
-                                Thêm size
-                            </button>
-                            <button
-                                    class="CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
-                            >
-                                Xóa size
+                                Đồng ý
                             </button>
                         </div>
-                    </div>
-
-                    <div class="CreateProduct__GeneralInfor__UploadImg__Category">
-                        <h4 class="fw-bold">Phân loại</h4>
-                        <p>Phân loại sản phẩm</p>
-
-                        <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
-                            -- Lựa chọn --
-                            <option value="AONGANTAY">Áo ngắn tay</option>
-                            <option value="AODAITAY">Áo dài tay</option>
-                            <option value="DOBO">Đồ bộ</option>
-                            <option value="DOMUAHE">Đồ mùa hè</option>
-                            <option value="DOMUADONG">Đồ mùa đông</option>
-                        </select>
-
-                        <button
-                                class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
-                                type="button"
-                        >
-                            Đồng ý
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
     <c:if test="${error != null}">
         <p>${error}</p>

@@ -40,16 +40,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // DOM các phần tử cần thiết để xử lý chức năng này
 const addSizeBtn = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
+    ".CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
 );
 const rmSizeBtn = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
+    ".CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
 );
 const inputSize = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__Size__Input"
+    ".CreateProduct__GeneralInfor__UploadImg__Size__Input"
 );
 var renderSize = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
+    ".CreateProduct__GeneralInfor__UploadImg__Size__RenderList"
 );
 
 // Tạo mảng rỗng chứa dữ liệu các size, mảng này gửi BE
@@ -107,20 +107,20 @@ rmSizeBtn.addEventListener("click", () => {
 
 // Xử lý phần thêm màu mới
 const addColor = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
+    ".CreateProduct__GeneralInfor__UploadImg__ColorAdd__Btn"
 );
 const container = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__avt"
+    ".CreateProduct__GeneralInfor__UploadImg__avt"
 );
 
 addColor.addEventListener("click", () => {
   const current = count++;
   let template = document.querySelector(
-    ".CreateProduct__GeneralInfor__UploadImg__avt__box__template"
+      ".CreateProduct__GeneralInfor__UploadImg__avt__box__template"
   );
   let clone = template.content.cloneNode(true);
   let group = clone.querySelector(
-    ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+      ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
   );
 
   // Gán sự kiện chọn ảnh đại diện
@@ -142,7 +142,7 @@ addColor.addEventListener("click", () => {
 
   // Gán sự kiện chọn ảnh chi tiết
   const detailImgs = group.querySelectorAll(
-    ".CreateProduct__GeneralInfor__UploadImg__Detail img"
+      ".CreateProduct__GeneralInfor__UploadImg__Detail img"
   );
   detailImgs.forEach((img, index) => {
     const detailInput = document.createElement("input");
@@ -169,18 +169,18 @@ addColor.addEventListener("click", () => {
 
 // Xử lý phần xóa nhóm ảnh
 const rmColor = document.querySelector(
-  ".CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
+    ".CreateProduct__GeneralInfor__UploadImg__ColorDel__Btn"
 );
 
 rmColor.addEventListener("click", () => {
   count--;
   let selectColorGroup = document.querySelectorAll(
-    ".group-checkbox-color:checked"
+      ".group-checkbox-color:checked"
   );
 
   selectColorGroup.forEach((checkbox) => {
     let templateDiv = checkbox.closest(
-      ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+        ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
     );
     templateDiv.remove();
   });
@@ -190,7 +190,7 @@ rmColor.addEventListener("click", () => {
 // submit dữ liệu bằng form
 const formData = document.querySelector("#formData")
 formData.addEventListener("submit", (e) => {
-   e.preventDefault();
+  e.preventDefault();
 });
 
 // Xử lý phần gửi dữ liệu về backend
@@ -237,7 +237,7 @@ submitBtn.addEventListener("click", (e) => {
 
 
   if(!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
-  !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
+      !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
     alert("Vui lòng nhập đầy đủ thông tin")
     return;
   }
@@ -350,7 +350,7 @@ submitBtn.addEventListener("click", (e) => {
 
 
 
-  /*
+/*
 hãy đưa đoạn code của fetch gửi vào đây nha Cường
 */
 // });

@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 public class Product extends BaseEntity {
 
     private String name;
+    @Column(unique = true)
     private String code;
     private String description;
     private catalogueEnum catalogue;
