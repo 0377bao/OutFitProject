@@ -8,7 +8,7 @@
   6. Xử lý dữ liệu gửi về backend qua fetch  --> xong
   7. Xử lý các phần chọn 
 */
-let count = 0;
+let count = document.querySelectorAll(".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div").length;
 
 /**************************************************************/
 // Xử lý phân loại sản phẩm

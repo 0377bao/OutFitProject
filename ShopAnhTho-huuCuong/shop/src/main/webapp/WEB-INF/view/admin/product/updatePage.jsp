@@ -232,33 +232,41 @@
                                                 name="avatarColors"
                                         />
                                         <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
-                                            <c:forEach var="itemImage" items="${colorName.imageUrl}" varStatus="loop">
-                                                <img
-                                                        class="addImgDetail__${loop.index + 1}"
-                                                        style="width: 80%"
-                                                        src="${itemImage}"
-                                                />
-                                            </c:forEach>
-<%--                                            <img--%>
-<%--                                                    class="addImgDetail__1"--%>
-<%--                                                    style="width: 80%"--%>
-<%--                                                    src="${item}"--%>
-<%--                                            />--%>
-<%--                                            <img--%>
-<%--                                                    class="addImgDetail__2"--%>
-<%--                                                    style="width: 80%"--%>
-<%--                                                    src="/images/add img.png"--%>
-<%--                                            />--%>
-<%--                                            <img--%>
-<%--                                                    class="addImgDetail__3"--%>
-<%--                                                    style="width: 80%"--%>
-<%--                                                    src="/images/add img.png"--%>
-<%--                                            />--%>
-<%--                                            <img--%>
-<%--                                                    class="addImgDetail__4"--%>
-<%--                                                    style="width: 80%"--%>
-<%--                                                    src="/images/add img.png"--%>
-<%--                                            />--%>
+                                            <c:choose>
+                                                <c:when test="${colorName.imageUrl != null && colorName.imageUrl.size() > 0}">
+                                                    <c:forEach var="itemImage" items="${colorName.imageUrl}" varStatus="loop">
+                                                        <img
+                                                                class="addImgDetail__${loop.index + 1}"
+                                                                style="width: 80%"
+                                                                src="${itemImage}"
+                                                        />
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img
+                                                            class="addImgDetail__1"
+                                                            style="width: 80%"
+                                                            src="/images/add img.png"
+                                                    />
+                                                    <img
+                                                            class="addImgDetail__2"
+                                                            style="width: 80%"
+                                                            src="/images/add img.png"
+                                                    />
+                                                    <img
+                                                            class="addImgDetail__3"
+                                                            style="width: 80%"
+                                                            src="/images/add img.png"
+                                                    />
+                                                    <img
+                                                            class="addImgDetail__4"
+                                                            style="width: 80%"
+                                                            src="/images/add img.png"
+                                                    />
+                                                </c:otherwise>
+                                            </c:choose>
+
+
                                         </div>
                                     </div>
 
@@ -303,21 +311,25 @@
                                                     class="addImgDetail__1"
                                                     style="width: 80%"
                                                     src="/images/add img.png"
+
                                             />
                                             <img
                                                     class="addImgDetail__2"
                                                     style="width: 80%"
                                                     src="/images/add img.png"
+
                                             />
                                             <img
                                                     class="addImgDetail__3"
                                                     style="width: 80%"
                                                     src="/images/add img.png"
+
                                             />
                                             <img
                                                     class="addImgDetail__4"
                                                     style="width: 80%"
                                                     src="/images/add img.png"
+
                                             />
                                         </div>
                                     </div>
@@ -411,6 +423,32 @@
         });
 
     });
+
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const detailImgs = document.querySelectorAll(
+            ".CreateProduct__GeneralInfor__UploadImg__Detail img"
+        );
+        detailImgs.forEach((img, index) => {
+            const detailInput = document.createElement("input");
+            detailInput.type = "file";
+            detailInput.name = "colorImages[0]" + "["+ index +"]";
+            detailInput.accept = "image/*";
+            detailInput.style.display = "none";
+
+            img.addEventListener("click", () => detailInput.click());
+            detailInput.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    img.src = URL.createObjectURL(file);
+                    img.dataset.file = file.name;
+                }
+            });
+            const container = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div");
+            container.appendChild(detailInput);
+        });
+    })
+
 </script>
 
 </body>
