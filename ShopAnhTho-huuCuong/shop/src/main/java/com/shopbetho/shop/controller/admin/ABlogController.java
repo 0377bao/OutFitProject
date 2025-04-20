@@ -93,6 +93,7 @@ public class ABlogController {
             String imageUrl = cloudinaryService.upLoadImage(image);
             blog.setImageUrl(imageUrl);
         }
+        System.out.println(blog);
         blogService.updateBlog(blog);
         return "redirect:/admin";
     }

@@ -39,12 +39,12 @@
                         </p>
 
                         <div class="welcome__admin__btn">
-                            <form action="/admin/dashboard/dashboardProduct" class="welcome__admin__btn__product">
+                            <form action="/admin/product/dashboardProduct" class="welcome__admin__btn__product">
                                 <button class="text_button">
                                     Quản lý sản phẩm
                                 </button>
                             </form>
-                            <form action="/admin/blog/create" class="welcome__admin__btn__product">
+                            <form action="/admin/blog/dashboard" class="welcome__admin__btn__product">
                                 <button class="text_button">
                                     Quản lý bài viết
                                 </button>

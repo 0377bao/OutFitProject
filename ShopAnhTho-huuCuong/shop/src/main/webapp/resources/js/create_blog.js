@@ -82,15 +82,26 @@ formData.addEventListener("submit", (e) => {
   e.preventDefault();
   const titleBlog = document.getElementById("titleBlog");
   const contentBlog = document.getElementById("contentBlog");
-  if(!TitleBlog.value || !dataContent) {
-    alert("Vui lòng nhập đầy đủ thông tin!")
-  }else if(!upLoadImg.value) {
-    alert("Vui lòng chọn avatar cho bài viết!")
-  } else{
-    titleBlog.value = TitleBlog.value;
-    contentBlog.value = dataContent;
-    formData.submit();
+  console.log(upLoadImg.attributes.value)
+  if(upLoadImg.attributes.value) {
+    if(TitleBlog.value && dataContent) {
+      titleBlog.value = TitleBlog.value;
+      contentBlog.value = dataContent;
+      formData.submit();
+    }
+  }else {
+    if(!TitleBlog.value || !dataContent) {
+      alert("Vui lòng nhập đầy đủ thông tin!")
+    }else if(!upLoadImg.value) {
+      alert("Vui lòng chọn avatar cho bài viết!")
+    } else{
+      titleBlog.value = TitleBlog.value;
+      contentBlog.value = dataContent;
+      formData.submit();
+    }
+
   }
+
 })
 
 // CreateProductSubmitBtn.addEventListener("click", () => {
@@ -119,3 +130,20 @@ formData.addEventListener("submit", (e) => {
 // })
 
 // xong, hoàn thành logic
+
+window.addEventListener('DOMContentLoaded', () => {
+  const titleBlog = document.getElementById("titleBlog");
+  const contentBlog = document.getElementById("contentBlog");
+  const TitleBlog = document.querySelector(
+      ".CreateProduct__GeneralInfor__Title__Blog"
+  );
+
+  const contentBlogDiv = document.querySelector("#CreateProduct__GeneralInfor__Editor");
+      if(contentBlogDiv.textContent) contentBlog.value = contentBlogDiv.textContent;
+      if(TitleBlog.value) titleBlog.value = TitleBlog.value
+  if(contentBlogDiv.innerHTML !== "") {
+    dataContent = contentBlogDiv.innerHTML;
+    document.querySelector(".PreviewContent").innerHTML = dataContent;
+  }
+
+})

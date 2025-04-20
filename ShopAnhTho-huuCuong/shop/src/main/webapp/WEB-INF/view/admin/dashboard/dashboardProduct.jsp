@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
     <link
@@ -53,106 +54,36 @@
         </div>
         <hr />
 
-        <div class="row">
-            <div class="col-sm-1">0</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
+<c:choose>
+    <c:when test="${products != null}">
+        <c:forEach var="product" items="${products.content}" varStatus="loop">
+            <div class="row">
+                <div class="col-sm-1">${loop.index}</div>
+                <div class="col-sm-2">${product.name}</div>
+                <div class="col-sm-1"> ${product.price} vnđ</div>
+                <div class="col-sm-3">
+                        ${product.description}
+                </div>
+                <div class="col-sm-2">${product.getCreatedAt().toString().split("T")[1].substring(0,5)} ${product.getCreatedAt().toString().split("T")[0]}</div>
+                <div class="col-sm-1">${product.id}</div>
+                <div class="col-sm-2">
+                    <form action="/admin/product/update/${product.id}" style="display: inline-block">
+                        <button class="btn btn-warning">Sửa</button>
+                    </form>
+                    <form style="display: inline-block">
+                        <button class="btn btn-danger m-3">Xóa</button>
+                    </form>
+                </div>
             </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
+            <hr />
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <span>Không có sản phẩm nổi bật nào</span>
+    </c:otherwise>
+</c:choose>
 
-        <hr />
 
-        <div class="row">
-            <div class="col-sm-1">1</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-sm-1">2</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-sm-1">3</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
-
-        <hr />
-        <div class="row">
-            <div class="col-sm-1">4</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-sm-1">5</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
-
-        <hr />
     </div>
 
     <div class="container main__outstanding">
@@ -168,74 +99,88 @@
             <div class="col-sm-2 fw-bold">Hành động</div>
         </div>
         <hr />
+        <c:choose>
+            <c:when test="${productHighLights != null && productHighLights.size() > 0}">
+                <c:forEach var="prodHighLightItem" items="${productHighLights}" varStatus="loop">
+                    <div class="row">
+                        <div class="col-sm-1">${loop.index}</div>
+                        <div class="col-sm-2">${prodHighLightItem.name}</div>
+                        <div class="col-sm-1">${prodHighLightItem.price} vnđ</div>
+                        <div class="col-sm-3">
+                                ${prodHighLightItem.description}
+                        </div>
+                        <div class="col-sm-2">${prodHighLightItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${prodHighLightItem.getCreatedAt().toString().split("T")[0]}</div>
+                        <div class="col-sm-1">${prodHighLightItem.id}</div>
+                        <div class="col-sm-2">
+                            <form action="/admin/product/update/${prodHighLightItem.id}" style="display: inline-block">
+                                <button class="btn btn-warning">Sửa</button>
+                            </form>
+                            <form style="display: inline-block">
+                                <button class="btn btn-danger m-3">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-sm-1">0</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
+                    <hr />
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <span>Không có sản phẩm nổi bật</span>
+            </c:otherwise>
+        </c:choose>
 
-        <hr />
 
-        <div class="row">
-            <div class="col-sm-1">1</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
 
-        <hr />
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-1">1</div>--%>
+<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
+<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
+<%--            <div class="col-sm-3">--%>
+<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
+<%--            </div>--%>
+<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
+<%--            <div class="col-sm-1">7878977</div>--%>
+<%--            <div class="col-sm-2">--%>
+<%--                <button class="btn btn-warning">Sửa</button>--%>
+<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-        <div class="row">
-            <div class="col-sm-1">2</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
+<%--        <hr />--%>
 
-        <hr />
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-1">2</div>--%>
+<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
+<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
+<%--            <div class="col-sm-3">--%>
+<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
+<%--            </div>--%>
+<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
+<%--            <div class="col-sm-1">7878977</div>--%>
+<%--            <div class="col-sm-2">--%>
+<%--                <button class="btn btn-warning">Sửa</button>--%>
+<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-        <div class="row">
-            <div class="col-sm-1">3</div>
-            <div class="col-sm-2">Áo thun mùa hè</div>
-            <div class="col-sm-1">350. 000 vnđ</div>
-            <div class="col-sm-3">
-                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng
-            </div>
-            <div class="col-sm-2">20h03 27/8/2025</div>
-            <div class="col-sm-1">7878977</div>
-            <div class="col-sm-2">
-                <button class="btn btn-warning">Sửa</button>
-                <button class="btn btn-danger m-3">Xóa</button>
-            </div>
-        </div>
+<%--        <hr />--%>
 
-        <hr />
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-1">3</div>--%>
+<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
+<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
+<%--            <div class="col-sm-3">--%>
+<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
+<%--            </div>--%>
+<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
+<%--            <div class="col-sm-1">7878977</div>--%>
+<%--            <div class="col-sm-2">--%>
+<%--                <button class="btn btn-warning">Sửa</button>--%>
+<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+
+<%--        <hr />--%>
     </div>
 </main>
 

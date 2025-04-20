@@ -71,7 +71,6 @@
 
             <div class="col-lg-6">
                 <h1>${product.name}</h1>
-
                 <p>
                     Tình trạng:
                     <c:choose>
@@ -137,7 +136,7 @@
                                 step="1"
                         />
 
-                        <button class="main__product__details__btn">
+                        <button type="button" data-bs-target="#orderModal" data-bs-toggle="modal" class="main__product__details__btn">
                             Để lại thông tin mua hàng
                         </button>
                     </div>
@@ -243,6 +242,66 @@
 
 <jsp:include page="../../footer.jsp"/>
 
+<!-- Modal -->
+<form action="/admin/product/order" method="post">
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">Chi tiết đơn hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong  class="form-label">ID Sản Phẩm:</strong>
+                    <input type="text" id="productId" name="productId" class="form-control" value="${product.id}" readonly/>
+                </p>
+                <p><strong  class="form-label">Tên sản phẩm:</strong>
+                <input type="text" id="productName" name="productName" class="form-control" value="${product.name}"  readonly/>
+                </p>
+                <p><strong class="form-label">Số lượng:</strong>
+                <input type="number" id="total" name="total" class="form-control" readonly/>
+                </p>
+                <p><strong  class="form-label">Tổng tiền:</strong>
+                    <input type="number" id="price" name="price" class="form-control" readonly/>
+                </p>
+                <p><strong  class="form-label">Chọn màu:</strong>
+                    <select name="color" class="form-control" required>
+                       <c:forEach var="colorItem" items="${product.colors}">
+                           <option value="${colorItem.name}">${colorItem.name}</option>
+                       </c:forEach>
+
+                    </select>
+                </p>
+                <p><strong  class="form-label">Chọn kích thước:</strong>
+                    <select name="size" class="form-control">
+                       <c:forEach var="sizeItem" items="${product.sizes}">
+                           <option value="${sizeItem}">${sizeItem}</option>
+                       </c:forEach>
+
+                    </select>
+                </p>
+                <hr>
+                <p><strong  class="form-label">Tên khách hàng:</strong>
+                    <input type="text" name="nameCustomer" class="form-control" required/>
+                </p>
+                <p><strong class="form-label">Số điện thoại:</strong>
+                    <input type="text" name="sdt" class="form-control" required/>
+                </p>
+                <p><strong  class="form-label">Địa chỉ:</strong>
+                    <input type="text" name="address" class="form-control" required/>
+                </p>
+                <p><strong  class="form-label">EmailAdmin:</strong>
+                    <input type="text" name="emailAdmin" value="voha3004@gmail.com" class="form-control" readonly/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary">Gửi thông tin</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
 <!-- Js load file layout header và footer tạm thời khi chưa có BE -->
 
 <!-- js của bootrap -->
@@ -250,6 +309,28 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+
+    window.addEventListener("DOMContentLoaded", () => {
+        // lay ma san pham, ten san pham gan len modal
+
+        const inputTotal = document.querySelector("#quantity");
+        const priceProduct = document.querySelector("#main__product__details__price");
+        const total = document.querySelector("#total");
+        const price = document.querySelector("#price");
+
+        const priceFormat = (priceProduct.textContent).replace(" vnđ", "")
+        const totalPrice = inputTotal.value * priceFormat;
+
+        price.value = Number.parseFloat(totalPrice + "000");
+        total.value = inputTotal.value;
+        inputTotal.addEventListener("change", () => {
+            const newTotalPrice = inputTotal.value * priceFormat;
+            price.value = Number.parseFloat(newTotalPrice + "000");
+            total.value = inputTotal.value;
+        })
+
+    })
+
     function handleColorOnClick(colors) {
         const showAvtProduct = document.querySelector(
             '.show-image-product'
@@ -297,6 +378,7 @@
             .replace('₫', '')  // Bỏ ký hiệu đ
             .trim();           // Xóa khoảng trắng cuối
     }
+
 </script>
 </body>
 </html>

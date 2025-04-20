@@ -4,22 +4,23 @@
 <html>
 <head>
     <title>Chi tiết sản phẩm</title>
-<%--    <link--%>
-<%--            rel="stylesheet"--%>
-<%--            href="/bootstrap/css/bootstrap.css"--%>
-<%--    />--%>
-<%--    <link--%>
-<%--            rel="stylesheet"--%>
-<%--            href="/bootstrap/css/bootstrap.min.css"--%>
-<%--    />--%>
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/bootstrap/css/bootstrap.min.css"
+    />
     <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
     />
 
-<%--    <link rel="stylesheet" href="/css/chi_tiet_san_pham.css" />--%>
+    <link rel="stylesheet" href="/css/chi_tiet_san_pham.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -100,7 +101,7 @@
                                 step="1"
                         />
 
-                        <button data-bs-toggle="modal" id="#exampleModal" class="main__product__details__btn">
+                        <button type="button" data-bs-target="#exampleModal" data-bs-toggle="modal" class="main__product__details__btn">
                             Để lại thông tin mua hàng
                         </button>
                     </div>
@@ -250,11 +251,11 @@
         </div>
     </div>
 
-    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Để lại thông tin mua hàng
-    </button>
+<%--    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
+<%--        Để lại thông tin mua hàng--%>
+<%--    </button>--%>
 
-    <!-- Modal -->
+<%--    <!-- Modal -->--%>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -286,15 +287,15 @@
 <jsp:include page="../../footer.jsp"/>
 
 <!-- Js load file layout header và footer tạm thời khi chưa có BE -->
-<!-- Modal -->
-<!-- Nút mở modal -->
-
-
 
 <!-- js của bootrap -->
-<%--<script src="/bootstrap/js/bootstrap.js"></script>--%>
-<%--<script src="/bootstrap/js/bootstrap.min.js"></script>--%>
-<%--<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>--%>
+
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/detail_product.js"></script>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const btn = document.querySelector(".main__product__details__btn");
@@ -307,6 +308,7 @@
 
     console.log(1)
 </script>
+
 
 
 </body>

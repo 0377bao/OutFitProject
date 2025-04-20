@@ -56,4 +56,7 @@ public class ProductService {
     public List<Product> findByIsNewTrue() {
         return this.productRepository.findTop8ByIsNewTrueOrderByCreatedAtDesc();
     }
+    public List<Product> findAllIsHighLightTrue(){
+        return this.productRepository.findByIsHighlightTrueOrderByCreatedAtDesc();
+    }
 }

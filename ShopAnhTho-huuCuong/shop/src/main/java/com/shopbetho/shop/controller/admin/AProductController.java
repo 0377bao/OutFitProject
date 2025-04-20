@@ -36,14 +36,21 @@ public class AProductController {
     }
 
     @GetMapping("/admin/product/create")
+    public String getCreateProductPage() {
+        return "admin/product/createPage";
+    }
+
+    @GetMapping("/admin/product/dashboardProduct")
     public String getCreatePage(Model model, @RequestParam(defaultValue = "1", name = "page") int page) {
 
         Pageable pageable = PageRequest.of(page - 1, 2);
 
         Page<Product> products = this.productService.fetchAll(pageable);
+        List<Product> productHighLights = this.productService.findAllIsHighLightTrue();
 
         model.addAttribute("products", products);
-        return "admin/product/createPage";
+        model.addAttribute("productHighLights", productHighLights);
+        return "admin/dashboard/dashboardProduct";
     }
 
     @GetMapping("/admin/product/update/{id}")
@@ -103,7 +110,7 @@ public class AProductController {
             color.setProduct(product);
 
             List<String> imageUrls = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 
@@ -167,9 +174,10 @@ public class AProductController {
             color.setName(colorNames.get(i));
             String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
             color.setAvtColor(urlAvt);
+            color.setProduct(product);
 
             List<String> imageUrls = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 
