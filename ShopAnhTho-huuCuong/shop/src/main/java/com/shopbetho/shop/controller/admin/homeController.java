@@ -1,13 +1,11 @@
 package com.shopbetho.shop.controller.admin;
 
-import com.shopbetho.shop.entity.Banner;
-import com.shopbetho.shop.entity.Blog;
-import com.shopbetho.shop.entity.Collection;
-import com.shopbetho.shop.entity.Product;
+import com.shopbetho.shop.entity.*;
 import com.shopbetho.shop.service.BannerService;
 import com.shopbetho.shop.service.BlogService;
 import com.shopbetho.shop.service.CollectionService;
 import com.shopbetho.shop.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +24,11 @@ public class homeController {
     @Autowired
     private ProductService productService;
     @GetMapping("/admin")
-    public String getHomePage() {
+    public String getHomePage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         return "admin/dashboard/showPage";
     }
 
