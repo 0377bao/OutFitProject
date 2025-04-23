@@ -70,6 +70,7 @@
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/index.js"></script>
 
 <script>
     // Đang phát triển UI trên môi trường dev, không có BE nền phần này là tạm thời

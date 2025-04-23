@@ -63,7 +63,7 @@
             <c:when test="${blogs != null}">
                 <c:forEach var="blogItem" items="${blogs.content}" varStatus="loop">
                     <div class="row">
-                        <div class="col-sm-1">${looo.index}</div>
+                        <div class="col-sm-1">${loop.index}</div>
                         <div class="col-sm-2">${blogItem.title}</div>
 
                         <div class="col-sm-4">
@@ -220,6 +220,6 @@
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="/js/index.js"></script>
 </body>
 </html>

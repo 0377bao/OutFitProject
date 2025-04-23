@@ -408,6 +408,7 @@
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/create_product.js"></script>
+<script src="/js/index.js"></script>
 
 <script>
     const imageAvatar = document.querySelector(".addImgAvt")

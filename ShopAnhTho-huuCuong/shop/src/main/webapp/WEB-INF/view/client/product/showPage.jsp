@@ -130,5 +130,6 @@
 </main>
 
 <jsp:include page="../../footer.jsp"/>
+<script src="/js/index.js"></script>
 </body>
 </html>

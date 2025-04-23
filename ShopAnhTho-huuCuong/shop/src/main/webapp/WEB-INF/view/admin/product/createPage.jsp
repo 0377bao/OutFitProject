@@ -163,29 +163,29 @@
                               <img
                                 class="addImgAvt"
                                 style="width: 100%"
-                                src="./Resource/img/add img.png"
+                                src="/images/add img.png"
                               />
 
                               <div class="CreateProduct__GeneralInfor__UploadImg__Detail">
                                 <img
                                   class="addImgDetail__1"
                                   style="width: 80%"
-                                  src="./Resource/img/add img.png"
+                                  src="/images/add img.png"
                                 />
                                 <img
                                   class="addImgDetail__2"
                                   style="width: 80%"
-                                  src="./Resource/img/add img.png"
+                                  src="/images/add img.png"
                                 />
                                 <img
                                   class="addImgDetail__3"
                                   style="width: 80%"
-                                  src="./Resource/img/add img.png"
+                                  src="/images/add img.png"
                                 />
                                 <img
                                   class="addImgDetail__4"
                                   style="width: 80%"
-                                  src="./Resource/img/add img.png"
+                                  src="/images/add img.png"
                                 />
                               </div>
                             </div> -->
@@ -283,11 +283,11 @@
 
                             <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
                                 -- Lựa chọn --
-                                <option value="AONGANTAY">Áo ngắn tay</option>
-                                <option value="AODAITAY">Áo dài tay</option>
-                                <option value="DOBO">Đồ bộ</option>
-                                <option value="DOMUAHE">Đồ mùa hè</option>
-                                <option value="DOMUADONG">Đồ mùa đông</option>
+                                <option value="DOSOSINH">Đồ sơ sinh</option>
+                                <option value="SETDO">Sét đồ</option>
+                                <option value="DOBOI">Đồ bơi</option>
+                                <option value="AOQUAN">Áo quần</option>
+                                <option value="PHUKIEN">Phụ kiện</option>
                             </select>
 
                             <button
@@ -297,6 +297,22 @@
                                 Đồng ý
                             </button>
                         </div>
+                        <div class="CreateProduct__GeneralInfor__UploadImg__Category">
+                                                    <h4 class="fw-bold">Chi tiết phân loại</h4>
+                                                    <p>Chi tiết loại sản phẩm</p>
+
+                                                    <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail">
+                                                        -- Lựa chọn --
+
+                                                    </select>
+
+                                                    <button
+                                                            class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                                                            type="button"
+                                                    >
+                                                        Đồng ý
+                                                    </button>
+                                                </div>
                     </div>
                 </div>
             </div>
