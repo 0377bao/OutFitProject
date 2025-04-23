@@ -259,7 +259,7 @@
                 <input type="text" id="productName" name="productName" class="form-control" value="${product.name}"  readonly/>
                 </p>
                 <p><strong class="form-label">Số lượng:</strong>
-                <input type="number" id="total" name="total" class="form-control" readonly/>
+                <input type="number" id="total" name="total" class="form-control"/>
                 </p>
                 <p><strong  class="form-label">Tổng tiền:</strong>
                     <input type="number" id="price" name="price" class="form-control" readonly/>
@@ -330,7 +330,21 @@
             total.value = inputTotal.value;
         })
 
+        total.addEventListener("change", function(e) {
+                if(Number(e.target.value) == 0) {
+                    alert("Số lượng tối thiểu là 1");
+                    total.value = 1;
+                    price.value = Number.parseFloat(total.value * priceFormat + "000");
+                    return;
+                }else {
+                         const newTotalPrice = Number.parseFloat(e.target.value) * priceFormat;
+                         price.value = Number.parseFloat(newTotalPrice + "000");
+                }
+        })
+
     })
+
+
 
     function handleColorOnClick(colors) {
         const showAvtProduct = document.querySelector(
@@ -357,7 +371,6 @@
                 ></div>
             `
         })
-        console.log(colors.currentColor)
         showImageProductSlide.innerHTML = html.join("");
 
     }

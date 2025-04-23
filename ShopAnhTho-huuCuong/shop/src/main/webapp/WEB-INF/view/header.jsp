@@ -18,14 +18,24 @@
                   alt="logo shop bé thơ"
                 />
 
-                <form>
+               <form action="/products/search">
                 <div class="header__menu__1__search">
-
-                <input
-                class="form-control"
-                placeholder="Nhập sản phẩm cần tìm ..."
-                name="search"
-              />
+                    <c:choose>
+                        <c:when test="${searchKeyword != null}">
+                            <input
+                            class="form-control"
+                            placeholder="Nhập sản phẩm cần tìm ..."
+                            name="keyword"
+                            value="${searchKeyword}"
+                        </c:when>
+                       <c:otherwise>
+                            <input
+                                 class="form-control"
+                                 placeholder="Nhập sản phẩm cần tìm ..."
+                                 name="keyword"
+                       </c:otherwise>
+                    </c:choose>
+                </div>
 
                   <button type="submit" class="btn header__menu__1__btn">
                     Tìm kiếm
@@ -47,50 +57,38 @@
               <nav class="header__menu__2 navbar">
                 <a class="nav-link" href="#">Giới thiệu</a>
                 <div class="header__menu__2__dropdow">
-                  <a class="nav-link" href="#" id="dropdownToggleHeader">Đồ sơ sinh</a>
+                  <a class="nav-link" href="/products/filter?catalogueEnum=DOSOSINH" id="dropdownToggleHeader">Đồ sơ sinh</a>
                   <ul class="dropdown-menu-header">
-                    <li><a href="#">Quần áo</a></li>
-                    <li><a href="#">Khăn</a></li>
-                    <li><a href="#">Bao tay</a></li>
-                    <li><a href="#">Chân mũ</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOSOSINH&TypeCatalogueDetailEnum=QUANAO">Quần áo</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOSOSINH&TypeCatalogueDetailEnum=KHAN">Khăn</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOSOSINH&TypeCatalogueDetailEnum=BAOTAY">Bao tay</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOSOSINH&TypeCatalogueDetailEnum=CHANMU">Chân mũ</a></li>
                   </ul>
                 </div>
                 <div class="header__menu__2__dropdow">
-                  <a class="nav-link" href="#" id="dropdownToggleHeader">Set đồ</a>
+                  <a class="nav-link" href="/products/filter?catalogueEnum=SETDO" id="dropdownToggleHeader">Set đồ</a>
                   <ul class="dropdown-menu-header">
-                    <li><a href="#">Bé trai</a></li>
-                    <li><a href="#">Bé gái</a></li>
+                    <li><a href="/products/filter?catalogueEnum=SETDO&TypeCatalogueDetailEnum=BETRAI">Bé trai</a></li>
+                    <li><a href="/products/filter?catalogueEnum=SETDO&TypeCatalogueDetailEnum=BEGAI">Bé gái</a></li>
                   </ul>
                 </div>
                 <div class="header__menu__2__dropdow">
-                  <a class="nav-link" href="#" id="dropdownToggleHeader">Đồ bơi</a>
+                  <a class="nav-link" href="/products/filter?catalogueEnum=DOBOI" id="dropdownToggleHeader">Đồ bơi</a>
                   <ul class="dropdown-menu-header">
-                    <li><a href="#">Bé trai</a></li>
-                    <li><a href="#">Bé gái</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOBOI&TypeCatalogueDetailEnum=BETRAI">Bé trai</a></li>
+                    <li><a href="/products/filter?catalogueEnum=DOBOI&TypeCatalogueDetailEnum=BEGAI">Bé gái</a></li>
                   </ul>
                 </div>
 
                 <!-- Phần này đang test -->
                 <div class="header__menu__2__dropdow">
-                  <a class="nav-link" href="#" id="dropdownToggleMain">Áo Quần</a>
+                  <a class="nav-link" href="/products/filter?catalogueEnum=AOQUAN" id="dropdownToggleMain">Áo Quần</a>
                   <ul class="dropdown-menu-header">
                     <li>
-                      <div class="header__menu__2__dropdow">
-                        <a class="nav-link" href="#" id="dropdownToggleSub1">Bé trai</a>
-                        <ul class="dropdown-menu-header">
-                          <li><a href="#">Áo</a></li>
-                          <li><a href="#">Quần</a></li>
-                        </ul>
-                      </div>
+                        <a class="nav-link" href="/products/filter?catalogueEnum=AOQUAN&TypeCatalogueDetailEnum=BETRAI" id="dropdownToggleSub1">Bé trai</a>
                     </li>
                     <li>
-                      <div class="header__menu__2__dropdow">
-                        <a class="nav-link" href="#" id="dropdownToggleSub1">Bé gái</a>
-                        <ul class="dropdown-menu-header">
-                          <li><a href="#">Áo</a></li>
-                          <li><a href="#">Quần</a></li>
-                        </ul>
-                      </div>
+                        <a class="nav-link" href="/products/filter?catalogueEnum=AOQUAN&TypeCatalogueDetailEnum=BETRAI" id="dropdownToggleSub1">Bé gái</a>
                     </li>
                   </ul>
                 </div>
@@ -98,12 +96,11 @@
                 <!-- Kết thúc phần test -->
 
                 <div class="header__menu__2__dropdow">
-                  <a class="nav-link" href="#" id="dropdownToggleHeader">Phụ kiện</a>
+                  <a class="nav-link" href="/products/filter?catalogueEnum=PHUKIEN" id="dropdownToggleHeader">Phụ kiện</a>
                   <ul class="dropdown-menu-header">
-                    <li><a href="#">Dầu</a></li>
-                    <li><a href="#">Khăn</a></li>
-                    <li><a href="#">Kẹp cài</a></li>
-
+                    <li><a href="/products/filter?catalogueEnum=PHUKIEN&TypeCatalogueDetailEnum=DAU">Dầu</a></li>
+                    <li><a href="/products/filter?catalogueEnum=PHUKIEN&TypeCatalogueDetailEnum=KHAN">Khăn</a></li>
+                    <li><a href="/products/filter?catalogueEnum=PHUKIEN&TypeCatalogueDetailEnum=KEPCAI">Kẹp cài</a></li>
                   </ul>
                 </div>
                 <a class="nav-link" href="#">Lớn cùng shop bé thơ</a>

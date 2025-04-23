@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="com.shopbetho.shop.entity.FormatUtil" %>
+<%@ page import="java.lang.String" %>
 <html>
 <head>
     <title>Sản phẩm</title>
@@ -24,105 +27,29 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 main__product">
-                <div class="card">
-                    <img
-                            class="card-img-top"
-                            src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                    />
-                    <p class="card-text">
-                        Áo chống nắng có mũ màu hồng nhạt
-                    </p>
+                <c:choose>
+                                    <c:when test="${products != null && products.size() > 0}">
+                                        <c:forEach var="product" items="${products}">
+                                              <div class="card">
+                                                    <img
+                                                      class="card-img-top"
+                                                      src="${product.colors[0].avtColor}"
+                                                    />
+                                                    <a style="color: black; text-decoration: none" href="/products/${product.id}" class="card-text">
+                                                         ${product.description}
+                                                    </a>
 
-                    <h4 class="card-title">
-                        265,000 vnđ
-                    </h4>
-                </div>
+                                                   <h4 class="card-title">
+                                                         ${FormatUtil.formatCurrency(product.getPrice())} đ
+                                                   </h4>
+                                              </div>
+                                        </c:forEach>
+                                    </c:when>
+                                     <c:otherwise>
+                                              <p style="font-size: 17px; font-weight: bold; text-align: center">Không có sản phẩm nào</p>
+                                     </c:otherwise>
+               </c:choose>
 
-                <div class="card">
-                    <img
-                            class="card-img-top"
-                            src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                    />
-                    <p class="card-text">
-                        Áo chống nắng có mũ màu hồng nhạt
-                    </p>
-
-                    <h4 class="card-title">
-                        265,000 vnđ
-                    </h4>
-                </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>  <div class="card">
-                <img
-                        class="card-img-top"
-                        src="https://product.hstatic.net/200000692427/product/ao_chong_nang_co_mu_mau_hong_nhat_181a91e92e7b4d40ad0429c31659e076_grande.jpg"
-                />
-                <p class="card-text">
-                    Áo chống nắng có mũ màu hồng nhạt
-                </p>
-
-                <h4 class="card-title">
-                    265,000 vnđ
-                </h4>
-            </div>
             </div>
         </div>
     </div>
@@ -131,5 +58,18 @@
 
 <jsp:include page="../../footer.jsp"/>
 <script src="/js/index.js"></script>
+<script>
+    function formatCurrencyVN(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            })
+                .format(amount)
+                .replace('₫', '')  // Bỏ ký hiệu đ
+                .trim();           // Xóa khoảng trắng cuối
+        }
+</script
 </body>
 </html>

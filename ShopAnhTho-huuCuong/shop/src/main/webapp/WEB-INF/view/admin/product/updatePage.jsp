@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="com.shopbetho.shop.entity.FormatUtil" %>
 <html>
 <head>
     <title>Thêm sản phẩm mới</title>
@@ -98,7 +99,7 @@
 
                         <div class="CreateProductMain__Price">
                             <p>Giá sản phẩm</p>
-                            <input type="number" name="price" class="form-control" value="${product.price.toString().split(",")[0]}"/>
+                            <input type="number" name="price" class="form-control" value="${FormatUtil.formatCurrency(product.getPrice())}"/>
                         </div>
 
                         <div class="CreateProduct__GeneralInfor__outstanding">
@@ -378,11 +379,11 @@
 
                             <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
                                 -- Lựa chọn --
-                                <option value="AONGANTAY" selected="${product.catalogue == AONGANTAY}">Áo ngắn tay</option>
-                                <option value="AODAITAY" selected="${product.catalogue == AODAITAY}">Áo dài tay</option>
-                                <option value="DOBO" selected="${product.catalogue == DOBO}">Đồ bộ</option>
-                                <option value="DOMUAHE" selected="${product.catalogue == DOMUAHE}">Đồ mùa hè</option>
-                                <option value="DOMUADONG" selected="${product.catalogue == DOMUADONG}">Đồ mùa đông</option>
+                                <option value="DOSOSINH" selected="${product.catalogue == DOSOSINH}">Đồ sơ sinh</option>
+                                <option value="SETDO" selected="${product.catalogue == SETDO}">Sét đồ</option>
+                                <option value="DOBOI" selected="${product.catalogue == DOBOI}">Đồ bơi</option>
+                                <option value="AOQUAN" selected="${product.catalogue == AOQUAN }">Áo quần</option>
+                                <option value="PHUKIEN" selected="${product.catalogue == PHUKIEN}">Phụ kiện</option>
                             </select>
 
                             <button
@@ -483,6 +484,7 @@
                         option.value = "CHANMU"
                     }
                     option.innerText = item
+                    option.selected = item == typeCatalogue.value
                     typeCatalogueDetail.appendChild(option);
                 })
                 break;
@@ -496,6 +498,7 @@
                             option.value = "BEGAI"
                         }
                         option.innerText = item
+                        option.selected = item == typeCatalogue.value
                         typeCatalogueDetail.appendChild(option);
                     })
                     break;
@@ -510,6 +513,7 @@
                                     option.value = "BEGAI"
                                 }
                                 option.innerText = item
+                                  option.selected = item == typeCatalogue.value
                                 typeCatalogueDetail.appendChild(option);
                             })
                             break;
@@ -523,6 +527,7 @@
                                     option.value = "BEGAI"
                                 }
                                 option.innerText = item
+                                   option.selected = item == typeCatalogue.value
                                 typeCatalogueDetail.appendChild(option);
                             })
                             break;
@@ -538,12 +543,25 @@
                                     option.value = "KEPCAI"
                                 }
                                 option.innerText = item
+                                 option.selected = item == typeCatalogue.value
                                 typeCatalogueDetail.appendChild(option);
                             })
                             break;
                         }
           }
     })
+
+    function formatCurrencyVN(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            })
+                .format(amount)
+                .replace('₫', '')  // Bỏ ký hiệu đ
+                .trim();           // Xóa khoảng trắng cuối
+        }
 
 </script>
 
