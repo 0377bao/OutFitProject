@@ -70,6 +70,7 @@ public class LoginController {
     ) {
         String redisKey = "otp:" + email;
         String savedOtp = redisTemplate.opsForValue().get(redisKey);
+        System.out.println("Saved OTP: " + savedOtp);
         // Kiểm tra xem OTP có tồn tại trong Redis hay không
         if (savedOtp == null) {
             model.addAttribute("error", "OTP has expired or is invalid. Please try again.");
