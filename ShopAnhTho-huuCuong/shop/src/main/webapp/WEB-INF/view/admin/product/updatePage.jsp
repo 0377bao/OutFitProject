@@ -392,6 +392,23 @@
                                 Đồng ý
                             </button>
                         </div>
+
+                        <div class="CreateProduct__GeneralInfor__UploadImg__Category">
+                                                                            <h4 class="fw-bold">Chi tiết phân loại</h4>
+                                                                            <p>Chi tiết loại sản phẩm</p>
+
+                                                                            <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail">
+                                                                                -- Lựa chọn --
+
+                                                                            </select>
+
+                                                                            <button
+                                                                                    class="CreateProduct__GeneralInfor__UploadImg__Category__Btn"
+                                                                                    type="button"
+                                                                            >
+                                                                                Đồng ý
+                                                                            </button>
+                                                                        </div>
                     </div>
                 </div>
             </div>
@@ -448,6 +465,84 @@
             const container = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div");
             container.appendChild(detailInput);
         });
+
+        const typeCatalogue = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type")
+        const typeCatalogueDetail = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail")
+
+        switch(typeCatalogue.value) {
+            case "DOSOSINH": {
+                ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"].map(item => {
+                    const option = document.createElement("option")
+                    if(item == "QUẦN ÁO")
+                        option.value = "QUANAO"
+                    else if(item == "KHĂN")
+                        option.value = "KHAN"
+                    else if(item == "BAOTAY")
+                        option.value = "BAO TAY"
+                    else {
+                        option.value = "CHANMU"
+                    }
+                    option.innerText = item
+                    typeCatalogueDetail.appendChild(option);
+                })
+                break;
+            }
+            case "SETDO": {
+                    ["BÉ TRAI", "BÉ GÁI"].map(item => {
+                        const option = document.createElement("option")
+                        if(item == "BÉ TRAI")
+                            option.value = "BETRAI"
+                        else {
+                            option.value = "BEGAI"
+                        }
+                        option.innerText = item
+                        typeCatalogueDetail.appendChild(option);
+                    })
+                    break;
+                }
+                case "DOBOI": {
+                const arr = ["BÉ TRAI", "BÉ GÁI"]
+                            arr.map(item => {
+                                const option = document.createElement("option")
+                                if(item == "BÉ TRAI")
+                                    option.value = "BETRAI"
+                                else {
+                                    option.value = "BEGAI"
+                                }
+                                option.innerText = item
+                                typeCatalogueDetail.appendChild(option);
+                            })
+                            break;
+                        }
+                case "AOQUAN": {
+                            ["BÉ TRAI", "BÉ GÁI"].map(item => {
+                                const option = document.createElement("option")
+                                if(item == "BÉ TRAI")
+                                    option.value = "BETRAI"
+                                else {
+                                    option.value = "BEGAI"
+                                }
+                                option.innerText = item
+                                typeCatalogueDetail.appendChild(option);
+                            })
+                            break;
+                        }
+                case "PHUKIEN": {
+                            ["DẦU", "KHĂN", "KẸP CÀI"].map(item => {
+                                const option = document.createElement("option")
+                                if(item == "DẦU")
+                                    option.value = "DAU"
+                                else if(item == "KHĂN") {
+                                    option.value = "KHĂN"
+                                }else {
+                                    option.value = "KEPCAI"
+                                }
+                                option.innerText = item
+                                typeCatalogueDetail.appendChild(option);
+                            })
+                            break;
+                        }
+          }
     })
 
 </script>

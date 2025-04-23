@@ -329,5 +329,28 @@
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/create_product.js"></script>
+<script src="/js/index.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        const productTypeDetail = document.querySelector(
+        ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail")
+        const arr =  ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"]
+       arr.map(item => {
+                    const option = document.createElement("option")
+                    if(item == "QUẦN ÁO")
+                        option.value = "QUANAO"
+                    else if(item == "KHĂN")
+                        option.value = "KHAN"
+                    else if(item == "BAOTAY")
+                        option.value = "BAO TAY"
+                    else {
+                        option.value = "CHANMU"
+                    }
+                    option.innerText = item
+                    productTypeDetail.appendChild(option);
+                })
+    })
+</script>
+
 </body>
 </html>

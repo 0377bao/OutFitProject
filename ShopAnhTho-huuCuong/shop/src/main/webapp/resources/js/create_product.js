@@ -378,31 +378,11 @@ submitBtn.addEventListener("click", (e) => {
     alert("Vui lòng chọn size cho sản phẩm")
     return;
   }
-//  formData.submit();
-  const formView = new FormData(formData);
-  const data = Object.fromEntries(formView.entries());
-  console.log(data);
+    formData.submit();
+
 })
 
-window.addEventListener('DOMContentLoaded', function() {
-    const productTypeDetail = document.querySelector(
-    ".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail")
-    const arr =  ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"]
-   arr.map(item => {
-                const option = document.createElement("option")
-                if(item == "QUẦN ÁO")
-                    option.value = "QUANAO"
-                else if(item == "KHĂN")
-                    option.value = "KHAN"
-                else if(item == "BAOTAY")
-                    option.value = "BAO TAY"
-                else {
-                    option.value = "CHANMU"
-                }
-                option.innerText = item
-                productTypeDetail.appendChild(option);
-            })
-})
+
 
 // submitBtn.addEventListener("click", () => {
 //   console.log("Hello")
