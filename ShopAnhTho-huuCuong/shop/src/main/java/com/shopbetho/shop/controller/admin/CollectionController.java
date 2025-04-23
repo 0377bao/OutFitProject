@@ -1,10 +1,12 @@
 package com.shopbetho.shop.controller.admin;
 
+import com.shopbetho.shop.entity.AccountAdmin;
 import com.shopbetho.shop.entity.Banner;
 import com.shopbetho.shop.entity.Collection;
 import com.shopbetho.shop.service.CloudinaryService;
 import com.shopbetho.shop.service.CollectionService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +26,11 @@ public class CollectionController {
     @Autowired
     private CloudinaryService cloudinaryService;
     @GetMapping("/admin/collection/create")
-    public String getCreateCollectionPage() {
-        return "admin/collection/createPage";
+    public String getCreateCollectionPage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }return "admin/collection/createPage";
     }
     @PostMapping("admin/collection/create")
     public String createCollection(@RequestParam("image") List<MultipartFile> image, Model model,

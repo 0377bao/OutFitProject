@@ -14,7 +14,9 @@ public class Product extends BaseEntity {
     @Column(unique = true)
     private String code;
     private String description;
+    @Enumerated(EnumType.STRING)
     private TypeCatalogueDetailEnum catalogueDetailEnum;
+    @Enumerated(EnumType.STRING)
     private catalogueEnum catalogue;
     private boolean isHighlight;
     private boolean isNew;

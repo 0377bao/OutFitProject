@@ -1,8 +1,10 @@
 package com.shopbetho.shop.controller.admin;
 
+import com.shopbetho.shop.entity.AccountAdmin;
 import com.shopbetho.shop.entity.Banner;
 import com.shopbetho.shop.service.BannerService;
 import com.shopbetho.shop.service.CloudinaryService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,11 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
     @GetMapping("/admin/banner/create")
-    public String getCreatePage() {
-        return "admin/banner/createPage";
+    public String getCreatePage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }return "admin/banner/createPage";
     }
     @PostMapping("admin/banner/create")
     public String createBanner(@RequestParam("image1") MultipartFile image1,
