@@ -1,5 +1,6 @@
 package com.shopbetho.shop.service;
 
+import com.shopbetho.shop.contant.TypeCatalogueDetailEnum;
 import com.shopbetho.shop.contant.catalogueEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -58,5 +59,11 @@ public class ProductService {
     }
     public List<Product> findAllIsHighLightTrue(){
         return this.productRepository.findByIsHighlightTrueOrderByCreatedAtDesc();
+    }
+    public List<Product> getByCatalogueAndDetail(catalogueEnum catalogue, TypeCatalogueDetailEnum typeCatalogueDetailEnum) {
+        return productRepository.findByCatalogueAndCatalogueDetailEnum(catalogue, typeCatalogueDetailEnum);
+    }
+    public List<Product> searchByName(String keyword) {
+        return productRepository.findByNameContainingIgnoreCase(keyword);
     }
 }

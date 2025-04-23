@@ -1,5 +1,7 @@
 package com.shopbetho.shop.controller;
 
+import com.shopbetho.shop.contant.TypeCatalogueDetailEnum;
+import com.shopbetho.shop.contant.catalogueEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +41,31 @@ public class ProductController {
         model.addAttribute("products", products);
         return "client/product/showPage";
     }
+
+    @GetMapping("/products/filter")
+    public String fetchProductsByCatalogue(Model model,
+                                           @RequestParam(required = false, name = "catalogueEnum") catalogueEnum catalogue,
+                                           @RequestParam(required = false, name = "TypeCatalogueDetailEnum") TypeCatalogueDetailEnum typeDetail) {
+
+        List<Product> products = new ArrayList<>();
+
+        if (catalogue != null && typeDetail != null) {
+            products = productService.getByCatalogueAndDetail(catalogue, typeDetail);
+        }
+
+        model.addAttribute("products", products);
+
+        return "client/product/showPage";
+    }
+
+    @GetMapping("/products/search")
+    public String searchProductsByName(@RequestParam(name = "keyword") String keyword, Model model) {
+        List<Product> products = productService.searchByName(keyword);
+        model.addAttribute("products", products);
+        model.addAttribute("searchKeyword", keyword);
+        return "client/product/showPage";
+    }
+
 
     @GetMapping("/products/{id}")
     public String getMethodName(@PathVariable("id") Long id, Model model) {

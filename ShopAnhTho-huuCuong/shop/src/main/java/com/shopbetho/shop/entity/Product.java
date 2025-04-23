@@ -2,6 +2,7 @@ package com.shopbetho.shop.entity;
 
 import java.util.List;
 
+import com.shopbetho.shop.contant.TypeCatalogueDetailEnum;
 import com.shopbetho.shop.contant.catalogueEnum;
 
 import jakarta.persistence.*;
@@ -13,10 +14,20 @@ public class Product extends BaseEntity {
     @Column(unique = true)
     private String code;
     private String description;
+    private TypeCatalogueDetailEnum catalogueDetailEnum;
     private catalogueEnum catalogue;
     private boolean isHighlight;
     private boolean isNew;
     private boolean isActive;
+
+    public TypeCatalogueDetailEnum getCatalogueDetailEnum() {
+        return catalogueDetailEnum;
+    }
+
+    public void setCatalogueDetailEnum(TypeCatalogueDetailEnum catalogueDetailEnum) {
+        this.catalogueDetailEnum = catalogueDetailEnum;
+    }
+
     private double price;
 
     @ElementCollection
