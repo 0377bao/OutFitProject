@@ -21,4 +21,9 @@ public class HelloWorld {
         return "admin/dashboard/showPage";
     }
 
+    @GetMapping("/about")
+    public String aboutPage(Model model) {
+        return "about";
+    }
+
 }

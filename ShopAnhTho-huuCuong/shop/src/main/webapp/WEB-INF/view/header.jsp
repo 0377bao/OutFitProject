@@ -13,10 +13,12 @@
           <div class="row">
             <div class="col-sm-12">
               <nav class="header__menu__1">
-                <img
-                  src="/images/logo shopbetho 2.png"
-                  alt="logo shop bé thơ"
-                />
+                <a href="/index">
+                  <img
+                          src="/images/logo shopbetho 2.png"
+                          alt="logo shop bé thơ"
+                  />
+                </a>
 
                <form action="/products/search">
                 <div class="header__menu__1__search">
@@ -44,10 +46,12 @@
                 </form>
                 </div>
 
-                <span id="header___menu__1__user">
-                  Tài khoản
-                  <i class="bx bx-user"></i>
-                </span>
+                <a href="/admin" style="text-decoration: none; color: black">
+                  <span id="header___menu__1__user">
+                    Tài khoản
+                    <i class="bx bx-user"></i>
+                  </span>
+                </a>
               </nav>
             </div>
           </div>
@@ -55,7 +59,7 @@
           <div class="row">
             <div class="col-sm-12">
               <nav class="header__menu__2 navbar">
-                <a class="nav-link" href="#">Giới thiệu</a>
+                <a class="nav-link" href="/about">Giới thiệu</a>
                 <div class="header__menu__2__dropdow">
                   <a class="nav-link" href="/products/filter?catalogueEnum=DOSOSINH" id="dropdownToggleHeader">Đồ sơ sinh</a>
                   <ul class="dropdown-menu-header">

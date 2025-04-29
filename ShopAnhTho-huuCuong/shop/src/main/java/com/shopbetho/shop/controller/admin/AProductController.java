@@ -115,7 +115,7 @@ public class AProductController {
         Product product = new Product();
         product.setName(name);
         product.setCode(code);
-        product.setDescription(description);
+        product.setDescription(description.trim());
         product.setCatalogue(catalogueEnum.valueOf(catalogue));
         product.setCatalogueDetailEnum(TypeCatalogueDetailEnum.valueOf(catalogueDetailEnum));
         product.setHighlight(isHighlight);
@@ -183,7 +183,7 @@ public class AProductController {
         product.setId(id);
         product.setName(name);
         product.setCode(code);
-        product.setDescription(description);
+        product.setDescription(description.trim());
         product.setCatalogue(catalogueEnum.valueOf(catalogue));
         product.setHighlight(isHighlight);
         product.setNew(isNew);
@@ -238,13 +238,13 @@ public class AProductController {
                 "Product ID: " + productId + "\n" +
                 "Product Name: " + productName + "\n" +
                 "Total: " + total + "\n" +
-                "Price: " + price + "\n" +
                 "Color: " + color + "\n" +
                 "Size: " + size + "\n" +
                 "Customer Name: " + nameCustomer + "\n" +
                 "Phone Number: " + sdt + "\n" +
                 "Address: " + address;
         // Send email to admin
+        System.out.println("EmailAdmin " + emailAdmin);
         emailService.sendOrder(emailAdmin, messageSendEmail);
         model.addAttribute("success", "Order placed successfully. We will contact you soon.");
         // Redirect to a success page or show a success message

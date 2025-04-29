@@ -28,6 +28,65 @@
     <link rel="stylesheet" href="/css/chi_tiet_san_pham.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <style>
+        .wrapper {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .loader,
+        .loader::before,
+        .loader::after {
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 10px;
+            animation: rotate 5s linear infinite;
+        }
+
+        .loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-color: #5a4ff3;
+        }
+
+        .loader::before,
+        .loader::after {
+            position: absolute;
+            content: '';
+        }
+
+        .loader::before {
+            border-color: #35a2d2;
+            width: 110%;
+            height: 110%;
+            animation-delay: 0.5s;
+        }
+
+        .loader::after {
+            border-color: #9c40fc;
+            width: 120%;
+            height: 120%;
+            animation-delay: 0.1s;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -238,12 +297,17 @@
             </div>
         </div>
     </div>
+
+
+    <div class="wrapper" style="display: none">
+        <div class="loader"></div>
+    </div>
 </main>
 
 <jsp:include page="../../footer.jsp"/>
 
 <!-- Modal -->
-<form action="/admin/product/order" method="post">
+<form id="orderForm" action="/admin/product/order" method="post">
 <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -291,7 +355,7 @@
                     <input type="text" name="address" class="form-control" required/>
                 </p>
                 <p><strong  class="form-label">EmailAdmin:</strong>
-                    <input type="text" name="emailAdmin" value="voha3004@gmail.com" class="form-control" readonly/>
+                    <input type="text" name="emailAdmin" value="hbao27121@gmail.com" class="form-control" readonly/>
                 </p>
             </div>
             <div class="modal-footer">
@@ -393,6 +457,18 @@
             .trim();           // Xóa khoảng trắng cuối
     }
 
+</script>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+        // Chặn submit ngay lập tức
+        e.preventDefault();
+
+        // Hiển thị loading (ví dụ: thay đổi nút)
+        const loading = document.querySelector('.wrapper');
+        loading.style.display = 'flex';
+        this.submit(); // submit lại form
+    });
 </script>
 </body>
 </html>
