@@ -285,6 +285,7 @@ formData.addEventListener("submit", (e) => {
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
 submitBtn.addEventListener("click", (e) => {
+
   e.preventDefault()
   // Xử lý phần sản phẩm hiển thị nổi bật
   const selectStatusProductOutstanding = document.querySelector(
@@ -378,6 +379,10 @@ submitBtn.addEventListener("click", (e) => {
     alert("Vui lòng chọn size cho sản phẩm")
     return;
   }
+   // Hiển thị loading (ví dụ: thay đổi nút)
+          const loading = document.querySelector('.wrapper');
+          loading.style.display = 'flex';
+         
     formData.submit();
 
 })
