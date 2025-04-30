@@ -16,7 +16,7 @@
             rel="stylesheet"
     />
     <link rel="stylesheet" href="/admin/css/homeStyle.css" />
-    <title>Admin page</title>
+    <title>Trang chủ Admin</title>
 </head>
 <body>
 <div class="container">

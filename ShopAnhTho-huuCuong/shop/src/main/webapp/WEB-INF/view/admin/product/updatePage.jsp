@@ -3,7 +3,7 @@
 <%@ page import="com.shopbetho.shop.entity.FormatUtil" %>
 <html>
 <head>
-    <title>Thêm sản phẩm mới</title>
+    <title>Cập nhật sản phẩm</title>
     <link
             rel="stylesheet"
             href="/bootstrap/css/bootstrap.css"
@@ -20,6 +20,66 @@
     <link rel="stylesheet" href="/admin/css/create_product.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+
+    <style>
+            .wrapper {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .loader,
+            .loader::before,
+            .loader::after {
+                border-width: 2px;
+                border-style: solid;
+                border-radius: 10px;
+                animation: rotate 5s linear infinite;
+            }
+
+            .loader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 40px;
+                height: 40px;
+                border-color: #5a4ff3;
+            }
+
+            .loader::before,
+            .loader::after {
+                position: absolute;
+                content: '';
+            }
+
+            .loader::before {
+                border-color: #35a2d2;
+                width: 110%;
+                height: 110%;
+                animation-delay: 0.5s;
+            }
+
+            .loader::after {
+                border-color: #9c40fc;
+                width: 120%;
+                height: 120%;
+                animation-delay: 0.1s;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -31,7 +91,7 @@
                 <div class="CreateProductSubmit">
                     <h2>Thêm sản phẩm mới</h2>
 
-                    <button class="CreateProductSubmit__Btn">Thêm</button>
+                    <button class="CreateProductSubmit__Btn">Cập nhật</button>
                 </div>
             </div>
 
@@ -421,12 +481,16 @@
 </main>
 
 <jsp:include page="../../footer.jsp"/>
+<div class="wrapper" style="display: none">
+    <div class="loader"></div>
+</div>
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/create_product.js"></script>
 <script src="/js/index.js"></script>
+
 
 <script>
     const imageAvatar = document.querySelector(".addImgAvt")

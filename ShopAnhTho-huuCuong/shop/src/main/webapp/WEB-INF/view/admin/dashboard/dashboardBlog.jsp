@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/header.css" />
-    <title>Admin Products</title>
+    <title>Quản lý bài viết</title>
     <style>
         .header {
-            margin-top: 10%;
+            margin-top: 12%;
         }
     </style>
 </head>
@@ -64,7 +64,15 @@
                 <c:forEach var="blogItem" items="${blogs.content}" varStatus="loop">
                     <div class="row">
                         <div class="col-sm-1">${loop.index}</div>
-                        <div class="col-sm-2">${blogItem.title}</div>
+                        <div class="col-sm-2">
+                            <p class="card-title" style="
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 3;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;">
+                                    ${blogItem.title}
+                            </p>
+                            </div>
 
                         <div class="col-sm-4">
                             ${blogItem.content}

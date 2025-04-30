@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
     <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <title>Admin Products</title>
+    <title>Quản lý sản phẩm</title>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -104,10 +104,26 @@
                 <c:forEach var="prodHighLightItem" items="${productHighLights}" varStatus="loop">
                     <div class="row">
                         <div class="col-sm-1">${loop.index}</div>
-                        <div class="col-sm-2">${prodHighLightItem.name}</div>
+                        <div class="col-sm-2">
+                        <p class="card-title" style="
+                                                                          display: -webkit-box;
+                                                                          -webkit-line-clamp: 3;
+                                                                          -webkit-box-orient: vertical;
+                                                                          overflow: hidden;">
+                                                                          ${prodHighLightItem.name}
+                                                                          </p>
+
+                        </div>
                         <div class="col-sm-1">${prodHighLightItem.price} vnđ</div>
                         <div class="col-sm-3">
-                                ${prodHighLightItem.description}
+                            <p class="card-title" style="
+                                                                              display: -webkit-box;
+                                                                              -webkit-line-clamp: 3;
+                                                                              -webkit-box-orient: vertical;
+                                                                              overflow: hidden;">
+                                                                             ${prodHighLightItem.description}
+                                                                              </p>
+
                         </div>
                         <div class="col-sm-2">${prodHighLightItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${prodHighLightItem.getCreatedAt().toString().split("T")[0]}</div>
                         <div class="col-sm-1">${prodHighLightItem.id}</div>

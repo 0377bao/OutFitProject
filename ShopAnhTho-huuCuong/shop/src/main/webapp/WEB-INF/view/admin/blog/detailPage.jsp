@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-    <title>Blog Detail</title>
+    <title>Chi tiết bài viết</title>
     <link
             rel="stylesheet"
             href="/bootstrap/css/bootstrap.css"

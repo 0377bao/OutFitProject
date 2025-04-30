@@ -15,6 +15,66 @@
 
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+
+    <style>
+            .wrapper {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .loader,
+            .loader::before,
+            .loader::after {
+                border-width: 2px;
+                border-style: solid;
+                border-radius: 10px;
+                animation: rotate 5s linear infinite;
+            }
+
+            .loader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 40px;
+                height: 40px;
+                border-color: #5a4ff3;
+            }
+
+            .loader::before,
+            .loader::after {
+                position: absolute;
+                content: '';
+            }
+
+            .loader::before {
+                border-color: #35a2d2;
+                width: 110%;
+                height: 110%;
+                animation-delay: 0.5s;
+            }
+
+            .loader::after {
+                border-color: #9c40fc;
+                width: 120%;
+                height: 120%;
+                animation-delay: 0.1s;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -67,10 +127,27 @@
 </main>
 
 <jsp:include page="../../footer.jsp"/>
+<div class="wrapper" style="display: none">
+    <div class="loader"></div>
+</div>
+
+
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/index.js"></script>
+
+<script>
+    document.getElementById('formData').addEventListener('submit', function (e) {
+        // Chặn submit ngay lập tức
+        e.preventDefault();
+
+        // Hiển thị loading (ví dụ: thay đổi nút)
+        const loading = document.querySelector('.wrapper');
+        loading.style.display = 'flex';
+        this.submit(); // submit lại form
+    });
+</script>
 
 <script>
     // Đang phát triển UI trên môi trường dev, không có BE nền phần này là tạm thời

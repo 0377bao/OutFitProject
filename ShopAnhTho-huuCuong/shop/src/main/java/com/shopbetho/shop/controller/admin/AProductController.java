@@ -1,11 +1,14 @@
 package com.shopbetho.shop.controller.admin;
 
+import com.shopbetho.shop.contant.TypeCatalogueDetailEnum;
 import com.shopbetho.shop.contant.catalogueEnum;
+import com.shopbetho.shop.entity.AccountAdmin;
 import com.shopbetho.shop.entity.Color;
 import com.shopbetho.shop.entity.Product;
 import com.shopbetho.shop.service.CloudinaryService;
 import com.shopbetho.shop.service.EmailService;
 import com.shopbetho.shop.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,17 +34,29 @@ public class AProductController {
     @Autowired
     private EmailService emailService;
     @GetMapping("/admin/product")
-    public String getDashboardPage() {
+    public String getDashboardPage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         return "admin/product/showPage";
     }
 
     @GetMapping("/admin/product/create")
-    public String getCreateProductPage() {
+    public String getCreateProductPage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         return "admin/product/createPage";
     }
 
     @GetMapping("/admin/product/dashboardProduct")
-    public String getCreatePage(Model model, @RequestParam(defaultValue = "1", name = "page") int page) {
+    public String getCreatePage(Model model, @RequestParam(defaultValue = "1", name = "page") int page, HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
 
         Pageable pageable = PageRequest.of(page - 1, 2);
 
@@ -57,7 +72,11 @@ public class AProductController {
     public String getUpdatePage(
             @PathVariable("id") Long id,
             Model model
-    ) {
+            , HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         model.addAttribute("product", productService.fetchById(id));
         return "admin/product/updatePage";
     }
@@ -68,6 +87,7 @@ public class AProductController {
             @RequestParam("code") String code,
             @RequestParam("description") String description,
             @RequestParam("catalogue") String catalogue,
+            @RequestParam("typeCatalogueDetail") String catalogueDetailEnum,
             @RequestParam(defaultValue = "true", name = "isHighlight") boolean isHighlight,
             @RequestParam(defaultValue = "true", name = "isNew") boolean isNew,
             @RequestParam(defaultValue = "true", name = "isActive") boolean isActive,
@@ -91,11 +111,13 @@ public class AProductController {
             model.addAttribute("error", "Price must be greater than 0.");
             return "admin/product/createPage";
         }
+        System.out.println(catalogueDetailEnum);
         Product product = new Product();
         product.setName(name);
         product.setCode(code);
-        product.setDescription(description);
+        product.setDescription(description.trim());
         product.setCatalogue(catalogueEnum.valueOf(catalogue));
+        product.setCatalogueDetailEnum(TypeCatalogueDetailEnum.valueOf(catalogueDetailEnum));
         product.setHighlight(isHighlight);
         product.setNew(isNew);
         product.setActive(isActive);
@@ -157,39 +179,40 @@ public class AProductController {
             model.addAttribute("error", "Price must be greater than 0.");
             return "redirect:/admin/product/updatePage";
         }
-        Product product = new Product();
+        Product product = productService.fetchById(id);
         product.setId(id);
         product.setName(name);
         product.setCode(code);
-        product.setDescription(description);
+        product.setDescription(description.trim());
         product.setCatalogue(catalogueEnum.valueOf(catalogue));
         product.setHighlight(isHighlight);
         product.setNew(isNew);
         product.setActive(isActive);
         product.setPrice(price);
         product.setSizes(sizes);
-        List<Color> colorEntities = new ArrayList<>();
+        List<Color> colorEntities = product.getColors();
         for (int i = 0; i < numberColor; i++) {
-            Color color = new Color();
-            color.setName(colorNames.get(i));
+            colorEntities.get(i).setName(colorNames.get(i));
             String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
-            color.setAvtColor(urlAvt);
-            color.setProduct(product);
+            if(urlAvt != null && !urlAvt.isEmpty()) {
+                colorEntities.get(i).setAvtColor(urlAvt);
+            }
 
-            List<String> imageUrls = new ArrayList<>();
+            List<String> imageUrls = colorEntities.get(i).getImageUrl();
             for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 
                 if (image != null && !image.isEmpty()) {
-                    imageUrls.add(cloudinaryService.upLoadImage(image));
+                    String imageUrl = cloudinaryService.upLoadImage(image);
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        imageUrls.set(j, imageUrl);
+                    }
                 }
             }
-            color.setImageUrl(imageUrls);
-            colorEntities.add(color);
+            colorEntities.get(i).setImageUrl(imageUrls);
         }
         product.setColors(colorEntities);
-
         productService.updateProduct(product);
         return "redirect:/admin";
     }
@@ -216,13 +239,13 @@ public class AProductController {
                 "Product ID: " + productId + "\n" +
                 "Product Name: " + productName + "\n" +
                 "Total: " + total + "\n" +
-                "Price: " + price + "\n" +
                 "Color: " + color + "\n" +
                 "Size: " + size + "\n" +
                 "Customer Name: " + nameCustomer + "\n" +
                 "Phone Number: " + sdt + "\n" +
                 "Address: " + address;
         // Send email to admin
+        System.out.println("EmailAdmin " + emailAdmin);
         emailService.sendOrder(emailAdmin, messageSendEmail);
         model.addAttribute("success", "Order placed successfully. We will contact you soon.");
         // Redirect to a success page or show a success message

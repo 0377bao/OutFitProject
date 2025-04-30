@@ -238,7 +238,11 @@
                                                 <img
                                                         src="${blogItem.imageUrl}"
                                                 />
-                                                <h5 class="card-title">${blogItem.title}</h5>
+                                                <h5 class="card-title" style="
+                                                  display: -webkit-box;
+                                                  -webkit-line-clamp: 3;
+                                                  -webkit-box-orient: vertical;
+                                                  overflow: hidden;">${blogItem.title}</h5>
 
                                                 <p class="card-text">
                                                     ${blogItem.content}

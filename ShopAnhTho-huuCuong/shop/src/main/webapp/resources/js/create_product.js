@@ -282,6 +282,7 @@ formData.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
 submitBtn.addEventListener("click", (e) => {
@@ -292,101 +293,99 @@ submitBtn.addEventListener("click", (e) => {
       'input[name="isHighlight"]:checked'
   );
 // Xử lý phần chọn còn hàng hay hết hàng
-  const selectStatusProduct = document.querySelector(
-      'input[name="isActive"]:checked'
-  );
+    const selectStatusProduct = document.querySelector(
+        'input[name="isActive"]:checked'
+    );
 
-  // xử lý sản phẩm mới
-  const selectedNewProduct = document.querySelector(
-      'input[name="isNew"]:checked'
-  )
+    // xử lý sản phẩm mới
+    const selectedNewProduct = document.querySelector(
+        'input[name="isNew"]:checked'
+    )
 
-  // giá sản phẩm
-  const productPrice = document.querySelector(".CreateProductMain__Price input");
+    // giá sản phẩm
+    const productPrice = document.querySelector(".CreateProductMain__Price input");
 
-  // tên sản phẩm
-  const nameProduct = document.querySelector(
-      ".CreateProduct__GeneralInfor__NameProduct"
-  );
+    // tên sản phẩm
+    const nameProduct = document.querySelector(
+        ".CreateProduct__GeneralInfor__NameProduct"
+    );
 
-  // Miêu tả sản phẩm
-  const describeProduct = document.querySelector(
-      ".CreateProduct__GeneralInfor__DescribeProduct"
-  );
+    // Miêu tả sản phẩm
+    const describeProduct = document.querySelector(
+        ".CreateProduct__GeneralInfor__DescribeProduct"
+    );
 
-  // Mã sản phẩm do người dùng thêm
-  const productIdUser = document.querySelector(
-      ".CreateProduct__GeneralInfor__StatusId__Id__Product"
-  );
+    // Mã sản phẩm do người dùng thêm
+    const productIdUser = document.querySelector(
+        ".CreateProduct__GeneralInfor__StatusId__Id__Product"
+    );
 
-  let allGroups = document.querySelectorAll(
-      ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
-  );
+    let allGroups = document.querySelectorAll(
+        ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
+    );
 
 
-  if(!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
-      !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
-    alert("Vui lòng nhập đầy đủ thông tin")
-    return;
-  }
-
-  if(allGroups.length <= 0) {
-    alert("Vui lòng chọn ảnh")
-    return;
-  }
-
-  const colorNumbers = document.querySelectorAll(".colorNames");
-  console.log(colorNumbers);
-  colorNumbers.forEach(inputColor => {
-    if(inputColor.value === "") {
-      alert("Vui lòng nhập màu cho sản phẩm");
-      return;
+    if (!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
+        !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
+        alert("Vui lòng nhập đầy đủ thông tin")
+        return;
     }
-  })
 
+    if (allGroups.length <= 0) {
+        alert("Vui lòng chọn ảnh")
+        return;
+    }
 
-  const inputCatalogue = document.createElement("input");
-  inputCatalogue.name = "catalogue"
-  inputCatalogue.type="text"
-  inputCatalogue.value = productTypeData;
-  const inputNumberColor = document.createElement("input");
-  inputNumberColor.name = "numberColor"
-  inputNumberColor.type="number"
-  inputNumberColor.value = Number.parseInt(allGroups.length);
-
-  formData.appendChild(inputNumberColor);
-  formData.appendChild(inputCatalogue);
-
-  productTypeDetailData = productTypeDetail.value;
-  const inputCatalogueDetail = document.createElement("input");
-  inputCatalogueDetail.name = "typeCatalogueDetail"
-  inputCatalogueDetail.type = "text"
-  inputCatalogueDetail.value = productTypeDetailData
-  formData.appendChild(inputCatalogueDetail);
-
-
-
-  const listSize = document.querySelectorAll(".size__box")
-  if(listSize.length > 0) {
-    listSize.forEach((item) => {
-      const inputSize = document.createElement("input");
-      inputSize.name="sizes";
-      inputSize.type = "text";
-      inputSize.value = item.innerText;
-      formData.appendChild(inputSize)
+    const colorNumbers = document.querySelectorAll(".colorNames");
+    console.log(colorNumbers);
+    colorNumbers.forEach(inputColor => {
+        if (inputColor.value === "") {
+            alert("Vui lòng nhập màu cho sản phẩm");
+            return;
+        }
     })
-  }else {
-    alert("Vui lòng chọn size cho sản phẩm")
-    return;
-  }
-   // Hiển thị loading (ví dụ: thay đổi nút)
-          const loading = document.querySelector('.wrapper');
-          loading.style.display = 'flex';
-         
+
+
+
+    const inputCatalogue = document.createElement("input");
+    inputCatalogue.name = "catalogue"
+    inputCatalogue.type = "text"
+    inputCatalogue.value = productTypeData;
+    const inputNumberColor = document.createElement("input");
+    inputNumberColor.name = "numberColor"
+    inputNumberColor.type = "number"
+    inputNumberColor.value = Number.parseInt(allGroups.length);
+
+    formData.appendChild(inputNumberColor);
+    formData.appendChild(inputCatalogue);
+
+    productTypeDetailData = productTypeDetail.value;
+    const inputCatalogueDetail = document.createElement("input");
+    inputCatalogueDetail.name = "typeCatalogueDetail"
+    inputCatalogueDetail.type = "text"
+    inputCatalogueDetail.value = productTypeDetailData
+    formData.appendChild(inputCatalogueDetail);
+
+
+    const listSize = document.querySelectorAll(".size__box")
+    if (listSize.length > 0) {
+        listSize.forEach((item) => {
+            const inputSize = document.createElement("input");
+            inputSize.name = "sizes";
+            inputSize.type = "text";
+            inputSize.value = item.innerText;
+            formData.appendChild(inputSize)
+        })
+    } else {
+        alert("Vui lòng chọn size cho sản phẩm")
+        return;
+    }
+
+    const loading = document.querySelector('.wrapper');
+            loading.style.display = 'flex';
     formData.submit();
 
 })
-
 
 
 // submitBtn.addEventListener("click", () => {

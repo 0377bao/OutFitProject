@@ -1,9 +1,11 @@
 package com.shopbetho.shop.controller.admin;
 
+import com.shopbetho.shop.entity.AccountAdmin;
 import com.shopbetho.shop.entity.Blog;
 import com.shopbetho.shop.entity.Product;
 import com.shopbetho.shop.service.BlogService;
 import com.shopbetho.shop.service.CloudinaryService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +30,11 @@ public class ABlogController {
     private CloudinaryService cloudinaryService;
 
     @GetMapping("/admin/blog/dashboard")
-    public String showDashboardBlogPage(Model model, @RequestParam(defaultValue = "1") int page) {
+    public String showDashboardBlogPage(Model model, @RequestParam(defaultValue = "1") int page, HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         Pageable pageable = PageRequest.of(page - 1, 2);
         Page<Blog> products = this.blogService.fetchAll(pageable);
         model.addAttribute("blogs", products);
@@ -36,14 +42,21 @@ public class ABlogController {
     }
 
     @GetMapping("/admin/blog/create")
-    public String showCreateBlogPage() {
+    public String showCreateBlogPage(HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         return "admin/blog/createPage";
     }
     @GetMapping("/admin/blog/update/{id}")
     public String showUpdateBlogPage(
             @PathVariable("id") Long id,
-            Model model
-    ) {
+            Model model, HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         model.addAttribute("blog", blogService.fetchById(id));
         return "admin/blog/updatePage";
     }
@@ -83,7 +96,8 @@ public class ABlogController {
             model.addAttribute("error", "Please fill in all fields.");
             return "redirect:/admin/blog/update";
         }
-        Blog blog = new Blog();
+        System.out.println("noi dung" + content);
+        Blog blog = blogService.fetchById(id);
         blog.setId(id);
         blog.setTitle(title);
         blog.setContent(content);
