@@ -24,6 +24,7 @@
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
 <link rel="stylesheet" href="/admin/css/create_blog.css" />
+<link rel="stylesheet" href="/css/header.css" />
 
 <style>
         .wrapper {

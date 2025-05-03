@@ -750,6 +750,7 @@ body {
     z-index: 1000;
     border-bottom: 1px solid rgb(180, 180, 180);
     justify-items: center;
+    top: 0;
   }
 
   .header__menu__mobile__1 {

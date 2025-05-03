@@ -190,6 +190,13 @@ public class AProductController {
         product.setActive(isActive);
         product.setPrice(price);
         product.setSizes(sizes);
+
+        avatarColors.forEach(item -> System.out.println(item.getOriginalFilename()));
+        fileMap.forEach((key, value) -> {
+            System.out.println(key + "," + value.getOriginalFilename());
+        });
+
+
         List<Color> colorEntities = product.getColors();
         for (int i = 0; i < numberColor; i++) {
             colorEntities.get(i).setName(colorNames.get(i));
