@@ -179,7 +179,7 @@ public class AProductController {
             model.addAttribute("error", "Price must be greater than 0.");
             return "redirect:/admin/product/updatePage";
         }
-        Product product = new Product();
+        Product product = productService.fetchById(id);
         product.setId(id);
         product.setName(name);
         product.setCode(code);
@@ -190,28 +190,29 @@ public class AProductController {
         product.setActive(isActive);
         product.setPrice(price);
         product.setSizes(sizes);
-        List<Color> colorEntities = new ArrayList<>();
+        List<Color> colorEntities = product.getColors();
         for (int i = 0; i < numberColor; i++) {
-            Color color = new Color();
-            color.setName(colorNames.get(i));
+            colorEntities.get(i).setName(colorNames.get(i));
             String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
-            color.setAvtColor(urlAvt);
-            color.setProduct(product);
+            if(urlAvt != null && !urlAvt.isEmpty()) {
+                colorEntities.get(i).setAvtColor(urlAvt);
+            }
 
-            List<String> imageUrls = new ArrayList<>();
+            List<String> imageUrls = colorEntities.get(i).getImageUrl();
             for (int j = 0; j < 4; j++) {
                 String key = "colorImages[" + i + "][" + j + "]";
                 MultipartFile image = fileMap.get(key);
 
                 if (image != null && !image.isEmpty()) {
-                    imageUrls.add(cloudinaryService.upLoadImage(image));
+                    String imageUrl = cloudinaryService.upLoadImage(image);
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        imageUrls.set(j, imageUrl);
+                    }
                 }
             }
-            color.setImageUrl(imageUrls);
-            colorEntities.add(color);
+            colorEntities.get(i).setImageUrl(imageUrls);
         }
         product.setColors(colorEntities);
-
         productService.updateProduct(product);
         return "redirect:/admin";
     }

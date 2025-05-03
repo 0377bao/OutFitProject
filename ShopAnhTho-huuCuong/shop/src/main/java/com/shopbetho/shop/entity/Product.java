@@ -10,9 +10,11 @@ import jakarta.persistence.*;
 @Entity
 public class Product extends BaseEntity {
 
+    @Column(columnDefinition = "LONGTEXT")
     private String name;
     @Column(unique = true)
     private String code;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     @Enumerated(EnumType.STRING)
     private TypeCatalogueDetailEnum catalogueDetailEnum;
