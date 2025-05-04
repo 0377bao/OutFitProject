@@ -46,6 +46,6 @@ public class BannerController {
 
         bannerService.save(banner);
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

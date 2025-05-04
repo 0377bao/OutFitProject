@@ -54,6 +54,6 @@ public class CollectionController {
 
         collectionService.save(collection);
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-sm-12">
               <nav class="header__menu__1">
-                <a href="/index">
+                <a href="/">
                   <img
                           src="/images/logo shopbetho 2.png"
                           alt="logo shop bé thơ"

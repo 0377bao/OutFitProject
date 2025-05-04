@@ -288,7 +288,7 @@ public class AProductController {
         emailService.sendOrder(emailAdmin, messageSendEmail);
         model.addAttribute("success", "Order placed successfully. We will contact you soon.");
         // Redirect to a success page or show a success message
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @PostMapping("/admin/product/delete")
