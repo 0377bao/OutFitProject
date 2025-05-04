@@ -41,6 +41,18 @@ public class ABlogController {
         return "admin/dashboard/dashboardBlog";
     }
 
+    @GetMapping("/admin/blog/filterDashboardBlog")
+    public String filterDashboardProduct(Model model, @RequestParam(name = "title") String title, HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+
+        List<Blog> products = this.blogService.searchByTitle(title);
+        model.addAttribute("blogs", products);
+        return "admin/dashboard/dashboardBlog";
+    }
+
     @GetMapping("/admin/blog/create")
     public String showCreateBlogPage(HttpSession session) {
         AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
