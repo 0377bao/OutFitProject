@@ -56,9 +56,9 @@
 
 <c:choose>
     <c:when test="${products != null}">
-        <c:forEach var="product" items="${products.content}" varStatus="loop">
+        <c:forEach var="product" items="${products}" varStatus="loop">
             <div class="row">
-                <div class="col-sm-1">${loop.index}</div>
+                <div class="col-sm-1">${loop.index + 1}</div>
                 <div class="col-sm-2">${product.name}</div>
                 <div class="col-sm-1"> ${product.price} vnđ</div>
                 <div class="col-sm-3">
@@ -103,7 +103,7 @@
             <c:when test="${productHighLights != null && productHighLights.size() > 0}">
                 <c:forEach var="prodHighLightItem" items="${productHighLights}" varStatus="loop">
                     <div class="row">
-                        <div class="col-sm-1">${loop.index}</div>
+                        <div class="col-sm-1">${loop.index + 1}</div>
                         <div class="col-sm-2">${prodHighLightItem.name}</div>
                         <div class="col-sm-1">${prodHighLightItem.price} vnđ</div>
                         <div class="col-sm-3">

@@ -37,7 +37,7 @@ public class ProductController {
 
         Pageable pageable = PageRequest.of(page - 1, 2);
 
-        Page<Product> products = this.productService.fetchAll(pageable);
+        List<Product> products = this.productService.fetchAll();
         model.addAttribute("products", products);
         return "client/product/showPage";
     }

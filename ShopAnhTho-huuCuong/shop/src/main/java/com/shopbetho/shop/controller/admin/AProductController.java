@@ -60,7 +60,7 @@ public class AProductController {
 
         Pageable pageable = PageRequest.of(page - 1, 2);
 
-        Page<Product> products = this.productService.fetchAll(pageable);
+        List<Product> products = this.productService.fetchAll();
         List<Product> productHighLights = this.productService.findAllIsHighLightTrue();
 
         model.addAttribute("products", products);
@@ -88,8 +88,8 @@ public class AProductController {
             @RequestParam("description") String description,
             @RequestParam("catalogue") String catalogue,
             @RequestParam("typeCatalogueDetail") String catalogueDetailEnum,
-            @RequestParam(defaultValue = "true", name = "isHighlight") boolean isHighlight,
-            @RequestParam(defaultValue = "true", name = "isNew") boolean isNew,
+            @RequestParam(defaultValue = "false", name = "isHighlight") boolean isHighlight,
+            @RequestParam(defaultValue = "false", name = "isNew") boolean isNew,
             @RequestParam(defaultValue = "true", name = "isActive") boolean isActive,
             @RequestParam("price") double price,
             @RequestParam("sizes") List<String> sizes,
@@ -146,7 +146,7 @@ public class AProductController {
         product.setColors(colorEntities);
 
         productService.createProduct(product);
-        return "redirect:/admin";
+        return "redirect:/admin/product/dashboardProduct";
     }
 
     @PostMapping("/admin/product/update")
@@ -192,29 +192,53 @@ public class AProductController {
         product.setSizes(sizes);
         List<Color> colorEntities = product.getColors();
         for (int i = 0; i < numberColor; i++) {
-            colorEntities.get(i).setName(colorNames.get(i));
-            String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
-            if(urlAvt != null && !urlAvt.isEmpty()) {
-                colorEntities.get(i).setAvtColor(urlAvt);
-            }
+            if(numberColor > colorEntities.size()) {
+                Color color = new Color();
+                color.setName(colorNames.get(i));
+                String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
+                if(urlAvt != null && !urlAvt.isEmpty()) {
+                    color.setAvtColor(urlAvt);
+                }
+                List<String> imageUrls = colorEntities.get(i).getImageUrl();
+                for (int j = 0; j < 4; j++) {
+                    String key = "colorImages[" + i + "][" + j + "]";
+                    MultipartFile image = fileMap.get(key);
 
-            List<String> imageUrls = colorEntities.get(i).getImageUrl();
-            for (int j = 0; j < 4; j++) {
-                String key = "colorImages[" + i + "][" + j + "]";
-                MultipartFile image = fileMap.get(key);
-
-                if (image != null && !image.isEmpty()) {
-                    String imageUrl = cloudinaryService.upLoadImage(image);
-                    if (imageUrl != null && !imageUrl.isEmpty()) {
-                        imageUrls.set(j, imageUrl);
+                    if (image != null && !image.isEmpty()) {
+                        String imageUrl = cloudinaryService.upLoadImage(image);
+                        if (imageUrl != null && !imageUrl.isEmpty()) {
+                            imageUrls.set(j, imageUrl);
+                        }
                     }
                 }
+                color.setImageUrl(imageUrls);
+                color.setProduct(product);
+                colorEntities.add(color);
+            } else {
+                colorEntities.get(i).setName(colorNames.get(i));
+                String urlAvt = cloudinaryService.upLoadImage(avatarColors.get(i));
+                if(urlAvt != null && !urlAvt.isEmpty()) {
+                    colorEntities.get(i).setAvtColor(urlAvt);
+                }
+
+                List<String> imageUrls = colorEntities.get(i).getImageUrl();
+                for (int j = 0; j < 4; j++) {
+                    String key = "colorImages[" + i + "][" + j + "]";
+                    MultipartFile image = fileMap.get(key);
+
+                    if (image != null && !image.isEmpty()) {
+                        String imageUrl = cloudinaryService.upLoadImage(image);
+                        if (imageUrl != null && !imageUrl.isEmpty()) {
+                            imageUrls.set(j, imageUrl);
+                        }
+                    }
+                }
+                colorEntities.get(i).setImageUrl(imageUrls);
             }
-            colorEntities.get(i).setImageUrl(imageUrls);
         }
         product.setColors(colorEntities);
         productService.updateProduct(product);
-        return "redirect:/admin";
+        return "redirect:/admin/product/dashboardProduct";
     }
     @PostMapping("/admin/product/order")
     public String orderProduct(
@@ -251,4 +275,16 @@ public class AProductController {
         // Redirect to a success page or show a success message
         return "redirect:/index";
     }
+
+    @PostMapping("/admin/product/delete")
+    public String deleteProductByPost(@RequestParam("id") Long id, Model model) {
+        try {
+            productService.deleteProductById(id);
+            return "redirect:/admin/product/dashboardProduct";
+        } catch (RuntimeException e) {
+            model.addAttribute("Err", "Product not found");
+            return "redirect:/admin/product/dashboardProduct";
+        }
+    }
+
 }

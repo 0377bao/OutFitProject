@@ -45,4 +45,12 @@ public class BlogService {
     public List<Blog> findTop3ByOrderByCreatedAtDesc() {
         return this.blogRepository.findTop3ByOrderByCreatedAtDesc();
     }
+
+    public void deleteBlogById(Long id) {
+        if (!blogRepository.existsById(id)) {
+            throw new RuntimeException("Blog not found with id: " + id);
+        }
+        blogRepository.deleteById(id);
+    }
+
 }

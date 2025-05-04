@@ -44,8 +44,8 @@ public class ProductService {
         return this.productRepository.findById(id).get();
     }
 
-    public Page<Product> fetchAll(Pageable pageable) {
-        return this.productRepository.findAll(pageable);
+    public List<Product> fetchAll() {
+        return this.productRepository.findAll();
     }
 
     void deleteProduct(Long id) {
@@ -65,5 +65,11 @@ public class ProductService {
     }
     public List<Product> searchByName(String keyword) {
         return productRepository.findByNameContainingIgnoreCase(keyword);
+    }
+    public void deleteProductById(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found with id: " + id);
+        }
+        productRepository.deleteById(id);
     }
 }

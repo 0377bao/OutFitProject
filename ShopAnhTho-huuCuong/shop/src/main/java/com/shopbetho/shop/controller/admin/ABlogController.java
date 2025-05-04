@@ -82,7 +82,8 @@ public class ABlogController {
             blog.setImageUrl(imageUrl);
         }
         blogService.createBlog(blog);
-        return "redirect:/admin";
+        System.out.println(1);
+        return "redirect:/admin/blog/dashboard";
     }
     @PostMapping("/admin/blog/update")
     public String updateBlog(
@@ -96,6 +97,7 @@ public class ABlogController {
             model.addAttribute("error", "Please fill in all fields.");
             return "redirect:/admin/blog/update";
         }
+        Blog blogFind = blogService.fetchById(id);
         Blog blog = new Blog();
         blog.setId(id);
         blog.setTitle(title);
@@ -105,8 +107,22 @@ public class ABlogController {
         if (!image.isEmpty()) {
             String imageUrl = cloudinaryService.upLoadImage(image);
             blog.setImageUrl(imageUrl);
+        } else {
+            blog.setImageUrl(blogFind.getImageUrl());
         }
         blogService.updateBlog(blog);
-        return "redirect:/admin";
+        return "redirect:/admin/blog/dashboard";
+    }
+
+
+    @PostMapping("/admin/blog/delete")
+    public String deleteBlogByPost(@RequestParam("id") Long id, Model model) {
+        try {
+            blogService.deleteBlogById(id);
+            return "redirect:/admin/blog/dashboard";
+        } catch (RuntimeException e) {
+            model.addAttribute("Err", "Blog not found");
+            return "redirect:/admin/blog/dashboard";
+        }
     }
 }

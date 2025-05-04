@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Page<Product> findAll(Pageable pageable);
+    List<Product> findAll();
     List<Product> findTop4ByIsHighlightTrueOrderByCreatedAtDesc();
     List<Product> findTop8ByIsNewTrueOrderByCreatedAtDesc();
     List<Product> findByIsActiveTrue();
