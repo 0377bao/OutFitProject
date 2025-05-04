@@ -20,4 +20,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByIsHighlightTrueOrderByCreatedAtDesc();
     List<Product> findByCatalogueAndCatalogueDetailEnum(catalogueEnum catalogue, TypeCatalogueDetailEnum typeCatalogueDetailEnum);
     List<Product> findByNameContainingIgnoreCase(String keyword);
+    long countByIsHighlightTrue();
 }

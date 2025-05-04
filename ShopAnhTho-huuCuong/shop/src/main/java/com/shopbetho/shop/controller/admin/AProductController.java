@@ -302,4 +302,9 @@ public class AProductController {
         }
     }
 
+    @GetMapping("/admin/product/countProductHighLight")
+    @ResponseBody
+    public Long countProductHighLight() {
+        return productService.countProductHighLight();
+    }
 }

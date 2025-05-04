@@ -72,4 +72,7 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
+    public long countProductHighLight() {
+        return productRepository.countByIsHighlightTrue();
+    }
 }
