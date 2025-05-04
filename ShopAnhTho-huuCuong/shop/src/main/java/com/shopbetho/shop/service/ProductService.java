@@ -75,4 +75,7 @@ public class ProductService {
     public long countProductHighLight() {
         return productRepository.countByIsHighlightTrue();
     }
+    public long countByIsHighlightTrueAndIdNot(Long excludedId) {
+        return productRepository.countByIsHighlightTrueAndIdNot(excludedId);
+    }
 }

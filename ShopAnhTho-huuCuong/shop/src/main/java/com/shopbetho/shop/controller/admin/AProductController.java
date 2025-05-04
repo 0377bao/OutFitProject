@@ -307,4 +307,10 @@ public class AProductController {
     public Long countProductHighLight() {
         return productService.countProductHighLight();
     }
+
+    @GetMapping("/admin/product/countProductHighLightAndIdNot")
+    @ResponseBody
+    public Long countProductHighLightAndIdNot(@RequestParam("id") Long id) {
+        return productService.countByIsHighlightTrueAndIdNot(id);
+    }
 }
