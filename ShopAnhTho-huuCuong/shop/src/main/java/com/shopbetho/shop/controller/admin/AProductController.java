@@ -68,6 +68,21 @@ public class AProductController {
         return "admin/dashboard/dashboardProduct";
     }
 
+    @GetMapping("/admin/product/filterDashboardProduct")
+    public String filterDashboardProduct(Model model, @RequestParam(name = "name") String name, HttpSession session) {
+        AccountAdmin admin = (AccountAdmin) session.getAttribute("loggedInAdmin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+
+        List<Product> products = this.productService.searchByName(name);
+        List<Product> productHighLights = this.productService.findAllIsHighLightTrue();
+
+        model.addAttribute("products", products);
+        model.addAttribute("productHighLights", productHighLights);
+        return "admin/dashboard/dashboardProduct";
+    }
+
     @GetMapping("/admin/product/update/{id}")
     public String getUpdatePage(
             @PathVariable("id") Long id,
