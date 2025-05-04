@@ -36,14 +36,16 @@
             </a>
         </div>
         <hr />
-        <div class="header__2">
-            <input
-                    type="text"
-                    class="form-control p-3"
-                    placeholder="Nhập bài viết bạn muốn tìm"
-            />
-            <button class="header__2__btn">Tìm kiếm</button>
-        </div>
+        <form action="">
+            <div class="header__2">
+                <input
+                        type="text"
+                        class="form-control p-3"
+                        placeholder="Nhập bài viết bạn muốn tìm"
+                />
+                <button type="submit" class="header__2__btn">Tìm kiếm</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -61,7 +63,7 @@
         <hr />
         <c:choose>
             <c:when test="${blogs != null}">
-                <c:forEach var="blogItem" items="${blogs.content}" varStatus="loop">
+                <c:forEach var="blogItem" items="${blogs}" varStatus="loop">
                     <div class="row">
                         <div class="col-sm-1">
                          <span class="main__navbar__product">STT</span>
@@ -94,9 +96,9 @@
                             <a href="/admin/blog/update/${blogItem.id}" style="display: inline-block">
                                 <button class="btn btn-warning">Sửa</button>
                             </a>
-                            <a style="display: inline-block">
-                                <button class="btn btn-danger m-3">Xóa</button>
-                            </a>
+                            <form action="/admin/blog/delete?id=${blogItem.id}" style="display: inline-block" method="post">
+                                <button type="submit" class="btn btn-danger m-3">Xóa</button>
+                            </form>
                         </div>
                     </div>
 

@@ -159,7 +159,7 @@
 
                         <div class="CreateProductMain__Price">
                             <p>Giá sản phẩm</p>
-                            <input type="number" name="price" class="form-control" value="${FormatUtil.formatCurrency(product.getPrice())}"/>
+                            <input type="number" name="price" class="form-control" value="${product.getPrice()}"/>
                         </div>
 
                         <div class="CreateProduct__GeneralInfor__outstanding">

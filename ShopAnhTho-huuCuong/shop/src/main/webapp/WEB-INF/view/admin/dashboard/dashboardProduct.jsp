@@ -31,13 +31,16 @@
 
         </div>
         <hr />
+        <form class="w-100" action="/admin/product/filterDashboardProduct">
         <div class="header__2">
             <input
                     type="text"
                     class="form-control p-3"
+                    name="name"
                     placeholder="Nhập sản phẩm bạn muốn tìm"
             />
-            <button class="header__2__btn">Tìm kiếm</button>
+            <button type="submit" class="header__2__btn">Tìm kiếm</button>
+        </form>
         </div>
     </div>
 </header>
@@ -55,39 +58,9 @@
         </div>
         <hr />
 
-<<<<<<< HEAD
-<c:choose>
-    <c:when test="${products != null}">
-        <c:forEach var="product" items="${products}" varStatus="loop">
-            <div class="row">
-                <div class="col-sm-1">${loop.index + 1}</div>
-                <div class="col-sm-2">${product.name}</div>
-                <div class="col-sm-1"> ${product.price} vnđ</div>
-                <div class="col-sm-3">
-                        ${product.description}
-                </div>
-                <div class="col-sm-2">${product.getCreatedAt().toString().split("T")[1].substring(0,5)} ${product.getCreatedAt().toString().split("T")[0]}</div>
-                <div class="col-sm-1">${product.id}</div>
-                <div class="col-sm-2">
-                    <form action="/admin/product/update/${product.id}" style="display: inline-block">
-                        <button class="btn btn-warning">Sửa</button>
-                    </form>
-                    <form style="display: inline-block">
-                        <button class="btn btn-danger m-3">Xóa</button>
-                    </form>
-                </div>
-            </div>
-            <hr />
-        </c:forEach>
-    </c:when>
-    <c:otherwise>
-        <span>Không có sản phẩm nổi bật nào</span>
-    </c:otherwise>
-</c:choose>
-=======
         <c:choose>
             <c:when test="${products != null}">
-                <c:forEach var="product" items="${products.content}" varStatus="loop">
+                <c:forEach var="product" items="${products}" varStatus="loop">
                     <div class="row">
                         <div class="col-sm-1">
                             <span class="main__navbar__product">STT</span>
@@ -116,7 +89,6 @@
                                          overflow: hidden;">
                                             ${product.description}
                                   </p>
->>>>>>> 07ece1908e49f461cca06ed9e15a2276b910b844
 
                         </div>
                         <div class="col-sm-2">
@@ -131,9 +103,9 @@
                             <a href="/admin/product/update/${product.id}" style="display: inline-block">
                                 <button class="btn btn-warning">Sửa</button>
                             </a>
-                            <a style="display: inline-block">
+                            <form action="/admin/product/delete?id=${product.id}" style="display: inline-block" method="post">
                                 <button class="btn btn-danger m-3">Xóa</button>
-                            </a>
+                            </form>
                         </div>
                     </div>
                     <hr />
@@ -163,12 +135,13 @@
             <c:when test="${productHighLights != null && productHighLights.size() > 0}">
                 <c:forEach var="prodHighLightItem" items="${productHighLights}" varStatus="loop">
                     <div class="row">
-<<<<<<< HEAD
-                        <div class="col-sm-1">${loop.index + 1}</div>
-                        <div class="col-sm-2">${prodHighLightItem.name}</div>
-=======
-                        <div class="col-sm-1">${loop.index}</div>
+
+                        <div class="col-sm-1">
+                             <span class="main__navbar__product">STT</span>
+                            ${loop.index}
+                        </div>
                         <div class="col-sm-2">
+                           <span class="main__navbar__product">Tên sản phẩm</span>
                         <p class="card-title" style="
                                                                           display: -webkit-box;
                                                                           -webkit-line-clamp: 3;
@@ -178,9 +151,13 @@
                                                                           </p>
 
                         </div>
->>>>>>> 07ece1908e49f461cca06ed9e15a2276b910b844
-                        <div class="col-sm-1">${prodHighLightItem.price} vnđ</div>
+
+                        <div class="col-sm-1">
+                        <span class="main__navbar__product">Giá sản phẩm</span>
+                            ${prodHighLightItem.price} vnđ
+                        </div>
                         <div class="col-sm-3">
+                            <span class="main__navbar__product">Mô tả sản phẩm</span>
                             <p class="card-title" style="
                                                                               display: -webkit-box;
                                                                               -webkit-line-clamp: 3;
@@ -190,15 +167,21 @@
                                                                               </p>
 
                         </div>
-                        <div class="col-sm-2">${prodHighLightItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${prodHighLightItem.getCreatedAt().toString().split("T")[0]}</div>
-                        <div class="col-sm-1">${prodHighLightItem.id}</div>
+                        <div class="col-sm-2">
+                        <span class="main__navbar__product">Thời gian tạo</span>
+                        ${prodHighLightItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${prodHighLightItem.getCreatedAt().toString().split("T")[0]}
+                        </div>
+                        <div class="col-sm-1">
+                             <span class="main__navbar__product">Mã sản phẩm</span>
+                            ${prodHighLightItem.id}
+                        </div>
                         <div class="col-sm-2">
                             <a href="/admin/product/update/${prodHighLightItem.id}" style="display: inline-block">
                                 <button class="btn btn-warning">Sửa</button>
                             </a>
-                            <a style="display: inline-block">
+                            <form action="/admin/product/delete?id=${prodHighLightItem.id}" style="display: inline-block" method="post">
                                 <button class="btn btn-danger m-3">Xóa</button>
-                            </a>
+                            </form>
                         </div>
                     </div>
 

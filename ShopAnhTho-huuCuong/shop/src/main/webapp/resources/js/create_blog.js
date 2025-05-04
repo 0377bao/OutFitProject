@@ -86,8 +86,9 @@ formData.addEventListener("submit", (e) => {
 
   if(upLoadImg.attributes.value) {
     if(TitleBlog.value && quill.root.innerHTML) {
+    console.log("Vào")
       titleBlog.value = TitleBlog.value;
-      contentBlog.value = quill.root.innerHTML.toString();
+      contentBlog.value = quill.root.innerHTML;
 console.log(quill.root.innerHTML)
       // Hiển thị loading (ví dụ: thay đổi nút)
       loading.style.display = 'flex';
@@ -101,9 +102,9 @@ console.log(quill.root.innerHTML)
     } else{
      console.log(quill.root.innerHTML)
       titleBlog.value = TitleBlog.value;
-      contentBlog.value = quill.root.innerHTML.toString();
+      contentBlog.value = quill.root.innerHTML;
       loading.style.display = 'flex';
-     formData.submit();
+        formData.submit();
     }
 
   }

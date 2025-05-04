@@ -67,7 +67,9 @@
                 <p>Hàng mới</p>
                 <p>Hot sales</p>
                 <p>Phụ kiện</p>
-                <p>XEM THÊM</p>
+                <p>
+                <a href="/products" style="color: black; text-decoration: none;">XEM THÊM</a>
+                </p>
               </nav>
             </div>
           </div>

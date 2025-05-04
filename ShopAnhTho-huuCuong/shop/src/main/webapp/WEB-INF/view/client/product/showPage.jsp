@@ -30,19 +30,22 @@
                 <c:choose>
                                     <c:when test="${products != null && products.size() > 0}">
                                         <c:forEach var="product" items="${products}">
+                                        <a style="color: black; text-decoration: none" href="/products/${product.id}">
                                               <div class="card">
                                                     <img
                                                       class="card-img-top"
                                                       src="${product.colors[0].avtColor}"
                                                     />
-                                                    <a style="color: black; text-decoration: none" href="/products/${product.id}" class="card-text">
+                                                    <p  class="card-text">
                                                          ${product.description}
-                                                    </a>
+                                                    </p>
 
                                                    <h4 class="card-title">
                                                          ${FormatUtil.formatCurrency(product.getPrice())} đ
                                                    </h4>
                                               </div>
+
+                                        </a>
                                         </c:forEach>
                                     </c:when>
                                      <c:otherwise>

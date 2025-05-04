@@ -97,8 +97,8 @@ public class ABlogController {
             model.addAttribute("error", "Please fill in all fields.");
             return "redirect:/admin/blog/update";
         }
-        Blog blogFind = blogService.fetchById(id);
-        Blog blog = new Blog();
+        //Blog blogFind = blogService.fetchById(id);
+        Blog blog = blogService.fetchById(id);
         blog.setId(id);
         blog.setTitle(title);
         blog.setContent(content);
@@ -108,7 +108,7 @@ public class ABlogController {
             String imageUrl = cloudinaryService.upLoadImage(image);
             blog.setImageUrl(imageUrl);
         } else {
-            blog.setImageUrl(blogFind.getImageUrl());
+            blog.setImageUrl(blog.getImageUrl());
         }
         blogService.updateBlog(blog);
         return "redirect:/admin/blog/dashboard";

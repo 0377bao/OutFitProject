@@ -27,13 +27,13 @@
 
         <c:choose>
             <c:when test="${blogs != null}">
-                <c:forEach var="blogItem" items="${blogs.content}">
+                <c:forEach var="blogItem" items="${blogs}">
             <div class="col-lg-4">
                     <div class="card">
                         <img
                                 src="${blogItem.imageUrl}"
                         />
-                        <h5 class="card-title">${blogItem.title}</h5>
+                        <h5 style="margin-top: 10px;" class="card-title">${blogItem.title}</h5>
 
                         <p class="card-text">
                                 ${blogItem.content}
