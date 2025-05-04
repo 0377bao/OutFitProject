@@ -15,6 +15,8 @@ import com.shopbetho.shop.entity.Blog;
 import com.shopbetho.shop.entity.Product;
 import com.shopbetho.shop.service.BlogService;
 
+import java.util.List;
+
 @Controller
 public class BlogController {
 
@@ -30,7 +32,7 @@ public class BlogController {
 
         Pageable pageable = PageRequest.of(page - 1, 2);
 
-        Page<Blog> blogs = this.blogService.fetchAll(pageable);
+        List<Blog> blogs = this.blogService.fetchAll();
         model.addAttribute("blogs", blogs);
         return "client/blog/showPage";
     }

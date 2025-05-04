@@ -35,8 +35,8 @@ public class BlogService {
         return this.blogRepository.findById(id).get();
     }
 
-    public Page<Blog> fetchAll(Pageable pageable) {
-        return this.blogRepository.findAll(pageable);
+    public List<Blog> fetchAll() {
+        return this.blogRepository.findAll();
     }
 
     void deleteBlog(Long id) {

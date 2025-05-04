@@ -36,7 +36,7 @@ public class ABlogController {
             return "redirect:/admin/login";
         }
         Pageable pageable = PageRequest.of(page - 1, 2);
-        Page<Blog> products = this.blogService.fetchAll(pageable);
+        List<Blog> products = this.blogService.fetchAll();
         model.addAttribute("blogs", products);
         return "admin/dashboard/dashboardBlog";
     }
