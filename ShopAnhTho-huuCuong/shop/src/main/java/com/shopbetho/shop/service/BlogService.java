@@ -1,5 +1,6 @@
 package com.shopbetho.shop.service;
 
+import com.shopbetho.shop.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class BlogService {
 
     public List<Blog> fetchAll() {
         return this.blogRepository.findAll();
+    }
+
+    public List<Blog> searchByTitle(String keyword) {
+        return blogRepository.findByTitleContainingIgnoreCase(keyword);
     }
 
     void deleteBlog(Long id) {
