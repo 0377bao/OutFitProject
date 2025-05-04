@@ -320,8 +320,6 @@ submitBtn.addEventListener("click", (e) => {
         ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
     );
 
-    const idProduct = document.querySelector('input[name="id"]')
-    console.log("id product", idProduct)
 
     if (!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
         !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
@@ -335,7 +333,6 @@ submitBtn.addEventListener("click", (e) => {
     }
 
     const colorNumbers = document.querySelectorAll(".colorNames");
-    console.log(colorNumbers);
     colorNumbers.forEach(inputColor => {
         if (inputColor.value === "") {
             alert("Vui lòng nhập màu cho sản phẩm");
@@ -379,32 +376,32 @@ submitBtn.addEventListener("click", (e) => {
     const loading = document.querySelector('.wrapper');
             loading.style.display = 'flex';
 
-//    if(selectStatusProductOutstanding.checked == true) {
-//        if(selectStatusProductOutstanding.value == "true") {
-//            fetch('http://localhost:8080/admin/product/countProductHighLight')
-//            .then(res => res.json())
-//            .then(data => {
-//                if(Number.parseInt(data) < 4)
-//                  formData.submit();
-//                else {
-//                    const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
-//                                                const catalogueRemove = document.querySelectorAll('input[name="catalogue"]')
-//                                                const numberColorRemove = document.querySelectorAll('input[name="numberColor"]')
-//                                                const typeCatalogueDetailRemove = document.querySelectorAll('input[name="typeCatalogueDetail"]')
-//                                          inputSizeRemove.forEach(node => formData.removeChild(node))
-//                                           catalogueRemove.forEach(node => formData.removeChild(node))
-//                                            numberColorRemove.forEach(node => formData.removeChild(node))
-//                                             typeCatalogueDetailRemove.forEach(node => formData.removeChild(node))
-//
-//                    loading.style.display = 'none';
-//                    alert("Đã vượt quá số lượng tối đa sản phẩm nổi bật");
-//
-//                }
-//            })
-//        } else {
-//            formData.submit();
-//        }
-//    }
+    if(selectStatusProductOutstanding.checked == true) {
+        if(selectStatusProductOutstanding.value == "true") {
+            fetch('http://localhost:8080/admin/product/countProductHighLightAndIdNot?id=' + idProduct.value)
+            .then(res => res.json())
+            .then(data => {
+                if(Number.parseInt(data) < 4)
+                  formData.submit();
+                else {
+                    const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
+                                                const catalogueRemove = document.querySelectorAll('input[name="catalogue"]')
+                                                const numberColorRemove = document.querySelectorAll('input[name="numberColor"]')
+                                                const typeCatalogueDetailRemove = document.querySelectorAll('input[name="typeCatalogueDetail"]')
+                                          inputSizeRemove.forEach(node => formData.removeChild(node))
+                                           catalogueRemove.forEach(node => formData.removeChild(node))
+                                            numberColorRemove.forEach(node => formData.removeChild(node))
+                                             typeCatalogueDetailRemove.forEach(node => formData.removeChild(node))
+
+                    loading.style.display = 'none';
+                    alert("Đã vượt quá số lượng tối đa sản phẩm nổi bật");
+
+                }
+            })
+        } else {
+            formData.submit();
+        }
+    }
 
 
 })
