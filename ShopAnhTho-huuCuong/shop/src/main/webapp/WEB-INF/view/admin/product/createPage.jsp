@@ -345,11 +345,11 @@
 
                             <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
                                 -- Lựa chọn --
-                                <option value="DOSOSINH">Đồ sơ sinh</option>
-                                <option value="SETDO">Sét đồ</option>
-                                <option value="DOBOI">Đồ bơi</option>
-                                <option value="AOQUAN">Áo quần</option>
-                                <option value="PHUKIEN">Phụ kiện</option>
+                                <option value="Đồ sơ sinh">Đồ sơ sinh</option>
+                                <option value="Sét đồ">Sét đồ</option>
+                                <option value="Đồ bơi">Đồ bơi</option>
+                                <option value="Áo quần">Áo quần</option>
+                                <option value="Phụ kiện">Phụ kiện</option>
                             </select>
 
                             <button
@@ -404,15 +404,7 @@
         const arr =  ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"]
        arr.map(item => {
                     const option = document.createElement("option")
-                    if(item == "QUẦN ÁO")
-                        option.value = "QUANAO"
-                    else if(item == "KHĂN")
-                        option.value = "KHAN"
-                    else if(item == "BAOTAY")
-                        option.value = "BAO TAY"
-                    else {
-                        option.value = "CHANMU"
-                    }
+                    option.value = item;
                     option.innerText = item
                     productTypeDetail.appendChild(option);
                 })

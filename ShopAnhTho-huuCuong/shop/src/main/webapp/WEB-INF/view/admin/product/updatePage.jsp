@@ -438,12 +438,12 @@
                             <p>Phân loại sản phẩm</p>
 
                             <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type">
-                                -- Lựa chọn --
-                                <option value="DOSOSINH" selected="${product.catalogue == DOSOSINH}">Đồ sơ sinh</option>
-                                <option value="SETDO" selected="${product.catalogue == SETDO}">Sét đồ</option>
-                                <option value="DOBOI" selected="${product.catalogue == DOBOI}">Đồ bơi</option>
-                                <option value="AOQUAN" selected="${product.catalogue == AOQUAN }">Áo quần</option>
-                                <option value="PHUKIEN" selected="${product.catalogue == PHUKIEN}">Phụ kiện</option>
+                                <option disabled>-- Lựa chọn --</option>
+                                <option value="Đồ sơ sinh" <c:if test="${product.catalogue == 'DOSOSINH'}">selected</c:if>>Đồ sơ sinh</option>
+                                <option value="Sét đồ" <c:if test="${product.catalogue == 'SETDO'}">selected</c:if>>Sét đồ</option>
+                                <option value="Đồ bơi" <c:if test="${product.catalogue == 'DOBOI'}">selected</c:if>>Đồ bơi</option>
+                                <option value="Áo quần" <c:if test="${product.catalogue == 'AOQUAN'}">selected</c:if>>Áo quần</option>
+                                <option value="Phụ kiện" <c:if test="${product.catalogue == 'PHUKIEN'}">selected</c:if>>Phụ kiện</option>
                             </select>
 
                             <button
@@ -460,7 +460,27 @@
 
                                                                             <select class="form-control CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail">
                                                                                 -- Lựa chọn --
+                                                                                <c:if test="${product.catalogue == 'DOSOSINH'}">
+                                                                                    <option value="QUẦN ÁO" <c:if test="${product.catalogueDetailEnum == 'QUANAO'}">selected</c:if>>QUẦN ÁO</option>
+                                                                                    <option value="KHĂN" <c:if test="${product.catalogueDetailEnum == 'KHAN'}">selected</c:if>>KHĂN</option>
+                                                                                    <option value="BAO TAY" <c:if test="${product.catalogueDetailEnum == 'BAOTAY'}">selected</c:if>>BAO TAY</option>
+                                                                                    <option value="CHÂN MŨ" <c:if test="${product.catalogueDetailEnum == 'CHANMU'}">selected</c:if>>CHÂN MŨ</option>
 
+                                                                                </c:if>
+                                                                                <c:if test="${product.catalogue == 'SETDO'}">
+                                                                                            <option value="BÉ TRAI" <c:if test="${product.catalogueDetailEnum == 'BETRAI'}">selected</c:if>>BÉ TRAI</option>
+                                                                                            <option value="BÉ GÁI" <c:if test="${product.catalogueDetailEnum == 'BEGAI'}">selected</c:if>>BÉ GÁI</option>
+                                                                                </c:if>
+                                                                                <c:if test="${product.catalogue == 'DOBOI'}">
+                                                                                          <option  value="BÉ TRAI" <c:if test="${product.catalogueDetailEnum == 'BETRAI'}">selected</c:if>>BÉ TRAI</option>
+                                                                                          <option value="BÉ GÁI" <c:if test="${product.catalogueDetailEnum == 'BEGAI'}">selected</c:if>>BÉ GÁI</option>
+                                                                                </c:if>
+                                                                                <c:if test="${product.catalogue == 'PHUKIEN'}">
+                                                                                          <option value="DẦU" <c:if test="${product.catalogueDetailEnum == 'DAU'}">selected</c:if>>DẦU</option>
+                                                                                          <option value="KHĂN" <c:if test="${product.catalogueDetailEnum == 'KHAN'}">selected</c:if>>KHĂN</option>
+                                                                                          <option value="KẸP CÀI" <c:if test="${product.catalogueDetailEnum == 'KEPCAI'}">selected</c:if>>KẸP CÀI</option>
+
+                                                                                </c:if>
                                                                             </select>
 
                                                                             <button
@@ -534,85 +554,7 @@
         const typeCatalogue = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type")
         const typeCatalogueDetail = document.querySelector(".CreateProduct__GeneralInfor__UploadImg__Category__Product__Type__Detail")
 
-        switch(typeCatalogue.value) {
-            case "DOSOSINH": {
-                ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"].map(item => {
-                    const option = document.createElement("option")
-                    if(item == "QUẦN ÁO")
-                        option.value = "QUANAO"
-                    else if(item == "KHĂN")
-                        option.value = "KHAN"
-                    else if(item == "BAOTAY")
-                        option.value = "BAO TAY"
-                    else {
-                        option.value = "CHANMU"
-                    }
-                    option.innerText = item
-                    option.selected = item == typeCatalogue.value
-                    typeCatalogueDetail.appendChild(option);
-                })
-                break;
-            }
-            case "SETDO": {
-                    ["BÉ TRAI", "BÉ GÁI"].map(item => {
-                        const option = document.createElement("option")
-                        if(item == "BÉ TRAI")
-                            option.value = "BETRAI"
-                        else {
-                            option.value = "BEGAI"
-                        }
-                        option.innerText = item
-                        option.selected = item == typeCatalogue.value
-                        typeCatalogueDetail.appendChild(option);
-                    })
-                    break;
-                }
-                case "DOBOI": {
-                const arr = ["BÉ TRAI", "BÉ GÁI"]
-                            arr.map(item => {
-                                const option = document.createElement("option")
-                                if(item == "BÉ TRAI")
-                                    option.value = "BETRAI"
-                                else {
-                                    option.value = "BEGAI"
-                                }
-                                option.innerText = item
-                                  option.selected = item == typeCatalogue.value
-                                typeCatalogueDetail.appendChild(option);
-                            })
-                            break;
-                        }
-                case "AOQUAN": {
-                            ["BÉ TRAI", "BÉ GÁI"].map(item => {
-                                const option = document.createElement("option")
-                                if(item == "BÉ TRAI")
-                                    option.value = "BETRAI"
-                                else {
-                                    option.value = "BEGAI"
-                                }
-                                option.innerText = item
-                                   option.selected = item == typeCatalogue.value
-                                typeCatalogueDetail.appendChild(option);
-                            })
-                            break;
-                        }
-                case "PHUKIEN": {
-                            ["DẦU", "KHĂN", "KẸP CÀI"].map(item => {
-                                const option = document.createElement("option")
-                                if(item == "DẦU")
-                                    option.value = "DAU"
-                                else if(item == "KHĂN") {
-                                    option.value = "KHĂN"
-                                }else {
-                                    option.value = "KEPCAI"
-                                }
-                                option.innerText = item
-                                 option.selected = item == typeCatalogue.value
-                                typeCatalogueDetail.appendChild(option);
-                            })
-                            break;
-                        }
-          }
+
     })
 
     function formatCurrencyVN(amount) {

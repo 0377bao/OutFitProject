@@ -171,6 +171,7 @@ public class AProductController {
             @RequestParam("code") String code,
             @RequestParam("description") String description,
             @RequestParam("catalogue") String catalogue,
+            @RequestParam("typeCatalogueDetail") String catalogueDetailEnum,
             @RequestParam(defaultValue = "true", name = "isHighlight") boolean isHighlight,
             @RequestParam(defaultValue = "true", name = "isNew") boolean isNew,
             @RequestParam(defaultValue = "true", name = "isActive") boolean isActive,
@@ -200,6 +201,7 @@ public class AProductController {
         product.setCode(code);
         product.setDescription(description.trim());
         product.setCatalogue(catalogueEnum.valueOf(catalogue));
+        product.setCatalogueDetailEnum(TypeCatalogueDetailEnum.valueOf(catalogueDetailEnum));
         product.setHighlight(isHighlight);
         product.setNew(isNew);
         product.setActive(isActive);

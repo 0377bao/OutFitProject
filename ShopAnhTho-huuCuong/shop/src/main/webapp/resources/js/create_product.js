@@ -30,73 +30,47 @@ productType.addEventListener("change", function () {
     productTypeDetail.removeChild(productTypeDetail.firstChild);
   }
   switch(this.value) {
-    case "DOSOSINH": {
+    case "Đồ sơ sinh": {
         ["QUẦN ÁO", "KHĂN", "BAO TAY", "CHÂN MŨ"].map(item => {
             const option = document.createElement("option")
-            if(item == "QUẦN ÁO")
-                option.value = "QUANAO"
-            else if(item == "KHĂN")
-                option.value = "KHAN"
-            else if(item == "BAOTAY")
-                option.value = "BAO TAY"
-            else {
-                option.value = "CHANMU"
-            }
-            option.innerText = item
+            option.value = item;
+            option.innerText = item;
             productTypeDetail.appendChild(option);
         })
         break;
     }
-    case "SETDO": {
+    case "Sét đồ": {
             ["BÉ TRAI", "BÉ GÁI"].map(item => {
                 const option = document.createElement("option")
-                if(item == "BÉ TRAI")
-                    option.value = "BETRAI"
-                else {
-                    option.value = "BEGAI"
-                }
-                option.innerText = item
+               option.value = item;
+                option.innerText = item;
                 productTypeDetail.appendChild(option);
             })
             break;
         }
-        case "DOBOI": {
+        case "Đồ bơi": {
         const arr = ["BÉ TRAI", "BÉ GÁI"]
                     arr.map(item => {
                         const option = document.createElement("option")
-                        if(item == "BÉ TRAI")
-                            option.value = "BETRAI"
-                        else {
-                            option.value = "BEGAI"
-                        }
+                          option.value = item;
                         option.innerText = item
                         productTypeDetail.appendChild(option);
                     })
                     break;
                 }
-        case "AOQUAN": {
+        case "Áo quần": {
                     ["BÉ TRAI", "BÉ GÁI"].map(item => {
                         const option = document.createElement("option")
-                        if(item == "BÉ TRAI")
-                            option.value = "BETRAI"
-                        else {
-                            option.value = "BEGAI"
-                        }
+                          option.value = item;
                         option.innerText = item
                         productTypeDetail.appendChild(option);
                     })
                     break;
                 }
-        case "PHUKIEN": {
+        case "Phụ kiện": {
                     ["DẦU", "KHĂN", "KẸP CÀI"].map(item => {
                         const option = document.createElement("option")
-                        if(item == "DẦU")
-                            option.value = "DAU"
-                        else if(item == "KHĂN") {
-                            option.value = "KHĂN"
-                        }else {
-                            option.value = "KEPCAI"
-                        }
+                          option.value = item;
                         option.innerText = item
                         productTypeDetail.appendChild(option);
                     })
@@ -282,7 +256,28 @@ formData.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-let checkSubmitFormAgain = false;
+const formatCatalogue = (name) => {
+    switch(name) {
+        case "Phụ kiện": return "PHUKIEN";
+        case "Đồ bơi": return "DOBOI";
+        case "Áo quần": return "AOQUAN";
+        case "Đồ sơ sinh": return "DOSOSINH";
+        case "Sét đồ": return "SETDO";
+    }
+}
+
+const formatTypeCatalogueDetail = (name) => {
+    switch(name) {
+        case "QUẦN ÁO": return "QUANAO";
+        case "KHĂN": return "KHAN";
+        case "BAO TAY": return "BAOTAY";
+        case "CHÂN MŨ": return "CHANMU";
+        case 'BÉ TRAI': return "BETRAI";
+        case "BÉ GÁI": return 'BEGAI'
+        case "DẦU": return 'DAU';
+        case "KẸP CÀI": return "KEPCAI";
+    }
+}
 
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
@@ -325,6 +320,8 @@ submitBtn.addEventListener("click", (e) => {
         ".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div"
     );
 
+    const idProduct = document.querySelector('input[name="id"]')
+    console.log("id product", idProduct)
 
     if (!selectStatusProductOutstanding || !selectStatusProduct || !selectedNewProduct ||
         !productPrice.value || !nameProduct.value || !describeProduct.value || !productIdUser.value) {
@@ -346,22 +343,10 @@ submitBtn.addEventListener("click", (e) => {
         }
     })
 
-    if(checkSubmitFormAgain == true) {
-        const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
-                            const catalogueRemove = document.querySelector('input[name="catalogue"]')
-                            const numberColorRemove = document.querySelector('input[name="numberColor"]')
-                            const typeCatalogueDetailRemove = document.querySelector('input[name="typeCatalogueDetail"]')
-                            let index = 0;
-
-                            formData.removeChild(catalogue);
-                            formData.removeChild(numberColorRemove)
-                            formData.removeChild(typeCatalogueDetailRemove)
-    }
-
     const inputCatalogue = document.createElement("input");
     inputCatalogue.name = "catalogue"
     inputCatalogue.type = "hidden"
-    inputCatalogue.value = productTypeData;
+    inputCatalogue.value = formatCatalogue(productTypeData);
     const inputNumberColor = document.createElement("input");
     inputNumberColor.name = "numberColor"
     inputNumberColor.type = "hidden"
@@ -370,11 +355,10 @@ submitBtn.addEventListener("click", (e) => {
     formData.appendChild(inputNumberColor);
     formData.appendChild(inputCatalogue);
 
-    productTypeDetailData = productTypeDetail.value;
     const inputCatalogueDetail = document.createElement("input");
     inputCatalogueDetail.name = "typeCatalogueDetail"
     inputCatalogueDetail.type = "hidden"
-    inputCatalogueDetail.value = productTypeDetailData
+    inputCatalogueDetail.value = formatTypeCatalogueDetail(productTypeDetailData)
     formData.appendChild(inputCatalogueDetail);
 
 
@@ -395,32 +379,32 @@ submitBtn.addEventListener("click", (e) => {
     const loading = document.querySelector('.wrapper');
             loading.style.display = 'flex';
 
-    if(selectStatusProductOutstanding.checked == true) {
-        if(selectStatusProductOutstanding.value == "true") {
-            fetch('http://localhost:8080/admin/product/countProductHighLight')
-            .then(res => res.json())
-            .then(data => {
-                if(Number.parseInt(data) < 4)
-                  formData.submit();
-                else {
-                    const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
-                                                const catalogueRemove = document.querySelectorAll('input[name="catalogue"]')
-                                                const numberColorRemove = document.querySelectorAll('input[name="numberColor"]')
-                                                const typeCatalogueDetailRemove = document.querySelectorAll('input[name="typeCatalogueDetail"]')
-                                          inputSizeRemove.forEach(node => formData.removeChild(node))
-                                           catalogueRemove.forEach(node => formData.removeChild(node))
-                                            numberColorRemove.forEach(node => formData.removeChild(node))
-                                             typeCatalogueDetailRemove.forEach(node => formData.removeChild(node))
-
-                    loading.style.display = 'none';
-                    alert("Đã vượt quá số lượng tối đa sản phẩm nổi bật");
-
-                }
-            })
-        } else {
-            formData.submit();
-        }
-    }
+//    if(selectStatusProductOutstanding.checked == true) {
+//        if(selectStatusProductOutstanding.value == "true") {
+//            fetch('http://localhost:8080/admin/product/countProductHighLight')
+//            .then(res => res.json())
+//            .then(data => {
+//                if(Number.parseInt(data) < 4)
+//                  formData.submit();
+//                else {
+//                    const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
+//                                                const catalogueRemove = document.querySelectorAll('input[name="catalogue"]')
+//                                                const numberColorRemove = document.querySelectorAll('input[name="numberColor"]')
+//                                                const typeCatalogueDetailRemove = document.querySelectorAll('input[name="typeCatalogueDetail"]')
+//                                          inputSizeRemove.forEach(node => formData.removeChild(node))
+//                                           catalogueRemove.forEach(node => formData.removeChild(node))
+//                                            numberColorRemove.forEach(node => formData.removeChild(node))
+//                                             typeCatalogueDetailRemove.forEach(node => formData.removeChild(node))
+//
+//                    loading.style.display = 'none';
+//                    alert("Đã vượt quá số lượng tối đa sản phẩm nổi bật");
+//
+//                }
+//            })
+//        } else {
+//            formData.submit();
+//        }
+//    }
 
 
 })
