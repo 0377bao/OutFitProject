@@ -89,7 +89,7 @@
         <div class="CreateProduct">
             <div class="container">
                 <div class="CreateProductSubmit">
-                    <h2>Thêm sản phẩm mới</h2>
+                    <h2>Cập nhật sản phẩm</h2>
 
                     <button class="CreateProductSubmit__Btn">Cập nhật</button>
                 </div>
@@ -126,10 +126,10 @@
                                     <lable>Còn hàng</lable>
                                     <input
                                             id="CreateProduct__GeneralInfor__StatusId__Status__1"
-                                            value="${product.isActive()}"
+                                            value="true"
                                             name="isActive"
                                             type="radio"
-                                            checked="${product.isActive()}"
+                                            ${product.isActive() ? "checked" : ""}
                                     />
                                 </div>
 
@@ -137,10 +137,10 @@
                                     <lable>Hết hàng</lable>
                                     <input
                                             id="CreateProduct__GeneralInfor__StatusId__Status__2"
-                                            value="${!product.isActive()}"
+                                            value="false"
                                             name="isActive"
                                             type="radio"
-                                            checked="${!product.isActive()}"
+                                            ${not product.isActive() ? "checked" : ""}
                                     />
                                 </div>
                             </div>
@@ -167,19 +167,19 @@
                             <lable class="m-2">Có</lable>
                             <input
                                     id="CreateProduct__GeneralInfor__outstanding_1"
-                                    value="${product.isHighlight()}"
+                                    value="true"
                                     name="isHighlight"
                                     type="radio"
-                                    checked="${product.isHighlight()}"
+                                    ${product.isHighlight() ? "checked" : ""}
                             />
 
                             <label class="m-2">Không</label>
                             <input
                                     id="CreateProduct__GeneralInfor__outstanding"
                                     name="isHighlight"
-                                    value="${!product.isHighlight()}"
+                                    value="false"
                                     type="radio"
-                                    checked="${!product.isHighlight()}"
+                                    ${not product.isHighlight() ? "checked" : ""}
                             />
                         </div>
 
@@ -189,18 +189,18 @@
                             <input
                                     id="CreateProduct__GeneralInfor__newProduct_1"
                                     name="isNew"
-                                    value="${product.isNew()}"
+                                    value="true"
                                     type="radio"
-                                    checked="${product.isNew()}"
+                                   ${product.isNew()? "checked" : ""}
                             />
 
                             <label class="m-2">Không</label>
                             <input
                                     id="CreateProduct__GeneralInfor__newProduct"
                                     name="isNew"
-                                    value="${!product.isNew()}"
+                                    value="false"
                                     type="radio"
-                                    checked="${!product.isNew()}"
+                                    ${not product.isNew()? "checked" : ""}
                             />
                         </div>
                     </div>

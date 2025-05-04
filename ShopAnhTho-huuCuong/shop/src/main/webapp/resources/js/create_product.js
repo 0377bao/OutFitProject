@@ -282,6 +282,7 @@ formData.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+let checkSubmitFormAgain = false;
 
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
@@ -345,15 +346,25 @@ submitBtn.addEventListener("click", (e) => {
         }
     })
 
+    if(checkSubmitFormAgain == true) {
+        const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
+                            const catalogueRemove = document.querySelector('input[name="catalogue"]')
+                            const numberColorRemove = document.querySelector('input[name="numberColor"]')
+                            const typeCatalogueDetailRemove = document.querySelector('input[name="typeCatalogueDetail"]')
+                            let index = 0;
 
+                            formData.removeChild(catalogue);
+                            formData.removeChild(numberColorRemove)
+                            formData.removeChild(typeCatalogueDetailRemove)
+    }
 
     const inputCatalogue = document.createElement("input");
     inputCatalogue.name = "catalogue"
-    inputCatalogue.type = "text"
+    inputCatalogue.type = "hidden"
     inputCatalogue.value = productTypeData;
     const inputNumberColor = document.createElement("input");
     inputNumberColor.name = "numberColor"
-    inputNumberColor.type = "number"
+    inputNumberColor.type = "hidden"
     inputNumberColor.value = Number.parseInt(allGroups.length);
 
     formData.appendChild(inputNumberColor);
@@ -362,7 +373,7 @@ submitBtn.addEventListener("click", (e) => {
     productTypeDetailData = productTypeDetail.value;
     const inputCatalogueDetail = document.createElement("input");
     inputCatalogueDetail.name = "typeCatalogueDetail"
-    inputCatalogueDetail.type = "text"
+    inputCatalogueDetail.type = "hidden"
     inputCatalogueDetail.value = productTypeDetailData
     formData.appendChild(inputCatalogueDetail);
 
@@ -372,7 +383,7 @@ submitBtn.addEventListener("click", (e) => {
         listSize.forEach((item) => {
             const inputSize = document.createElement("input");
             inputSize.name = "sizes";
-            inputSize.type = "text";
+            inputSize.type = "hidden";
             inputSize.value = item.innerText;
             formData.appendChild(inputSize)
         })
@@ -383,7 +394,34 @@ submitBtn.addEventListener("click", (e) => {
 
     const loading = document.querySelector('.wrapper');
             loading.style.display = 'flex';
-    formData.submit();
+
+    if(selectStatusProductOutstanding.checked == true) {
+        if(selectStatusProductOutstanding.value == "true") {
+            fetch('http://localhost:8080/admin/product/countProductHighLight')
+            .then(res => res.json())
+            .then(data => {
+                if(Number.parseInt(data) < 4)
+                  formData.submit();
+                else {
+                    const inputSizeRemove = document.querySelectorAll('input[name="sizes"]');
+                                                const catalogueRemove = document.querySelectorAll('input[name="catalogue"]')
+                                                const numberColorRemove = document.querySelectorAll('input[name="numberColor"]')
+                                                const typeCatalogueDetailRemove = document.querySelectorAll('input[name="typeCatalogueDetail"]')
+                                          inputSizeRemove.forEach(node => formData.removeChild(node))
+                                           catalogueRemove.forEach(node => formData.removeChild(node))
+                                            numberColorRemove.forEach(node => formData.removeChild(node))
+                                             typeCatalogueDetailRemove.forEach(node => formData.removeChild(node))
+
+                    loading.style.display = 'none';
+                    alert("Đã vượt quá số lượng tối đa sản phẩm nổi bật");
+
+                }
+            })
+        } else {
+            formData.submit();
+        }
+    }
+
 
 })
 

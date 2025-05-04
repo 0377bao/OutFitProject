@@ -325,11 +325,13 @@
                                     class="CreateProduct__GeneralInfor__UploadImg__Size__Detail"
                             >
                                 <button
+                                        type="button"
                                         class="CreateProduct__GeneralInfor__UploadImg__SizeAdd__Btn"
                                 >
                                     Thêm size
                                 </button>
                                 <button
+                                        type="button"
                                         class="CreateProduct__GeneralInfor__UploadImg__SizeDel__Btn"
                                 >
                                     Xóa size

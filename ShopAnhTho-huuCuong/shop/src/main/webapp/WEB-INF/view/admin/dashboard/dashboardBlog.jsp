@@ -36,12 +36,13 @@
             </a>
         </div>
         <hr />
-        <form action="">
+        <form action="/admin/blog/filterDashboardBlog">
             <div class="header__2">
                 <input
                         type="text"
                         class="form-control p-3"
                         placeholder="Nhập bài viết bạn muốn tìm"
+                        name="title"
                 />
                 <button type="submit" class="header__2__btn">Tìm kiếm</button>
             </div>

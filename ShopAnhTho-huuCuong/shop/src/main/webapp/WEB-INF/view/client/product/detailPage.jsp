@@ -149,7 +149,7 @@
 
                 <p>
                     Giá:
-                    <span id="main__product__details__price"> ${price} vnđ </span>
+                    <span id="main__product__details__price"> ${price}đ</span>
                 </p>
 
                 <p>Màu sắc</p>
@@ -383,14 +383,14 @@
         const total = document.querySelector("#total");
         const price = document.querySelector("#price");
 
-        const priceFormat = (priceProduct.textContent).replace(" vnđ", "")
+        const priceFormat = (priceProduct.textContent).replace("đ", "").replaceAll(".", "")
         const totalPrice = inputTotal.value * priceFormat;
 
-        price.value = Number.parseFloat(totalPrice + "000");
+        price.value = Number.parseFloat(totalPrice);
         total.value = inputTotal.value;
         inputTotal.addEventListener("change", () => {
             const newTotalPrice = inputTotal.value * priceFormat;
-            price.value = Number.parseFloat(newTotalPrice + "000");
+            price.value = Number.parseFloat(newTotalPrice);
             total.value = inputTotal.value;
         })
 
@@ -398,11 +398,11 @@
                 if(Number(e.target.value) == 0) {
                     alert("Số lượng tối thiểu là 1");
                     total.value = 1;
-                    price.value = Number.parseFloat(total.value * priceFormat + "000");
+                    price.value = Number.parseFloat(total.value *  priceFormat);
                     return;
                 }else {
                          const newTotalPrice = Number.parseFloat(e.target.value) * priceFormat;
-                         price.value = Number.parseFloat(newTotalPrice + "000");
+                         price.value = Number.parseFloat(newTotalPrice);
                 }
         })
 
