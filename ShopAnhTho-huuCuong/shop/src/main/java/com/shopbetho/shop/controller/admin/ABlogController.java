@@ -48,8 +48,8 @@ public class ABlogController {
             return "redirect:/admin/login";
         }
 
-        List<Blog> products = this.blogService.searchByTitle(title);
-        model.addAttribute("blogs", products);
+        List<Blog> blogs = this.blogService.searchByTitle(title);
+        model.addAttribute("blogs", blogs);
         return "admin/dashboard/dashboardBlog";
     }
 
