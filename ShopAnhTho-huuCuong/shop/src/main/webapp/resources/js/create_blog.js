@@ -80,24 +80,30 @@ btnActionContent.addEventListener("click", () => {
 const formData = document.querySelector("#formData");
 formData.addEventListener("submit", (e) => {
   e.preventDefault();
+   const loading = document.querySelector('.wrapper');
   const titleBlog = document.getElementById("titleBlog");
   const contentBlog = document.getElementById("contentBlog");
-  console.log(upLoadImg.attributes.value)
+
   if(upLoadImg.attributes.value) {
-    if(TitleBlog.value && dataContent) {
+    if(TitleBlog.value && quill.root.innerHTML) {
       titleBlog.value = TitleBlog.value;
-      contentBlog.value = dataContent;
+      contentBlog.value = quill.root.innerHTML.toString();
+console.log(quill.root.innerHTML)
+      // Hiển thị loading (ví dụ: thay đổi nút)
+      loading.style.display = 'flex';
       formData.submit();
     }
   }else {
-    if(!TitleBlog.value || !dataContent) {
+    if(!TitleBlog.value || !quill.root.innerHTML) {
       alert("Vui lòng nhập đầy đủ thông tin!")
     }else if(!upLoadImg.value) {
       alert("Vui lòng chọn avatar cho bài viết!")
     } else{
+     console.log(quill.root.innerHTML)
       titleBlog.value = TitleBlog.value;
-      contentBlog.value = dataContent;
-      formData.submit();
+      contentBlog.value = quill.root.innerHTML.toString();
+      loading.style.display = 'flex';
+     formData.submit();
     }
 
   }

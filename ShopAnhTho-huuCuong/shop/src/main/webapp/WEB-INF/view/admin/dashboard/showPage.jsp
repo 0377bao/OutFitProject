@@ -16,7 +16,7 @@
             rel="stylesheet"
     />
     <link rel="stylesheet" href="/admin/css/homeStyle.css" />
-    <title>Admin page</title>
+    <title>Trang chủ Admin</title>
 </head>
 <body>
 <div class="container">
@@ -39,27 +39,27 @@
                         </p>
 
                         <div class="welcome__admin__btn">
-                            <form action="/admin/product/dashboardProduct" class="welcome__admin__btn__product">
+                            <a href="/admin/product/dashboardProduct" class="welcome__admin__btn__product">
                                 <button class="text_button">
                                     Quản lý sản phẩm
                                 </button>
-                            </form>
-                            <form action="/admin/blog/dashboard" class="welcome__admin__btn__product">
+                            </a>
+                            <a href="/admin/blog/dashboard" class="welcome__admin__btn__product">
                                 <button class="text_button">
                                     Quản lý bài viết
                                 </button>
-                            </form>
-                            <form action="/admin/banner/create" class="welcome__admin__btn__blog">
+                            </a>
+                            <a href="/admin/banner/create" class="welcome__admin__btn__blog">
                             <button class="text_button">
                                 Quản lý Banner trang chủ
                             </button>
 
-                            </form>
-                            <form action="admin/collection/create" class="welcome__admin__btn__blog">
+                            </a>
+                            <a href="admin/collection/create" class="welcome__admin__btn__blog">
                                 <button class="text_button">
                                     Quản lý bộ sưu tập trang chủ
                                 </button>
-                            </form>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -71,11 +71,11 @@
                         src="https://png.pngtree.com/png-vector/20230830/ourmid/pngtree-3d-character-modeling-digital-marketing-online-shop-admin-illustration-png-image_9190030.png"
                 />
                 <div class="welcome__admin__btn__exit">
-                    <form action="/admin/login">
+                    <a href="/admin/login">
                         <button class="btn btn-danger">
                             Exit
                         </button>
-                    </form>
+                    </a>
                 </div>
             </div>
         </div>

@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/header.css" />
-    <title>Admin Products</title>
+    <title>Quản lý bài viết</title>
     <style>
         .header {
-            margin-top: 10%;
+            margin-top: 12%;
         }
     </style>
 </head>
@@ -31,16 +31,16 @@
         <div class="header__1">
             <h1>Quản lý bài viết (Blog)</h1>
 
-            <form action="/admin/blog/create" style="width: 200px; justify-self: flex-end;">
+            <a href="/admin/blog/create" style="width: 200px; justify-self: flex-end;">
                 <button class="header__1__btn" style="height: 100%">Thêm bài viết mới</button>
-            </form>
+            </a>
         </div>
         <hr />
         <div class="header__2">
             <input
                     type="text"
                     class="form-control p-3"
-                    placeholder="Nhập sản phẩm bạn muốn tìm"
+                    placeholder="Nhập bài viết bạn muốn tìm"
             />
             <button class="header__2__btn">Tìm kiếm</button>
         </div>
@@ -63,21 +63,40 @@
             <c:when test="${blogs != null}">
                 <c:forEach var="blogItem" items="${blogs.content}" varStatus="loop">
                     <div class="row">
-                        <div class="col-sm-1">${loop.index}</div>
-                        <div class="col-sm-2">${blogItem.title}</div>
+                        <div class="col-sm-1">
+                         <span class="main__navbar__product">STT</span>
+                             ${loop.index}
+                        </div>
+                        <div class="col-sm-2">
+                        <span class="main__navbar__product">Tiêu đề bài viết</span>
+                            <p class="card-title" style="
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 3;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;">
+                                    ${blogItem.title}
+                            </p>
+                            </div>
 
                         <div class="col-sm-4">
+                        <span class="main__navbar__product">Nội dung sơ lược</span>
                             ${blogItem.content}
                         </div>
-                        <div class="col-sm-2">${blogItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${blogItem.getCreatedAt().toString().split("T")[0]}</div>
-                        <div class="col-sm-1">${blogItem.id}</div>
                         <div class="col-sm-2">
-                            <form action="/admin/blog/update/${blogItem.id}" style="display: inline-block">
+                         <span class="main__navbar__product">Thời gian tạo</span>
+                        ${blogItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${blogItem.getCreatedAt().toString().split("T")[0]}
+                        </div>
+                        <div class="col-sm-1">
+                               <span class="main__navbar__product">Mã bài viết</span>
+                            ${blogItem.id}
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="/admin/blog/update/${blogItem.id}" style="display: inline-block">
                                 <button class="btn btn-warning">Sửa</button>
-                            </form>
-                            <form style="display: inline-block">
+                            </a>
+                            <a style="display: inline-block">
                                 <button class="btn btn-danger m-3">Xóa</button>
-                            </form>
+                            </a>
                         </div>
                     </div>
 
@@ -98,12 +117,12 @@
                     <div class="col-sm-2">20h03 27/8/2025</div>
                     <div class="col-sm-1">7878977</div>
                     <div class="col-sm-2">
-                        <form action="/admin/blog/update/1" style="display: inline-block">
+                        <a href="/admin/blog/update/1" style="display: inline-block">
                             <button class="btn btn-warning">Sửa</button>
-                        </form>
-                        <form style="display: inline-block">
+                        </a>
+                        <a style="display: inline-block">
                             <button class="btn btn-danger m-3">Xóa</button>
-                        </form>
+                        </a>
                     </div>
                 </div>
 
@@ -221,5 +240,6 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/dashboard_blog.js"></script>
 </body>
 </html>

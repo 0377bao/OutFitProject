@@ -389,17 +389,6 @@
 
 <jsp:include page="../../footer.jsp"/>
 
-<script>
-    document.getElementById('formData').addEventListener('submit', function (e) {
-        // Chặn submit ngay lập tức
-        e.preventDefault();
-
-        // Hiển thị loading (ví dụ: thay đổi nút)
-        const loading = document.querySelector('.wrapper');
-        loading.style.display = 'flex';
-        this.submit(); // submit lại form
-    });
-</script>
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>

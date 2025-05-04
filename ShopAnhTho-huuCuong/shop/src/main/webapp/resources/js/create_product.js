@@ -283,24 +283,15 @@ formData.addEventListener("submit", (e) => {
 });
 
 
-document.getElementById('formData').addEventListener('submit', function (e) {
-    // Chặn submit ngay lập tức
-    e.preventDefault();
-
-    // Hiển thị loading (ví dụ: thay đổi nút)
-    const loading = document.querySelector('.wrapper');
-    loading.style.display = 'flex';
-    this.submit(); // submit lại form
-});
-
 // Xử lý phần gửi dữ liệu về backend
 const submitBtn = document.querySelector(".CreateProductSubmit__Btn");
 submitBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    // Xử lý phần sản phẩm hiển thị nổi bật
-    const selectStatusProductOutstanding = document.querySelector(
-        'input[name="isHighlight"]:checked'
-    );
+
+  e.preventDefault()
+  // Xử lý phần sản phẩm hiển thị nổi bật
+  const selectStatusProductOutstanding = document.querySelector(
+      'input[name="isHighlight"]:checked'
+  );
 // Xử lý phần chọn còn hàng hay hết hàng
     const selectStatusProduct = document.querySelector(
         'input[name="isActive"]:checked'
@@ -355,6 +346,7 @@ submitBtn.addEventListener("click", (e) => {
     })
 
 
+
     const inputCatalogue = document.createElement("input");
     inputCatalogue.name = "catalogue"
     inputCatalogue.type = "text"
@@ -388,6 +380,9 @@ submitBtn.addEventListener("click", (e) => {
         alert("Vui lòng chọn size cho sản phẩm")
         return;
     }
+
+    const loading = document.querySelector('.wrapper');
+            loading.style.display = 'flex';
     formData.submit();
 
 })

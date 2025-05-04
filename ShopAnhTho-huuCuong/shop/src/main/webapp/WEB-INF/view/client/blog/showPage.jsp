@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Blog List</title>
+    <title>Danh sách bài viết</title>
     <link
             rel="stylesheet"
             href="/bootstrap/css/bootstrap.css"
@@ -226,5 +226,6 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/blog_list.js"></script>
 </body>
 </html>

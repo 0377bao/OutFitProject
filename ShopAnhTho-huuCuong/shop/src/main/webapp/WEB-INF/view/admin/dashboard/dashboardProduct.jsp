@@ -15,8 +15,8 @@
             rel="stylesheet"
     />
     <link rel="stylesheet" href="/admin/css/dashboardProduct.css" />
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <title>Admin Products</title>
+    <title>Quản lý sản phẩm</title>
+
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
@@ -25,7 +25,9 @@
         <div class="header__1">
             <h1>Quản lý sản phẩm</h1>
 
-                <button class="header__1__btn"><a class="text__btn__header_1" href="/admin/product/create">Thêm sản phẩm mới</a></button>
+                <button class="header__1__btn">
+                    <a class="text__btn__header_1" href="/admin/product/create">Thêm sản phẩm mới</a>
+                </button>
 
         </div>
         <hr />
@@ -40,7 +42,6 @@
     </div>
 </header>
 
-
 <main class="main">
     <div class="container main__product__total">
         <div class="row main__navbar">
@@ -54,6 +55,7 @@
         </div>
         <hr />
 
+<<<<<<< HEAD
 <c:choose>
     <c:when test="${products != null}">
         <c:forEach var="product" items="${products}" varStatus="loop">
@@ -82,7 +84,65 @@
         <span>Không có sản phẩm nổi bật nào</span>
     </c:otherwise>
 </c:choose>
+=======
+        <c:choose>
+            <c:when test="${products != null}">
+                <c:forEach var="product" items="${products.content}" varStatus="loop">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="main__navbar__product">STT</span>
+                            ${loop.index}
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="main__navbar__product">Tên sản phẩm</span>
+                            <p class="card-title" style="
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;">
+                                ${product.name}
+                            </p>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="main__navbar__product">Giá sản phẩm</span>
+                             ${product.price} vnđ
+                        </div>
+                        <div class="col-sm-3">
+                                    <span class="main__navbar__product">Mô tả sản phẩm</span>
+                                  <p class="card-title" style="
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 3;
+                                        -webkit-box-orient: vertical;
+                                         overflow: hidden;">
+                                            ${product.description}
+                                  </p>
+>>>>>>> 07ece1908e49f461cca06ed9e15a2276b910b844
 
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="main__navbar__product">Thời gian tạo</span>
+                             ${product.getCreatedAt().toString().split("T")[1].substring(0,5)} ${product.getCreatedAt().toString().split("T")[0]}
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="main__navbar__product">Mã sản phẩm</span>
+                             ${product.id}
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="/admin/product/update/${product.id}" style="display: inline-block">
+                                <button class="btn btn-warning">Sửa</button>
+                            </a>
+                            <a style="display: inline-block">
+                                <button class="btn btn-danger m-3">Xóa</button>
+                            </a>
+                        </div>
+                    </div>
+                    <hr />
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <span>Không có sản phẩm nổi bật nào</span>
+            </c:otherwise>
+        </c:choose>
 
     </div>
 
@@ -103,21 +163,42 @@
             <c:when test="${productHighLights != null && productHighLights.size() > 0}">
                 <c:forEach var="prodHighLightItem" items="${productHighLights}" varStatus="loop">
                     <div class="row">
+<<<<<<< HEAD
                         <div class="col-sm-1">${loop.index + 1}</div>
                         <div class="col-sm-2">${prodHighLightItem.name}</div>
+=======
+                        <div class="col-sm-1">${loop.index}</div>
+                        <div class="col-sm-2">
+                        <p class="card-title" style="
+                                                                          display: -webkit-box;
+                                                                          -webkit-line-clamp: 3;
+                                                                          -webkit-box-orient: vertical;
+                                                                          overflow: hidden;">
+                                                                          ${prodHighLightItem.name}
+                                                                          </p>
+
+                        </div>
+>>>>>>> 07ece1908e49f461cca06ed9e15a2276b910b844
                         <div class="col-sm-1">${prodHighLightItem.price} vnđ</div>
                         <div class="col-sm-3">
-                                ${prodHighLightItem.description}
+                            <p class="card-title" style="
+                                                                              display: -webkit-box;
+                                                                              -webkit-line-clamp: 3;
+                                                                              -webkit-box-orient: vertical;
+                                                                              overflow: hidden;">
+                                                                             ${prodHighLightItem.description}
+                                                                              </p>
+
                         </div>
                         <div class="col-sm-2">${prodHighLightItem.getCreatedAt().toString().split("T")[1].substring(0,5)} ${prodHighLightItem.getCreatedAt().toString().split("T")[0]}</div>
                         <div class="col-sm-1">${prodHighLightItem.id}</div>
                         <div class="col-sm-2">
-                            <form action="/admin/product/update/${prodHighLightItem.id}" style="display: inline-block">
+                            <a href="/admin/product/update/${prodHighLightItem.id}" style="display: inline-block">
                                 <button class="btn btn-warning">Sửa</button>
-                            </form>
-                            <form style="display: inline-block">
+                            </a>
+                            <a style="display: inline-block">
                                 <button class="btn btn-danger m-3">Xóa</button>
-                            </form>
+                            </a>
                         </div>
                     </div>
 
@@ -128,61 +209,10 @@
                 <span>Không có sản phẩm nổi bật</span>
             </c:otherwise>
         </c:choose>
-
-
-
-<%--        <div class="row">--%>
-<%--            <div class="col-sm-1">1</div>--%>
-<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
-<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
-<%--            <div class="col-sm-3">--%>
-<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
-<%--            </div>--%>
-<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
-<%--            <div class="col-sm-1">7878977</div>--%>
-<%--            <div class="col-sm-2">--%>
-<%--                <button class="btn btn-warning">Sửa</button>--%>
-<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <hr />--%>
-
-<%--        <div class="row">--%>
-<%--            <div class="col-sm-1">2</div>--%>
-<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
-<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
-<%--            <div class="col-sm-3">--%>
-<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
-<%--            </div>--%>
-<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
-<%--            <div class="col-sm-1">7878977</div>--%>
-<%--            <div class="col-sm-2">--%>
-<%--                <button class="btn btn-warning">Sửa</button>--%>
-<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <hr />--%>
-
-<%--        <div class="row">--%>
-<%--            <div class="col-sm-1">3</div>--%>
-<%--            <div class="col-sm-2">Áo thun mùa hè</div>--%>
-<%--            <div class="col-sm-1">350. 000 vnđ</div>--%>
-<%--            <div class="col-sm-3">--%>
-<%--                Là loại áo thun thích hợp cho bé mặc mùa hè tránh nóng--%>
-<%--            </div>--%>
-<%--            <div class="col-sm-2">20h03 27/8/2025</div>--%>
-<%--            <div class="col-sm-1">7878977</div>--%>
-<%--            <div class="col-sm-2">--%>
-<%--                <button class="btn btn-warning">Sửa</button>--%>
-<%--                <button class="btn btn-danger m-3">Xóa</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <hr />--%>
     </div>
 </main>
+
+
 
 <jsp:include page="../../footer.jsp"/>
 
@@ -190,5 +220,6 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/dashboard_product.js"></script>
 </body>
 </html>
