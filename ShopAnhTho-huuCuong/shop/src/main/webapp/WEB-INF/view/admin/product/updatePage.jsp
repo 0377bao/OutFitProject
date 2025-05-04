@@ -508,7 +508,7 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="/js/create_product.js"></script>
+<script src="/js/update_product.js"></script>
 <script src="/js/index.js"></script>
 
 

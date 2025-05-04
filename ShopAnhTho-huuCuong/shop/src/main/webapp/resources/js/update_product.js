@@ -6,7 +6,7 @@
   4. Xử lý locgic phần gom nhóm dữ liệu của phần thêm màu -->
   5. Xử lý phần dữ liệu cho phần tạo size --> xong
   6. Xử lý dữ liệu gửi về backend qua fetch  --> xong
-  7. Xử lý các phần chọn 
+  7. Xử lý các phần chọn
 */
 let count = document.querySelectorAll(".CreateProduct__GeneralInfor__UploadImg__avt__box__template__div").length;
 
@@ -332,6 +332,8 @@ submitBtn.addEventListener("click", (e) => {
         return;
     }
 
+    const idProduct = document.querySelector('input[name="id"]')
+
     const colorNumbers = document.querySelectorAll(".colorNames");
     colorNumbers.forEach(inputColor => {
         if (inputColor.value === "") {
@@ -378,7 +380,7 @@ submitBtn.addEventListener("click", (e) => {
 
     if(selectStatusProductOutstanding.checked == true) {
         if(selectStatusProductOutstanding.value == "true") {
-            fetch('http://localhost:8080/admin/product/countProductHighLight')
+            fetch('http://localhost:8080/admin/product/countProductHighLightAndIdNot?id=' + idProduct.value)
             .then(res => res.json())
             .then(data => {
                 if(Number.parseInt(data) < 4)
@@ -488,7 +490,7 @@ hãy đưa đoạn code của fetch gửi vào đây nha Cường
   7. Dữ liệu phần quản lý màu
   8. Dữ liệu phần tạo size
   9. Phân loại sản phẩm
-  
+
 */
 
 // Gửi về BE, đoạn này tạm thời để ngoài này, nào có BE mới cho vô
